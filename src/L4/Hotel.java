@@ -4,7 +4,6 @@ import Sales.Price;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Hotel extends L4 {
@@ -15,7 +14,7 @@ public class Hotel extends L4 {
     ArrayList<Room> RoomTypes = new ArrayList<Room>();
     private double[][] prices;
 
-    Hotel(){}
+    public Hotel(){}
 
     Hotel(String name, String location, double rating, String[] RoomDetails, int[] noOfRooms){
         this.name = name;
