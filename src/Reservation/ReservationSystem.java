@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 
 public class ReservationSystem {
 
-        static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite) {
+        public static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite) {
             try {
                 File file = new File(fileName);
                 StringBuffer data = new StringBuffer("");
@@ -43,12 +43,11 @@ public class ReservationSystem {
                     String email = reservation.getReservationEmail();
                     String checkIn = reservation.getCheckInDate().toString();
                     String checkOut = reservation.getCheckOutDate().toString();
-                    String numOfRooms = reservation.getNumOfRooms();
                     double totalCost = reservation.getTotalCost();
                     double deposit = reservation.getDeposit();
 
                     data.append(ID + "," + name + "," + number + "," + email + "," +
-                            checkIn + "," + checkOut + "," + numOfRooms + "," + totalCost + "," + deposit + "\n");
+                            checkIn + "," + checkOut + "," + "," + totalCost + "," + deposit + "\n");
                 }
                 printWriter.write(data.toString());
                 printWriter.close();
@@ -59,7 +58,7 @@ public class ReservationSystem {
             }
         }
 
-        static ArrayList<Reservations> readFromCSV(String filename) {
+        public static ArrayList<Reservations> readFromCSV(String filename) {
             ArrayList<Reservations> details = new ArrayList<>();
             try {
                 File File = new File(filename);
