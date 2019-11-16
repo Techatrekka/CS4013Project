@@ -3,29 +3,30 @@ package Reservation;
 import L4.Room;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Reservations extends ReservationSystem {
 
-    private String reservationName, number, email, reservationId, numOfRooms;
+    private String reservationName, number, email, reservationId;
+    private int duration;
     private LocalDate checkIn, checkOut;
     private Double totalCost, deposit;
     private boolean advancedPurchase;
-    private HashMap<ArrayList<Room>, ArrayList<Double>> Rooms;
+    private ArrayList<Room> rooms = new ArrayList<>();
     public static ArrayList<Reservations> resList = new ArrayList<>();
 
     public Reservations() {}
 
     public Reservations(String reservationId, String reservationName, String number, String email,
-                        LocalDate checkIn, HashMap<ArrayList<Room>, ArrayList<Double>> Rooms,
+                        LocalDate checkIn, ArrayList<Room> rooms, int duration,
                         double totalCost, boolean advancedPurchase) {
         this.reservationName = reservationName;
         this.reservationId = reservationId;
         this.number = number;
         this.email = email;
+        this.duration = duration;
         this.advancedPurchase = advancedPurchase;
         this.checkIn = checkIn;
-        this.Rooms = Rooms;
+        this.rooms = rooms;
         this.totalCost = totalCost;
         this.deposit = totalCost * .15;
     }
@@ -60,7 +61,7 @@ public class Reservations extends ReservationSystem {
         return this.email;
     }
 
-    HashMap<ArrayList<Room>, ArrayList<Double>> getRooms() { return Rooms; }
+    ArrayList<Room> getRooms() { return rooms; }
 
     boolean  getAdvancedPurchace(){
         return this.advancedPurchase;
@@ -76,10 +77,6 @@ public class Reservations extends ReservationSystem {
 
     LocalDate getCheckOutDate() {
         return checkOut;
-    }
-
-    String getNumOfRooms() {
-        return numOfRooms;
     }
 
     public double getTotalCost() {
@@ -98,6 +95,6 @@ public class Reservations extends ReservationSystem {
     public String toString() {
         return reservationId + " " + reservationName + " " +
                 checkIn + " " + checkOut + " " +
-                numOfRooms + " " + totalCost;
+                rooms.size() + " " + totalCost;
     }
 }
