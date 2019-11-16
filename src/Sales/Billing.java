@@ -12,7 +12,7 @@ public class Billing extends Price {
                           LocalDate checkIn, ArrayList<Room> roomTypes) {
         double price = 0;
         int day = checkIn.getDayOfWeek().getValue() - 1;
-        //final double[][] prices = setWeeklyPrices();
+        double[][] prices = getPrices();
         int row = 0;
         for (int numOfRooms = 0; numOfRooms < rooms.size(); numOfRooms++) {
             for (int i = 0; i < roomTypes.size(); i++) {
