@@ -2,10 +2,12 @@ package People;
 
 import L4.Room;
 import Reservation.Cancellations;
+import Reservation.ReservationSystem;
 import Reservation.Reservations;
+import Sales.Billing;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Person {
 
@@ -18,10 +20,18 @@ public class Person {
 
     }
 
-    void makeReservation(String reservationName, String number, String email,
-                         LocalDate checkIn, int numOfNights, HashMap<ArrayList<Room>,
-                            ArrayList<Double>> rooms, boolean advancedPurchase) {
-        Reservations reservations = new Reservations();
+    public void makeReservation(LocalDate checkIn, int numOfNights, ArrayList<Room>
+                                rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes) {
+        Billing bill = new Billing();
+        double total = bill.calculatePrice(advancedPurchase, rooms,
+                numOfNights, checkIn, RoomTypes);
+        Reservations re = new Reservations();
+        String reservationID = re.getNextReservationId();
+        Reservations reservations = new Reservations(reservationID, name, phone, email,
+        checkIn,rooms,numOfNights,total,advancedPurchase);
+        ArrayList<Reservations> reservations1 =
+                ReservationSystem.readFromCSV("Reservations.csv");
+        reservations1.add(reservations);
     }
 
     void makeCancellation(Reservations reservation) {
