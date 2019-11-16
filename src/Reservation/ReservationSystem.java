@@ -109,7 +109,7 @@ public class ReservationSystem {
             return LocalDate.parse(temp);
         }
 
-        protected void deleteReservations(Reservations reservations) {
+        public void deleteReservations(Reservations reservations) {
             ArrayList<Reservations> list = readFromCSV("Reservations.csv");
             list.remove(reservations);
             writeToCSV("Reservations.csv",list,true);
