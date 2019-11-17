@@ -6,8 +6,6 @@ import L4.Hotel;
 import L4.Room;
 import People.Customer;
 import Reservation.Reservations;
-import Sales.Billing;
-import Sales.Price;
 
 import static Reservation.ReservationSystem.readReservation;
 
