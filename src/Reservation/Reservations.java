@@ -65,7 +65,7 @@ public class Reservations extends ReservationSystem {
         return this.email;
     }
 
-    ArrayList<Room> getRooms() { return rooms; }
+    public ArrayList<Room> getRooms() { return rooms; }
 
     String getRoomsAsString() {
         String temp = "";
