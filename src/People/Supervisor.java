@@ -4,7 +4,7 @@ import Reservation.*;
 
 public class Supervisor extends Staff {
 
-    Supervisor(){}
+    public Supervisor(){}
 
 
     Supervisor(String name, String email, String phone, double wages, String address) {
@@ -23,7 +23,7 @@ public class Supervisor extends Staff {
         return this.wages;
     }
 
-    void giveDiscount(Reservations reservation, double discount) {
+    public void giveDiscount(Reservations reservation, double discount) {
         double cost = reservation.getTotalCost();
         double newPrice = cost - (cost * discount);
         reservation.setTotalCost(newPrice);
