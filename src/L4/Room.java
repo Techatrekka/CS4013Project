@@ -40,6 +40,6 @@ public class Room extends Hotel {
 
     @Override
     public String toString(){
-        return "Room Type: " + getType() + "Occupancy: " + getOccupancy() + "Breakfast Included: " + isBreakfastIncluded();
+        return getType() + " " + getOccupancy() + " " + isBreakfastIncluded();
     }
 }

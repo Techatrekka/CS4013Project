@@ -1,5 +1,7 @@
 package Reservation;
 
+import L4.Room;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,21 +18,19 @@ public class ReservationSystem {
                 File file = new File(fileName);
                 StringBuffer data = new StringBuffer("");
                 PrintWriter printWriter;
-                if (file.exists() && !overwrite)
-                {
+                if (file.exists() && !overwrite) {
                     printWriter = new PrintWriter(new FileOutputStream(file, true));
                 }
-                else
-                {
-                    // create file and add header if doesnt exist
+                else {
+                    // create file and add header if doesn't exist
                     printWriter = new PrintWriter(file);
                     if(fileName.equals("Cancellations.csv"))
                     {
-                        data.append("ID,Name,Number,Email,Check in Date,Cancellation Date,No. of Rooms,Total Cost,Deposit\n");
+                        data.append("ID,Name,Number,Email,Check in Date,Cancellation Date,No. of Rooms, Room Types, Total Cost,Deposit\n");
                     }
                     else
                     {
-                        data.append("ID,Name,Number,Email,Check in Date,Check out Date,No. of Rooms,Total Cost,Deposit\n");
+                        data.append("ID,Name,Number,Email,Check in Date,Stay Duration,No. of Rooms, Room Types,Total Cost,Deposit\n");
                     }
                 }
 
@@ -39,15 +39,15 @@ public class ReservationSystem {
                 {
                     String ID = reservation.getReservationId();
                     String name = reservation.getReservationName();
-                    String number = reservation.getReservationNumber();
+                    String number = reservation.getPhoneNumber();
                     String email = reservation.getReservationEmail();
                     String checkIn = reservation.getCheckInDate().toString();
-                    String checkOut = reservation.getCheckOutDate().toString();
+                    String rooms = reservation.getRoomsAsString();
+                    int stayDuration = reservation.getDuration();
                     double totalCost = reservation.getTotalCost();
                     double deposit = reservation.getDeposit();
-
                     data.append(ID + "," + name + "," + number + "," + email + "," +
-                            checkIn + "," + checkOut + "," + "," + totalCost + "," + deposit + "\n");
+                            checkIn + ","+ rooms + ", "+ stayDuration + "," + "," + totalCost + "," + deposit + "\n");
                 }
                 printWriter.write(data.toString());
                 printWriter.close();
@@ -60,6 +60,7 @@ public class ReservationSystem {
 
         public static ArrayList<Reservations> readFromCSV(String filename) {
             ArrayList<Reservations> details = new ArrayList<>();
+            ArrayList<Room> rooms = new ArrayList<>();
             try {
                 File File = new File(filename);
                 Scanner input = new Scanner(File);
@@ -67,17 +68,37 @@ public class ReservationSystem {
                     String temp = input.next();
                     String[] fields = new String[9];
                     int x = 0;
+                    String roomDetails = "";
                     for (char c: temp.toCharArray()) {
                         if (c == ',') {
                             x++;
+                        }
+                        else if (x == 5) {
+                            roomDetails += c;
                         }
                         else {
                             fields[x] += c;
                         }
                     }
-                    //Reservations tempyboi = new Reservations(fields[0], fields[1], fields[2], fields[3], toLocalDate(fields[4]),toLocalDate(fields[5]), fields[6], Double.parseDouble(fields[7]), Boolean.parseBoolean(fields[8]));
-                    //details.add(tempyboi);
-                    //  details.add(temp);
+                    int var = 0;
+                    String[] data = new String[3];
+                    for (int i = 0; i < roomDetails.length(); i++) {
+                        if (var == 3) {
+                            var = 0;
+                            Room room = new Room(data[0], Integer.parseInt(data[1]), Boolean.getBoolean(data[2]));
+                            rooms.add(room);
+                        }
+                        if (roomDetails.charAt(i) == ' ') {
+                            var++;
+                        }
+                        if (roomDetails.charAt(i) != ' ') {
+                            fields[var] += roomDetails.charAt(i);
+                        }
+                    }
+                   Reservations reservations = new Reservations(fields[0], fields[1],
+                            fields[2], fields[3], toLocalDate(fields[4]),rooms,
+                            Integer.parseInt(fields[6]), Double.parseDouble(fields[7]), Boolean.parseBoolean(fields[8]));
+                    details.add(reservations);
                 }
                 input.close();
             }

@@ -52,6 +52,10 @@ public class Reservations extends ReservationSystem {
         this.checkIn = checkIn;
     }
 
+    public int getDuration() {
+        return duration;
+    }
+
     public void setCheckOut(LocalDate checkOut){
         this.checkOut = checkOut;
     }
@@ -62,6 +66,15 @@ public class Reservations extends ReservationSystem {
     }
 
     ArrayList<Room> getRooms() { return rooms; }
+
+    String getRoomsAsString() {
+        String temp = "";
+        for (int i = 0; i < rooms.size(); i++) {
+            temp += rooms.get(i).toString();
+            temp += " ";
+        }
+        return temp;
+    }
 
     boolean  getAdvancedPurchace(){
         return this.advancedPurchase;
