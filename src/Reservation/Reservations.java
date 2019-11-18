@@ -39,7 +39,7 @@ public class Reservations extends ReservationSystem {
         return reservationName;
     }
 
-    String getReservationNumber()
+    String getPhoneNumber()
     {
         return number;
     }
