@@ -9,6 +9,8 @@ import Sales.Billing;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static Reservation.ReservationSystem.writeToCSV;
+
 public class Person {
 
     protected String name;
@@ -29,9 +31,9 @@ public class Person {
         String reservationID = re.getNextReservationId();
         Reservations reservations = new Reservations(reservationID, name, phone, email,
         checkIn,rooms,numOfNights,total,advancedPurchase);
-        ArrayList<Reservations> reservations1 =
-                ReservationSystem.readFromCSV("Reservations.csv");
+        ArrayList<Reservations> reservations1 = ReservationSystem.readFromCSV("Reservations.csv");
         reservations1.add(reservations);
+        writeToCSV("Reservations.csv",reservations1,true);
     }
 
     void makeCancellation(Reservations reservation) {

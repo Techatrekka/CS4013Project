@@ -10,8 +10,8 @@ public class L4 {
         this.rating = rating;
     }
 
-    boolean addHotel(String name, String location, double rating, int noOfRooms) {
-        Hotel h = new Hotel(name, location, rating, noOfRooms);
+    boolean addHotel(String name, String location, int rating, String[] roomDetails, int[] numOfRooms) {
+        Hotel h = new Hotel(name, location, rating, roomDetails, numOfRooms);
         L4.add(h);
         return true;
     }

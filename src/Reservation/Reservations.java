@@ -12,7 +12,6 @@ public class Reservations extends ReservationSystem {
     private Double totalCost, deposit;
     private boolean advancedPurchase;
     private ArrayList<Room> rooms = new ArrayList<>();
-    public static ArrayList<Reservations> resList = new ArrayList<>();
 
     public Reservations() {}
 
@@ -76,7 +75,7 @@ public class Reservations extends ReservationSystem {
         return temp;
     }
 
-    boolean  getAdvancedPurchace(){
+    boolean  getAdvancedPurchase(){
         return this.advancedPurchase;
     }
 
