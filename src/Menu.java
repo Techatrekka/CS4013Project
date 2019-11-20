@@ -89,10 +89,10 @@ public class Menu {
                 Object option  = getOptions(options);
                 switch (option.toString()) {
                     case "A":
-                        options = new Object[]{"makeReservation", "makeCancellation","giveDiscount","RequestAnalysis"};
+                        options = new Object[]{"Reservation", "Cancellation","giveDiscount","RequestAnalysis"};
                         option = getOptions(options);
                         switch (option.toString()) {
-                            case "A":
+                            case "Reservation":
                                 String[] info = new String[4];
                                 info[0] = scanner.nextLine();
                                 info[1] = scanner.nextLine();
@@ -127,7 +127,7 @@ public class Menu {
                                     customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes());
                                 }
                                 break;
-                            case "B":
+                            case "Cancellation":
                                 System.out.println("Enter Reservation Number: ");
                                 option = scanner.next();
                                 if ((readReservation(option.toString(), "Reservations.csv") != null)) {
@@ -136,22 +136,22 @@ public class Menu {
                                     System.out.println("Deleted");
                                 }
                                 break;
-                            case "C":
+                            case "giveDiscount":
                                 Supervisor supervisor = new Supervisor();
                                 System.out.println("Enter reservation Number");
                                 choice = scanner.next();
                                 supervisor.giveDiscount(readReservation(choice,"Reservations.csv"),10);
                                 break;
-                            case "D":
+                            case "requestAnalysis":
                                 Supervisor supervisor1 = new Supervisor();
                                 break;
                         }
                         break;
                     case "B":
-                        options = new Object[]{"makeReservation", "makeCancellation"};
+                        options = new Object[]{"Reservation", "Cancellation"};
                         option = getOptions(options);
                         switch (option.toString()) {
-                            case "A":
+                            case "Reservation":
                                 String[] info = new String[4];
                                 info[0] = scanner.next();
                                 info[1] = scanner.next();
