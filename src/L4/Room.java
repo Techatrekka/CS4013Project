@@ -38,6 +38,14 @@ public class Room extends Hotel {
         return breakfastIncluded;
     }
 
+    int occupancyMin() {
+        return 1;
+    }
+
+    int occupancyMax() {
+        return occupancy;
+    }
+
     @Override
     public String toString(){
         return getType() + " " + getOccupancy() + " " + isBreakfastIncluded();
