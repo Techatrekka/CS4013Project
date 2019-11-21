@@ -56,7 +56,7 @@ public class Hotel extends L4 {
         //this.prices = price.setWeeklyPrices();
     }
 
-    String getName(){
+    public String getName(){
         return this.name;
     }
 
