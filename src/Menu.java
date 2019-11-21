@@ -12,7 +12,8 @@ import Reservation.Reservations;
 import static Reservation.ReservationSystem.readReservation;
 
 public class Menu {
-    
+
+    String Hotel;
     LocalDate dateToday;
     Reservations reservations = new Reservations();
     Hotel hotel = new Hotel();

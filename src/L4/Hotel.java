@@ -1,7 +1,10 @@
 package L4;
 
 import Sales.Price;
+import sun.text.resources.iw.FormatData_iw_IL;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -23,6 +26,20 @@ public class Hotel extends L4 {
         for (int i = 0; i < noOfRooms.length; i++) {
             StringTokenizer st = new StringTokenizer(RoomDetails[i], ",");
             createRooms(st.nextToken(), noOfRooms[i] ,Integer.parseInt(st.nextToken()),Boolean.parseBoolean(st.nextToken()));
+        }
+        createFiles();
+    }
+
+    private void createFiles() {
+        try {
+            File reservations = new File(name + "Reservations.csv");
+            reservations.createNewFile();
+            File cancellations = new File(name + "Cancellations.csv");
+            cancellations.createNewFile();
+            File stays = new File(name + "Stays.csv");
+            stays.createNewFile();
+        }catch (IOException e) {
+            System.out.println("It done broke");
         }
     }
 
