@@ -22,16 +22,17 @@ public class Menu {
     public void initialise() {
         L4 chain = new L4();
         chain.addHotel("MiggysParadise","Mamma Mia Land", 5,
-                new String[]{"Bachelor suite, 1, true", "Two to tango, 2, true",
-                        "bring the family suite, 5, true"},
+                new String[]{"Bachelor suite,1,true", "Two to tango,2,true",
+                        "bring the family suite,5,true"},
                 new int[]{2,3,3});
         chain.addHotel("SeanVille","HoesAin'tLoyalCentral",4,
-                new String[]{"I went to the gym once Suite, 1, true"}, new int[]{300});
+                new String[]{"I went to the gym once Suite,1,true"}, new int[]{300});
         chain.addHotel("WickyNicky'sEmporium","LoserVille", -1,
-                new String[]{"Slow Head Turn Deluxe, 1, false"}, new int[] {1});
+                new String[]{"Slow Head Turn Deluxe,1,false"}, new int[] {1});
     }
 
     public void run() {
+        initialise();
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
         while (run) {
