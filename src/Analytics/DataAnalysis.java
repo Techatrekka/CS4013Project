@@ -1,5 +1,6 @@
 package Analytics;
 
+import L4.Hotel;
 import L4.Room;
 import Reservation.Reservations;
 
@@ -11,8 +12,9 @@ import static Reservation.ReservationSystem.readFromCSV;
 
 public class DataAnalysis {
 
-    public static double monthlyRevenue(LocalDate date) {
-        ArrayList<Reservations> reservations = readFromCSV("Stays.csv");
+    public static double monthlyRevenue(LocalDate date, Hotel hotel) {
+        String name = hotel.getName() + "Stays.csv";
+        ArrayList<Reservations> reservations = readFromCSV(name);
         for (int i = 0; i < reservations.size(); i++) {
             if (!reservations.get(i).getCheckInDate().getMonth().equals(date.getMonth())) {
                 reservations.remove(i);
@@ -25,8 +27,9 @@ public class DataAnalysis {
         return price;
     }
 
-    public static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO) {
-        ArrayList<Reservations> reservations = readFromCSV("Stays.csv");
+    public static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO, Hotel hotel) {
+        String name = hotel.getName() + "Stays.csv";
+        ArrayList<Reservations> reservations = readFromCSV(name);
         for (int i = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTO) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
@@ -40,8 +43,9 @@ public class DataAnalysis {
         return price;
     }
 
-    public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo) {
-        ArrayList<Reservations> reservations = readFromCSV("stays.csv");
+    public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
+        String name = hotel.getName() + "Stays.csv";
+        ArrayList<Reservations> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
@@ -58,9 +62,9 @@ public class DataAnalysis {
         return number;
     }
 
-    public static Room mostCommonRoomType(LocalDate dateFrom, LocalDate dateTo,
-                                          ArrayList<Room> RoomTypes) {
-        ArrayList<Reservations> reservations = readFromCSV("stays.csv");
+    public static Room mostCommonRoomType(LocalDate dateFrom, LocalDate dateTo, ArrayList<Room> RoomTypes, Hotel hotel) {
+        String name = hotel.getName() + "Stays.csv";
+        ArrayList<Reservations> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
