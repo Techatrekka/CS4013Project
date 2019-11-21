@@ -15,4 +15,12 @@ public class L4 {
         L4.remove(index);
         return true;
     }
+
+    public String[] hotelList() {
+        String[] temp = new String[L4.size()];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = L4.get(i).getName();
+        }
+        return temp;
+    }
 }

@@ -13,8 +13,9 @@ import static Reservation.ReservationSystem.readReservation;
 
 public class Menu {
 
-    String Hotel;
-    LocalDate dateToday;
+    String[] hotels;
+    String hotelChosen;
+    LocalDate dateToday = LocalDate.now();
     Reservations reservations = new Reservations();
     Hotel hotel = new Hotel();
     ArrayList<Room> rooms = new ArrayList<>();
@@ -30,6 +31,7 @@ public class Menu {
                 new String[]{"I went to the gym once Suite,1,true"}, new int[]{300});
         chain.addHotel("WickyNicky'sEmporium","LoserVille", -1,
                 new String[]{"Slow Head Turn Deluxe,1,false"}, new int[] {1});
+        hotels = chain.hotelList();
     }
 
     public void run() {
@@ -37,6 +39,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         boolean run = true;
         while (run) {
+            hotelChosen = getOptions(hotels).toString();
             System.out.println("C)ustomer S)taff Q)uit");
             String choice = scanner.next();
             choice = choice.toUpperCase();
@@ -74,13 +77,13 @@ public class Menu {
                     LocalDate checkIn = LocalDate.parse(scanner.next());
                     System.out.println("How many nights are you saying?");
                     numOfNights = scanner.nextInt();
-                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes());
+                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotelChosen);
                 }
                 else {
                     System.out.println("Enter Reservation Number: ");
                     option = scanner.next();
-                    if ((readReservation(option.toString(), "Reservations.csv") != null)) {
-                        Reservations re =  readReservation(option.toString(), "Reservations.csv");
+                    if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
+                        Reservations re =  readReservation(option.toString(), hotelChosen +"Reservations.csv");
                         reservations.deleteReservations(re);
                         System.out.println("Deleted");
                     }
@@ -126,14 +129,14 @@ public class Menu {
                                     LocalDate checkIn = LocalDate.parse(scanner.next());
                                     System.out.println("How many nights are you saying?");
                                     numOfNights = scanner.nextInt();
-                                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes());
+                                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(),hotelChosen);
                                 }
                                 break;
                             case "Cancellation":
                                 System.out.println("Enter Reservation Number: ");
                                 option = scanner.next();
-                                if ((readReservation(option.toString(), "Reservations.csv") != null)) {
-                                    Reservations re =  readReservation(option.toString(), "Reservations.csv");
+                                if ((readReservation(option.toString(), hotelChosen+"Reservations.csv") != null)) {
+                                    Reservations re =  readReservation(option.toString(), hotelChosen+"Reservations.csv");
                                     reservations.deleteReservations(re);
                                     System.out.println("Deleted");
                                 }
@@ -184,14 +187,14 @@ public class Menu {
                                     LocalDate checkIn = LocalDate.parse(scanner.next());
                                     System.out.println("How many nights are you saying?");
                                     numOfNights = scanner.nextInt();
-                                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes());
+                                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(),hotelChosen);
                                 }
                                 break;
                             case "Cancellation":
                                 System.out.println("Enter Reservation Number: ");
                                 option = scanner.next();
                                 if ((readReservation(option.toString(), "Reservations.csv") != null)) {
-                                    Reservations re =  readReservation(option.toString(), "Reservations.csv");
+                                    Reservations re =  readReservation(option.toString(), hotelChosen+"Reservations.csv");
                                     reservations.deleteReservations(re);
                                     System.out.println("Deleted");
                                 }

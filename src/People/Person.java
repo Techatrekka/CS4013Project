@@ -23,7 +23,7 @@ public class Person {
     }
 
     public void makeReservation(LocalDate checkIn, int numOfNights, ArrayList<Room>
-                                rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes) {
+                                rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, String hotel) {
         Billing bill = new Billing();
         double total = bill.calculatePrice(advancedPurchase, rooms,
                 numOfNights, checkIn, RoomTypes);
@@ -31,9 +31,9 @@ public class Person {
         String reservationID = re.getNextReservationId();
         Reservations reservations = new Reservations(reservationID, name, phone, email,
         checkIn,rooms,numOfNights,total,advancedPurchase);
-        ArrayList<Reservations> reservations1 = ReservationSystem.readFromCSV("Reservations.csv");
+        ArrayList<Reservations> reservations1 = ReservationSystem.readFromCSV(hotel+"Reservations.csv");
         reservations1.add(reservations);
-        writeToCSV("Reservations.csv",reservations1,true);
+        writeToCSV(hotel+"Reservations.csv",reservations1,true);
     }
 
     void makeCancellation(Reservations reservation) {
