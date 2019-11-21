@@ -1,7 +1,6 @@
 package L4;
 
 import Sales.Price;
-import sun.text.resources.iw.FormatData_iw_IL;
 
 import java.io.File;
 import java.io.IOException;

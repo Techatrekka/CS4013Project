@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,9 +21,9 @@ public class Menu {
     Hotel hotel = new Hotel();
     ArrayList<Room> rooms = new ArrayList<>();
     int numOfNights;
+    L4 chain = new L4();
 
     public void initialise() {
-        L4 chain = new L4();
         chain.addHotel("MiggysParadise","Mamma Mia Land", 5,
                 new String[]{"Bachelor suite,1,true", "Two to tango,2,true",
                         "bring the family suite,5,true"},
@@ -41,16 +42,15 @@ public class Menu {
         while (run) {
             hotelChosen = getOptions(hotels).toString();
             System.out.println("C)ustomer S)taff Q)uit");
-            String choice = scanner.next();
+            String choice = scanner.nextLine();
             choice = choice.toUpperCase();
             if (choice.equals("C")) {
-                //getOptions();
                 System.out.println("Please input Name, email, phone, address");
                 String[] info = new String[4];
-                info[0] = scanner.next();
-                info[1] = scanner.next();
-                info[2] = scanner.next();
-                info[3] = scanner.next();
+                info[0] = scanner.nextLine();
+                info[1] = scanner.nextLine();
+                info[2] = scanner.nextLine();
+                info[3] = scanner.nextLine();
                 Customer customer = new Customer(info[0], info[1], info[2], info[3]);
                 System.out.println("Would you like to make a Reservation or Cancellation");
                 Object[] options = new Object[]{"Reservation", "Cancellation"};
@@ -61,27 +61,28 @@ public class Menu {
                     boolean done = false;
                     while(!done) {
                         System.out.println("What room would you like");
-                        option = getOptions(hotel.getRoomTypes().toArray());
+                        choice = getOptions(chain.getL4().get(0).getRoomTypes().toArray()).toString();
                         for (int i = 0; i < hotel.getRoomTypes().size(); i++) {
-                            if (option.equals(hotel.getRoomTypes().toString())) {
+                            if (choice.equals(hotel.getRoomTypes().toString())) {
                                 rooms.add(hotel.getRoomTypes().get(i));
                             }
                         }
                         System.out.println("Would you like to add another room? Y/N");
-                        choice = scanner.next().toUpperCase();
+                        choice = scanner.nextLine().toUpperCase();
                         if (!choice.equals("Y")) {
                             done = true;
                         }
                     }
                     System.out.println("When would you check in?");
-                    LocalDate checkIn = LocalDate.parse(scanner.next());
+                    //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
+                    LocalDate checkIn = LocalDate.parse(scanner.nextLine()/*, dateTimeFormatter*/);
                     System.out.println("How many nights are you saying?");
                     numOfNights = scanner.nextInt();
                     customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotelChosen);
                 }
                 else {
                     System.out.println("Enter Reservation Number: ");
-                    option = scanner.next();
+                    option = scanner.nextLine();
                     if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
                         Reservations re =  readReservation(option.toString(), hotelChosen +"Reservations.csv");
                         reservations.deleteReservations(re);
@@ -113,28 +114,29 @@ public class Menu {
                                     boolean done = false;
                                     while(!done) {
                                         System.out.println("What room would you like");
-                                        option = getOptions(hotel.getRoomTypes().toArray());
+                                        choice = getOptions(chain.getL4().get(0).getRoomTypes().toArray()).toString();
                                         for (int i = 0; i < hotel.getRoomTypes().size(); i++) {
-                                            if (option.equals(hotel.getRoomTypes().toString())) {
+                                            if (choice.equals(hotel.getRoomTypes().toString())) {
                                                 rooms.add(hotel.getRoomTypes().get(i));
                                             }
                                         }
                                         System.out.println("Would you like to add another room? Y/N");
-                                        choice = scanner.next().toUpperCase();
+                                        choice = scanner.nextLine().toUpperCase();
                                         if (!choice.equals("Y")) {
                                             done = true;
                                         }
                                     }
                                     System.out.println("When would you check in?");
-                                    LocalDate checkIn = LocalDate.parse(scanner.next());
+                                    //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
+                                    LocalDate checkIn = LocalDate.parse(scanner.nextLine()/*, dateTimeFormatter*/);
                                     System.out.println("How many nights are you saying?");
                                     numOfNights = scanner.nextInt();
-                                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(),hotelChosen);
+                                    customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotelChosen);
                                 }
                                 break;
                             case "Cancellation":
                                 System.out.println("Enter Reservation Number: ");
-                                option = scanner.next();
+                                option = scanner.nextLine();
                                 if ((readReservation(option.toString(), hotelChosen+"Reservations.csv") != null)) {
                                     Reservations re =  readReservation(option.toString(), hotelChosen+"Reservations.csv");
                                     reservations.deleteReservations(re);
@@ -144,7 +146,7 @@ public class Menu {
                             case "giveDiscount":
                                 Supervisor supervisor = new Supervisor();
                                 System.out.println("Enter reservation Number");
-                                choice = scanner.next();
+                                choice = scanner.nextLine();
                                 supervisor.giveDiscount(readReservation(choice,"Reservations.csv"),10);
                                 break;
                             case "requestAnalysis":
@@ -158,10 +160,10 @@ public class Menu {
                         switch (option.toString()) {
                             case "Reservation":
                                 String[] info = new String[4];
-                                info[0] = scanner.next();
-                                info[1] = scanner.next();
-                                info[2] = scanner.next();
-                                info[3] = scanner.next();
+                                info[0] = scanner.nextLine();
+                                info[1] = scanner.nextLine();
+                                info[2] = scanner.nextLine();
+                                info[3] = scanner.nextLine();
                                 Customer customer = new Customer(info[0], info[1], info[2], info[3]);
                                 System.out.println("Would you like to make a Reservation or Cancellation");
                                 options = new Object[]{"Reservation", "Cancellation"};
@@ -178,13 +180,13 @@ public class Menu {
                                             }
                                         }
                                         System.out.println("Would you like to add another room? Y/N");
-                                        choice = scanner.next().toUpperCase();
+                                        choice = scanner.nextLine().toUpperCase();
                                         if (!choice.equals("Y")) {
                                             done = true;
                                         }
                                     }
                                     System.out.println("When would you check in?");
-                                    LocalDate checkIn = LocalDate.parse(scanner.next());
+                                    LocalDate checkIn = LocalDate.parse(scanner.nextLine());
                                     System.out.println("How many nights are you saying?");
                                     numOfNights = scanner.nextInt();
                                     customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(),hotelChosen);
@@ -192,7 +194,7 @@ public class Menu {
                                 break;
                             case "Cancellation":
                                 System.out.println("Enter Reservation Number: ");
-                                option = scanner.next();
+                                option = scanner.nextLine();
                                 if ((readReservation(option.toString(), "Reservations.csv") != null)) {
                                     Reservations re =  readReservation(option.toString(), hotelChosen+"Reservations.csv");
                                     reservations.deleteReservations(re);
@@ -210,7 +212,6 @@ public class Menu {
                 System.out.println("Choice not recognised, choose again!");
             }
         }
-
     }
     
 	private Object getOptions(Object options[])
@@ -225,7 +226,7 @@ public class Menu {
             System.out.println(c + ") " + options[i]);
             c++;
         }
-		char x = scanner.next().toUpperCase().charAt(0);
+		char x = scanner.nextLine().toUpperCase().charAt(0);
         int h = x - 65;
 		return options[h];
 	}

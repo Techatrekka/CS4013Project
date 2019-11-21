@@ -16,6 +16,10 @@ public class L4 {
         return true;
     }
 
+    public ArrayList<Hotel> getL4() {
+        return L4;
+    }
+
     public String[] hotelList() {
         String[] temp = new String[L4.size()];
         for (int i = 0; i < temp.length; i++) {
