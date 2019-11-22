@@ -3,7 +3,6 @@ package Reservation;
 import L4.Room;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
@@ -25,7 +24,7 @@ public class ReservationSystem {
                 else {
                     // create file and add header if doesn't exist
                     printWriter = new PrintWriter(file);
-                    if(fileName.equals("Cancellations.csv"))
+                    if(fileName.contains("Cancellations"))
                     {
                         data.append("ID,Name,Number,Email,Check in Date,Cancellation Date,No. of Rooms, Room Types, Total Cost,Deposit\n");
                     }
@@ -46,9 +45,11 @@ public class ReservationSystem {
                     String rooms = reservation.getRoomsAsString();
                     int stayDuration = reservation.getDuration();
                     double totalCost = reservation.getTotalCost();
+                    boolean advancedPurch = reservation.getAdvancedPurchase();
                     double deposit = reservation.getDeposit();
+                    String checkOut = reservation.getCheckOutDate().toString();
                     data.append(ID + "," + name + "," + number + "," + email + "," +
-                            checkIn + ","+ rooms + ", "+ stayDuration + "," + "," + totalCost + "," + deposit + "\n");
+                            checkIn + "," + checkOut + "," + rooms + "," + stayDuration + ","  + totalCost + "," + deposit + "," + advancedPurch + "\n");
                 }
                 printWriter.write(data.toString());
                 printWriter.close();
@@ -127,9 +128,7 @@ public class ReservationSystem {
         }
 
         private static LocalDate toLocalDate(String temp) {
-            String dateformat   = "dd-MM-yyyy";
-            LocalDate localizeddate = LocalDate.parse(temp,DateTimeFormatter.ofPattern(dateformat));
-            return localizeddate;
+            return LocalDate.parse(temp);
         }
 
         public void deleteReservations(Reservations reservations) {
