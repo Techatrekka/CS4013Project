@@ -44,7 +44,7 @@ public class DataAnalysis {
     }
 
     public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
-        String name = hotel.getName() + "Stays.csv";
+        String name = hotel.getName() + "reservations.csv";
         ArrayList<Reservations> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
