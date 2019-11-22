@@ -69,7 +69,7 @@ public class Reservations extends ReservationSystem {
     String getRoomsAsString() {
         String temp = "";
         for (int i = 0; i < rooms.size(); i++) {
-            temp += rooms.get(i).toString();
+            temp += rooms.get(i).getName();
             temp += " ";
         }
         return temp;

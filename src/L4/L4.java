@@ -3,11 +3,8 @@ package L4;
 import Reservation.ReservationSystem;
 import Reservation.Reservations;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.File;
 
 public class L4 {
     ArrayList<Hotel> L4 = new ArrayList<>();
@@ -34,11 +31,22 @@ public class L4 {
         return temp;
     }
 
+    public ArrayList<Hotel> getL4() {
+        return L4;
+    }
+
     public static void writeToCSV(String fileName, ArrayList<Hotel> hotels, boolean overwrite) {
         try {
             File file = new File(fileName);
             StringBuffer data = new StringBuffer("");
             PrintWriter printWriter = null;
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+            }catch (IOException e) {
+                System.out.println("File creation error");
+            }
             if (file.exists() && !overwrite) {
                 printWriter = new PrintWriter(new FileOutputStream(file, true));
             }

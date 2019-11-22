@@ -47,9 +47,8 @@ public class ReservationSystem {
                     double totalCost = reservation.getTotalCost();
                     boolean advancedPurch = reservation.getAdvancedPurchase();
                     double deposit = reservation.getDeposit();
-                    String checkOut = reservation.getCheckOutDate().toString();
                     data.append(ID + "," + name + "," + number + "," + email + "," +
-                            checkIn + "," + checkOut + "," + rooms + "," + stayDuration + ","  + totalCost + "," + deposit + "," + advancedPurch + "\n");
+                            checkIn + "," + rooms + "," + stayDuration + ","  + totalCost + "," + deposit + "," + advancedPurch + "\n");
                 }
                 printWriter.write(data.toString());
                 printWriter.close();
