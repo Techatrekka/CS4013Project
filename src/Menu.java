@@ -85,7 +85,7 @@ public class Menu {
                                 Supervisor supervisor = new Supervisor();
                                 System.out.println("Enter reservation Number");
                                 choice = scanner.nextLine();
-                                supervisor.giveDiscount(readReservation(choice, "Reservations.csv"), 10);
+                                supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), 10);
                                 break;
                             case "requestAnalysis":
                                 Supervisor supervisor1 = new Supervisor();
@@ -154,9 +154,9 @@ public class Menu {
                 done = true;
             }
         }
-        System.out.println("When would you check in?(YYYY-MM-DD)");
-        String dateformat   = "dd-MM-yyyy";
-        LocalDate checkIn = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateformat));
+        System.out.println("When would you check in?(dd-mm-yyyy)");
+        String dateFormat   = "dd-MM-yyyy";
+        LocalDate checkIn = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
         System.out.println("How many nights are you saying?");
         numOfNights = scanner.nextInt();
         customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotelChosen);

@@ -59,6 +59,9 @@ public class ReservationSystem {
             }
         }
 
+        /**readFromCSV() reads through a csv file and returns an arrayList of Reservations
+         * Parameters: String Filename
+         * */
         public static ArrayList<Reservations> readFromCSV(String filename) {
             ArrayList<Reservations> details = new ArrayList<>();
             ArrayList<Room> rooms = new ArrayList<>();
@@ -67,9 +70,11 @@ public class ReservationSystem {
                 Scanner input = new Scanner(File);
                 while (input.hasNext()) {
                     String temp = input.next();
+                    //number of data fields in a reservation
                     String[] fields = new String[9];
                     int x = 0;
                     String roomDetails = "";
+                    //counts through the read reservation and places character by character in the correct field
                     for (char c: temp.toCharArray()) {
                         if (c == ',') {
                             x++;
@@ -83,6 +88,7 @@ public class ReservationSystem {
                     }
                     int var = 0;
                     String[] data = new String[3];
+                    //places the room information into an arrayList
                     for (int i = 0; i < roomDetails.length(); i++) {
                         if (var == 3) {
                             var = 0;
