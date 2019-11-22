@@ -3,6 +3,7 @@ package Reservation;
 import L4.Room;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
@@ -126,7 +127,9 @@ public class ReservationSystem {
         }
 
         private static LocalDate toLocalDate(String temp) {
-            return LocalDate.parse(temp);
+            String dateformat   = "dd-MM-yyyy";
+            LocalDate localizeddate = LocalDate.parse(temp,DateTimeFormatter.ofPattern(dateformat));
+            return localizeddate;
         }
 
         public void deleteReservations(Reservations reservations) {
