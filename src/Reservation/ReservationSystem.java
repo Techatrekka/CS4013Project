@@ -45,10 +45,10 @@ public class ReservationSystem {
                     String rooms = reservation.getRoomsAsString();
                     int stayDuration = reservation.getDuration();
                     double totalCost = reservation.getTotalCost();
-                    boolean advancedPurch = reservation.getAdvancedPurchase();
+                    boolean advancedPurchase = reservation.getAdvancedPurchase();
                     double deposit = reservation.getDeposit();
                     data.append(ID + "," + name + "," + number + "," + email + "," +
-                            checkIn + "," + rooms + "," + stayDuration + ","  + totalCost + "," + deposit + "," + advancedPurch + "\n");
+                            checkIn + "," + rooms + "," + stayDuration + ","  + totalCost + "," + deposit + "," + advancedPurchase + "\n");
                 }
                 printWriter.write(data.toString());
                 printWriter.close();
