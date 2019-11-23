@@ -68,6 +68,8 @@ public class ReservationSystem {
             try {
                 File File = new File(filename);
                 Scanner input = new Scanner(File);
+                if (input.hasNextLine())
+                input.nextLine();
                 while (input.hasNext()) {
                     String temp = input.next();
                     //number of data fields in a reservation
@@ -103,7 +105,7 @@ public class ReservationSystem {
                         }
                     }
                    Reservations reservations = new Reservations(fields[0], fields[1],
-                            fields[2], fields[3], toLocalDate(fields[4]),rooms,
+                            fields[2], fields[3], LocalDate.parse(fields[4]),rooms,
                             Integer.parseInt(fields[6]), Double.parseDouble(fields[7]), Boolean.parseBoolean(fields[8]));
                     details.add(reservations);
                 }
@@ -130,10 +132,6 @@ public class ReservationSystem {
                 return null;
             }
             return new Reservations();
-        }
-
-        private static LocalDate toLocalDate(String temp) {
-            return LocalDate.parse(temp);
         }
 
         public void deleteReservations(Reservations reservations) {
