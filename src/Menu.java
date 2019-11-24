@@ -137,15 +137,20 @@ public class Menu {
     private void makeReservation(Customer customer) {
         boolean done = false;
         String choice = "";
+        Object option = null;
         while (!done) {
             System.out.println("What room would you like");
+            int hotelInArray = 0;
             for (int i = 0; i < chain.getL4().size(); i++) {
-                if (chain.getL4().get(i).getName().equals(hotelChosen))
-                    choice = getOptions(chain.getL4().get(i).getRoomTypes().toArray()).toString();
+                if (chain.getL4().get(i).getName().equals(hotelChosen)) {
+                     option = getOptions(chain.getL4().get(i).getRoomTypes().toArray());
+                    hotelInArray = i;
+                }
             }
-            for (int i = 0; i < hotel.getRoomTypes().size(); i++) {
-                if (choice.equals(hotel.getRoomTypes().toString())) {
-                    rooms.add(hotel.getRoomTypes().get(i));
+            for (int i = 0; i < chain.getL4().get(hotelInArray).getRoomTypes().size(); i++) {
+                assert option != null;
+                if (option.equals(chain.getL4().get(hotelInArray).getRoomTypes().get(i))){
+                    rooms.add(chain.getL4().get(hotelInArray).getRoomTypes().get(i));
                 }
             }
             System.out.println("Would you like to add another room? Y/N");

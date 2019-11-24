@@ -18,7 +18,7 @@ public class Room extends Hotel {
         this.type = type;
     }
 
-    String getType() {
+    public String getType() {
         return type;
     }
 
