@@ -1,53 +1,128 @@
-package L4;
+package Reservation;
 
-public class Room extends Hotel {
+import L4.Room;
 
-    public String type;
-    public int occupancy;
-    public boolean breakfastIncluded;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 
-    Room(){}
+public class ReservationSystem
+{
 
-   public Room (String type, int occupancy, boolean breakfastIncluded) {
-        this.type = type;
-        this.occupancy = occupancy;
-        this.breakfastIncluded = breakfastIncluded;
-    }
+	public static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite)
+	{
+		try
+		{
+			File file = new File(fileName);
+			StringBuffer data = new StringBuffer("");
+			PrintWriter printWriter;
+			if (file.exists() && !overwrite) {
+				printWriter = new PrintWriter(new FileOutputStream(file, true));
+			}
+			else {
+				// create file and add header if doesn't exist
+				printWriter = new PrintWriter(file);
+				if(fileName.contains("Cancellations"))
+				{
+					data.append("ID,Name,Number,Email,Check in Date,Cancellation Date,No. of Rooms, Room Types, Total Cost,Deposit,Advanced\n");
+				}
+				else
+				{
+					data.append("ID,Name,Number,Email,Check in Date,Stay Duration,No. of Rooms, Room Types,Total Cost,Deposit,Advanced\n");
+				}
+			}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+			// write data (, == new column && \n == new row)
+			for (Reservations reservation : reservations)
+			{
+				String ID = reservation.getReservationId();
+				String name = reservation.getReservationName();
+				String number = reservation.getPhoneNumber();
+				String email = reservation.getReservationEmail();
+				String checkIn = reservation.getCheckInDate().toString();
+				int stayDuration = reservation.getDuration();
+				int roomNum = reservation.getRooms().size();
+				String rooms = reservation.getRoomsAsString();
+				double totalCost = reservation.getTotalCost();
+				boolean advancedPurchase = reservation.getAdvancedPurchase();
+				double deposit = reservation.getDeposit();
+				data.append(ID + "," + name + "," + number + "," + email + "," +
+						checkIn + "," + stayDuration + "," + roomNum + "," + rooms + ","  + totalCost + "," + deposit + "," + advancedPurchase + "\n");
+			}
+			printWriter.write(data.toString());
+			printWriter.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+	}
 
-    public String getType() {
-        return type;
-    }
+	/**readFromCSV() reads through a csv file and returns an arrayList of Reservations
+	 * Parameters: String Filename
+	 * */
+	public static ArrayList<Reservations> readFromCSV(String filename) {
+		ArrayList<Reservations> details = new ArrayList<>();
+		ArrayList<Room> rooms = new ArrayList<>();
+		try {
+			File File = new File(filename);
+			Scanner input = new Scanner(File);
+			if (input.hasNextLine())
+			input.nextLine();
+			while (input.hasNext()) {
+				String temp = input.nextLine();
+				//number of data fields in a reservation
+				String[] fields = temp.split(",", 9);
+				String[] roomDetails = fields[7].split("/", 89);
+				for (String room : roomDetails)
+				{
+					System.out.println(room);
+					String[] data = room.split("_", 3);
+					for (String dats : data)
+					{
+						System.out.println(dats);
+					}
+					rooms.add(new Room(data[0], Integer.parseInt(data[1]), Boolean.getBoolean(data[2])));
+				}
+				Reservations reservations = new Reservations(fields[0], fields[1],
+						fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]),
+						rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+				details.add(reservations);
+				//you can't code for shit, not even your dog loves you
+			}
+			input.close();
+		}
+		catch (IOException error) {
+			System.out.println("IO Exception");
+		}
+		return details;
+	}
 
-    void setOccupancy(int occupancy) {
-        this.occupancy = occupancy;
-    }
+	public static Reservations readReservation(String reservationNum, String File) {
+		ArrayList<Reservations> temp = readFromCSV(File);
+		String[] res = new String[9];
+		Reservations reservation = new Reservations();
+		for (int i = 0; i < temp.size(); i++) {
+			if(reservation.getReservationId().equals(reservationNum)) {
+				reservation = temp.get(i);
+			}
+		}
+		if (reservation.equals(null)) {
+			//change the print statement
+			System.out.println("this bitch empty yeet");
+			return null;
+		}
+		return new Reservations();
+	}
 
-    public int getOccupancy() {
-        return occupancy;
-    }
-
-    void setBreakfastIncluded(boolean breakfastIncluded) {
-        this.breakfastIncluded = breakfastIncluded;
-    }
-
-    public boolean isBreakfastIncluded() {
-        return breakfastIncluded;
-    }
-
-    int occupancyMin() {
-        return 1;
-    }
-
-    int occupancyMax() {
-        return occupancy;
-    }
-
-    @Override
-    public String toString(){
-        return getType() + " " + getOccupancy() + " " + isBreakfastIncluded();
-    }
+	public void deleteReservations(Reservations reservations) {
+		ArrayList<Reservations> list = readFromCSV("Reservations.csv");
+		list.remove(reservations);
+		writeToCSV("Reservations.csv",list,true);
+	}
 }
