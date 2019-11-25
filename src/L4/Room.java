@@ -26,7 +26,7 @@ public class Room extends Hotel {
         this.occupancy = occupancy;
     }
 
-    int getOccupancy() {
+    public int getOccupancy() {
         return occupancy;
     }
 
@@ -34,7 +34,7 @@ public class Room extends Hotel {
         this.breakfastIncluded = breakfastIncluded;
     }
 
-    boolean isBreakfastIncluded() {
+    public boolean isBreakfastIncluded() {
         return breakfastIncluded;
     }
 
