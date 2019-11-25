@@ -77,8 +77,13 @@ public class ReservationSystem
 			while (input.hasNext()) {
 				String temp = input.nextLine();
 				//number of data fields in a reservation
-				String[] fields = temp.split(",", 9);
+				String[] fields = temp.split(",", 9000);
 				String[] roomDetails = fields[7].split("/", 89);
+				String[] temporary = new String[roomDetails.length - 1];
+				for (int i = 0; i < roomDetails.length - 1; i++) {
+				    temporary[i] = roomDetails[i];
+                }
+				roomDetails = temporary;
 				for (String room : roomDetails)
 				{
 					System.out.println(room);

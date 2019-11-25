@@ -30,7 +30,7 @@ public class Person {
         Reservations re = new Reservations();
         String reservationID = re.getNextReservationId();
         Reservations reservations = new Reservations(reservationID, name, phone, email,
-        checkIn,rooms,numOfNights,total,advancedPurchase);
+        checkIn,numOfNights,rooms,total,advancedPurchase);
         ArrayList<Reservations> reservations1 = ReservationSystem.readFromCSV(hotel+"Reservations.csv");
         reservations1.add(reservations);
         writeToCSV(hotel+"Reservations.csv",reservations1,true);
