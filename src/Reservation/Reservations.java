@@ -16,7 +16,7 @@ public class Reservations extends ReservationSystem {
     public Reservations() {}
 
     public Reservations(String reservationId, String reservationName, String number, String email,
-                        LocalDate checkIn, ArrayList<Room> rooms, int duration,
+                        LocalDate checkIn, int duration, ArrayList<Room> rooms,
                         double totalCost, boolean advancedPurchase) {
         this.reservationName = reservationName;
         this.reservationId = reservationId;
@@ -68,9 +68,8 @@ public class Reservations extends ReservationSystem {
 
     String getRoomsAsString() {
         String temp = "";
-        for (int i = 0; i < rooms.size(); i++) {
-            temp += rooms.get(i).getType();
-            temp += "/";
+        for (Room room : rooms) {
+            temp += room.getType() + "_" + room.getOccupancy() + "_" + room.isBreakfastIncluded() + "/";
         }
         return temp;
     }
