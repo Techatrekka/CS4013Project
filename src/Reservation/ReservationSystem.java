@@ -84,7 +84,7 @@ public class ReservationSystem
 				
 				if (filename.contains("Cancellation"))
 				{
-					Cancellations cancellation = new Cancellation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.parse(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					Cancellations cancellation = new Cancellations(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.parse(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
 					details.add((Reservations) cancellation);
 				}
 				else
@@ -158,7 +158,7 @@ public class ReservationSystem
 			// Get our data
 			ArrayList<Reservations> reservations = readFromCSV(hotel.getName() + "Reservations.csv");
 			ArrayList<Reservations> stays = readFromCSV(hotel.getName() + "Stays.csv");
-			ArrayList<Reservations> cancellations = readFromCSV(hote.getName() + "Cancellations.csv");
+			ArrayList<Reservations> cancellations = readFromCSV(hotel.getName() + "Cancellations.csv");
 
 			// Delete stays from 7+ years ago
 			for (int i = 0; i < stays.size(); i++)
