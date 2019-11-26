@@ -166,7 +166,7 @@ public class ReservationSystem
 				Reservations stay = stays.get(i);
 				if (stay.getCheckOutDate().plusYears(7).compareTo(today) <= 0)
 				{
-					stays.remove(stay);
+					stays.remove(i);
 					i--;
 				}
 			}
@@ -188,7 +188,7 @@ public class ReservationSystem
 				Reservations reservation = reservations.get(i);
 				if (reservation.getCheckInDate().compareTo(today) <= 0)
 				{
-					reservations.remove(reservation);
+					reservations.remove(i);
 					stays.add(reservation);
 					i--;
 				}
