@@ -18,7 +18,7 @@ public class Hotel extends L4 {
 
     public Hotel(){}
 
-    Hotel(String name, String location, int rating, String[] RoomDetails, int[] noOfRooms, int[] prices){
+    Hotel(String name, String location, int rating, String[] RoomDetails, int[] noOfRooms,int[] prices){
         this.name = name;
         this.location = location;
         this.rating = rating;
@@ -53,7 +53,6 @@ public class Hotel extends L4 {
 
     void setPrices() {
         Price price = new Price();
-        //this.prices = price.setWeeklyPrices();
     }
 
     public String getName(){

@@ -144,7 +144,7 @@ public class ReservationSystem
 			for (int i = 0; i < stays.size(); i++)
 			{
 				Reservations stay = stays.get(i);
-				if (stay.getCheckOutDate().compareTo(today) < 0)
+				if (stay.getCheckOutDate().compareTo(today) <= 0)
 				{
 					stays.remove(stay);
 					i--;
@@ -155,7 +155,7 @@ public class ReservationSystem
 			for (int i = 0; i < reservations.size(); i++)
 			{
 				Reservations reservation = reservations.get(i);
-				if (reservation.getCheckInDate().compareTo(today) < 0)
+				if (reservation.getCheckInDate().compareTo(today) <= 0)
 				{
 					reservations.remove(reservation);
 					stays.add(reservation);

@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class L4 {
     ArrayList<Hotel> L4 = new ArrayList<>();
-    int[] fiveStarPrice = {90,90,90,90,100,120,120};
-    int[] fourStarPrice = {70,70,70,70,90,100,100};
-    int[] threeStarPrice = {50,50,50,50,70,90,90};
     File L4Chain = new File("L4.csv");
 
     public boolean addHotel(String name, String location, int rating, String[] roomDetails, int[] numOfRooms, int[] prices) {

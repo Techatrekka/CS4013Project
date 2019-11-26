@@ -11,6 +11,7 @@ import People.Supervisor;
 import Reservation.Reservations;
 
 import static Reservation.ReservationSystem.readReservation;
+import static Reservation.ReservationSystem.sortReservations;
 
 public class Menu {
 
@@ -23,17 +24,18 @@ public class Menu {
     ArrayList<Room> rooms = new ArrayList<>();
     int numOfNights;
     L4 chain = new L4();
-
     public void initialise() {
         chain.addHotel("MiggysParadise", "Mamma Mia Land", 5,
                 new String[]{"Bachelor suite,1,true", "Two to tango,2,true",
                         "bring the family suite,5,true"},
-                new int[]{2, 3, 3});
+                new int[]{2, 3, 3},new int[]{90,90,90,90,100,120,120});
         chain.addHotel("SeanVille", "HoesAin'tLoyalCentral", 4,
-                new String[]{"I went to the gym once Suite,1,true"}, new int[]{300});
+                new String[]{"I went to the gym once Suite,1,true"}, new int[]{300},new int[]{70,70,70,70,90,100,100});
         chain.addHotel("WickyNicky'sEmporium", "LoserVille", -1,
-                new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1});
+                new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1},
+                new int[]{50,50,50,50,70,90,90});
         hotels = chain.hotelList();
+        sortReservations(dateToday,chain.getL4());
     }
 
     public void run() {

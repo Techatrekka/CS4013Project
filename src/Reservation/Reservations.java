@@ -87,7 +87,7 @@ public class Reservations extends ReservationSystem {
     }
 
     LocalDate getCheckOutDate() {
-        return checkOut;
+        return checkIn.plusDays(Long.parseLong(String.valueOf(duration)));
     }
 
     public double getTotalCost() {
