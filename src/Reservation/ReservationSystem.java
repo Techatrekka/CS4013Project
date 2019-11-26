@@ -118,7 +118,7 @@ public class ReservationSystem
 			while(input.hasNextLine())
 			{
 				String line = input.nextLine();
-				String fields[] = temp.split(",", 11);
+				String fields[] = line.split(",", 11);
 				if (fields[0].equals(reservationNum))
 				{
 					String roomDetails[] = fields[7].split("/", 100);
@@ -131,6 +131,7 @@ public class ReservationSystem
 					break;
 				}
 			}
+			input.close();
 		}
 		catch(IOException error)
 		{
@@ -173,10 +174,10 @@ public class ReservationSystem
 			// Delete Cancellations that happen 30+ days ago
 			for (int i = 0; i < cancellations.size(); i++)
 			{
-				Reservation cancellation = cancellations.get(i);
+				Cancellations cancellation = (Cancellations) cancellations.get(i);
 				if (cancellation.getCancellationDate().plusDays(30).compareTo(today) <= 0)
 				{
-					cancellations.remove(cancellation);
+					cancellations.remove(i);
 					i--;
 				}
 			}
