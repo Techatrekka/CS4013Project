@@ -11,7 +11,7 @@ public class Hotel extends L4 {
     double rating;
     int[] noOfRooms;
     ArrayList<Room> RoomTypes = new ArrayList<Room>();
-    double[][] prices = new double[RoomTypes.size()][7];
+    double[][] prices;
 
     public Hotel(){}
 
@@ -20,7 +20,9 @@ public class Hotel extends L4 {
         this.location = location;
         this.rating = rating;
         this.noOfRooms = noOfRooms;
+        createRooms(RoomDetails,noOfRooms);
         createFiles();
+        prices = new double[noOfRooms.length][7];
     }
 
     private void createFiles() {
@@ -48,12 +50,15 @@ public class Hotel extends L4 {
         return this.location;
     }
 
-    void createRooms(String type, int numOfRooms,
-                     int occupancy,boolean BF)  {
-        for (int i = 0; i < numOfRooms; i++) {
-            Room room = new Room(type,occupancy,BF);
-            if (i == 0) {
-            RoomTypes.add(room);}
+    void createRooms(String[] RoomDetails, int[] numOfRooms) {
+        for (int i = 0; i < numOfRooms.length; i++) {
+            for (int j = 0; j < numOfRooms[i]; j++) {
+                String[] dataFields = RoomDetails[i].split(",");
+                Room room = new Room(dataFields[0], dataFields[1], Boolean.parseBoolean(dataFields[2]));
+                if (j == 0) {
+                    RoomTypes.add(room);
+                }
+            }
         }
     }
 

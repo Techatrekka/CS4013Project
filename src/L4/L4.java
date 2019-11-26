@@ -82,11 +82,13 @@ public class L4 {
                         .append(hotel.prices[i][2]).append(",").append(hotel.prices[i][3]).append(",")
                         .append(hotel.prices[i][4]).append(",").append(hotel.prices[i][5]).append(",")
                         .append(hotel.prices[i][6]);
-                for (int j = 1; j < hotel.RoomTypes.size(); j++) {
-                    data.append(",," + hotel.getRoomTypes().get(j)+ "," + hotel.noOfRooms[j]+",1-0,"+
-                            hotel.getRoomTypes().get(j).occupancy +"," +hotel.prices[i][0] + "," +hotel.prices[i][1]+ "," +
-                            hotel.prices[i][2] +"," + hotel.prices[i][3] + "," +hotel.prices[i][4] + "," +
-                            hotel.prices[i][5] + "," + hotel.prices[i][6]);
+                for (int j = 1; j < hotel.prices.length; j++) {
+                    data.append(",,").append(hotel.getRoomTypes().get(j)).append(",")
+                            .append(hotel.noOfRooms[j]).append(",1-0,").append(hotel.getRoomTypes()
+                            .get(j).occupancy).append(",").append(hotel.prices[i][0]).append(",")
+                            .append(hotel.prices[i][1]).append(",").append(hotel.prices[i][2])
+                            .append(",").append(hotel.prices[i][3]).append(",").append(hotel.prices[i][4])
+                            .append(",").append(hotel.prices[i][5]).append(",").append(hotel.prices[i][6]);
                 }
             }
             printWriter.write(data.toString());

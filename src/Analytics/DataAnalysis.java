@@ -43,6 +43,7 @@ public class DataAnalysis {
         return price;
     }
 
+    //needs to be reviewed, it doesn't answer the question
     public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
         String name = hotel.getName() + "reservations.csv";
         ArrayList<Reservations> reservations = readFromCSV(name);
@@ -56,7 +57,7 @@ public class DataAnalysis {
         for (int i = 0; i < reservations.size(); i++) {
             ArrayList<Room> rooms = reservations.get(i).getRooms();
             for (int j = 0; j < rooms.size(); j++) {
-                number += rooms.get(j).occupancy;
+                number += Integer.parseInt(rooms.get(j).occupancy);
             }
         }
         return number;

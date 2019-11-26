@@ -3,12 +3,12 @@ package L4;
 public class Room extends Hotel {
 
     public String type;
-    public int occupancy;
+    public String occupancy;
     public boolean breakfastIncluded;
 
     Room(){}
 
-   public Room (String type, int occupancy, boolean breakfastIncluded) {
+   public Room (String type, String occupancy, boolean breakfastIncluded) {
         this.type = type;
         this.occupancy = occupancy;
         this.breakfastIncluded = breakfastIncluded;
@@ -22,11 +22,11 @@ public class Room extends Hotel {
         return type;
     }
 
-    void setOccupancy(int occupancy) {
+    void setOccupancy(String occupancy) {
         this.occupancy = occupancy;
     }
 
-    public int getOccupancy() {
+    public String getOccupancy() {
         return occupancy;
     }
 
@@ -38,11 +38,11 @@ public class Room extends Hotel {
         return breakfastIncluded;
     }
 
-    int occupancyMin() {
-        return 1;
+    String occupancyMin() {
+        return "1-0";
     }
 
-    int occupancyMax() {
+    String occupancyMax() {
         return occupancy;
     }
 

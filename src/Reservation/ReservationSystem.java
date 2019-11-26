@@ -13,10 +13,8 @@ import java.io.FileOutputStream;
 
 public class ReservationSystem
 {
-	public static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite)
-	{
-		try
-		{
+	public static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite) {
+		try {
 			File file = new File(fileName);
 			StringBuffer data = new StringBuffer("");
 			PrintWriter printWriter;
@@ -26,12 +24,10 @@ public class ReservationSystem
 			else {
 				// create file and add header if doesn't exist
 				printWriter = new PrintWriter(file);
-				if(fileName.contains("Cancellations"))
-				{
+				if(fileName.contains("Cancellations")) {
 					data.append("ID,Name,Number,Email,Check in Date,Cancellation Date,No. of Rooms, Room Types, Total Cost,Deposit,Advanced\n");
 				}
-				else
-				{
+				else {
 					data.append("ID,Name,Number,Email,Check in Date,Stay Duration,No. of Rooms, Room Types,Total Cost,Deposit,Advanced\n");
 				}
 			}
@@ -86,7 +82,7 @@ public class ReservationSystem
 				for (String room : roomDetails)
 				{
 					String[] data = room.split("_", 3);
-					rooms.add(new Room(data[0], Integer.parseInt(data[1]), Boolean.getBoolean(data[2])));
+					rooms.add(new Room(data[0], data[1], Boolean.getBoolean(data[2])));
 				}
 				Reservations reservations = new Reservations(fields[0], fields[1],
 						fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]),
