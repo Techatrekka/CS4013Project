@@ -1,5 +1,6 @@
 package Reservation;
 
+import L4.Hotel;
 import L4.Room;
 
 import java.time.LocalDate;
@@ -142,7 +143,7 @@ public class ReservationSystem
 			// Delete Old Stays
 			for (int i = 0; i < stays.size(); i++)
 			{
-				Reservation stay = stays.get(i);
+				Reservations stay = stays.get(i);
 				if (stay.getCheckOutDate().compareTo(today) < 0)
 				{
 					stays.remove(stay);
@@ -153,7 +154,7 @@ public class ReservationSystem
 			// Add new Stays
 			for (int i = 0; i < reservations.size(); i++)
 			{
-				Reservation reservation = reservations.get(i);
+				Reservations reservation = reservations.get(i);
 				if (reservation.getCheckInDate().compareTo(today) < 0)
 				{
 					reservations.remove(reservation);
@@ -161,7 +162,7 @@ public class ReservationSystem
 					i--;
 				}
 			}
-			
+
 			// Save our data into CSV
 			writeToCSV(hotel.getName() + "Reservations.csv", reservations, true);
 			writeToCSV(hotel.getName() + "Stays.csv", stays, true);

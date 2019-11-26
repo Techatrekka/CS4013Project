@@ -14,14 +14,15 @@ public class Hotel extends L4 {
     double rating;
     int noOfRooms;
     ArrayList<Room> RoomTypes = new ArrayList<Room>();
-    private double[][] prices;
+    int[] prices = new int[7];
 
     public Hotel(){}
 
-    Hotel(String name, String location, int rating, String[] RoomDetails, int[] noOfRooms){
+    Hotel(String name, String location, int rating, String[] RoomDetails, int[] noOfRooms, int[] prices){
         this.name = name;
         this.location = location;
         this.rating = rating;
+        this.prices = prices;
         for (int i = 0; i < noOfRooms.length; i++) {
             StringTokenizer st = new StringTokenizer(RoomDetails[i], ",");
             createRooms(st.nextToken(), noOfRooms[i] ,Integer.parseInt(st.nextToken()),Boolean.parseBoolean(st.nextToken()));
@@ -46,7 +47,7 @@ public class Hotel extends L4 {
         return this.rating;
     }
 
-    double[][] getPrices() {
+    int[] getPrices() {
         return prices;
     }
 
