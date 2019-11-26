@@ -1,0 +1,7 @@
+Hotel Name, Hotel type, Room type, Number of Rooms, Occupancy-min, Occupancy-max, Rates
+,,,,Adult-Child,Adult-Child,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+MiggysParadise,5.0,Bachelor suite 1 true,2,1-0,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+,,Two to tango 2 true,3,1-0,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+,,bring the family suite 5 true,3,1-0,5,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+SeanVille,4.0,I went to the gym once Suite 1 true,300,1-0,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+WickyNicky'sEmporium,-1.0,Slow Head Turn Deluxe 1 false,1,1-0,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
