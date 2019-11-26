@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class Menu {
                 new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1});
         hotels = chain.hotelList();
         sortReservations(dateToday,chain.getL4());
-        L4.writeToCSV("L4.csv",chain.getL4(),false);
+        L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
     }
 
     public void run() {

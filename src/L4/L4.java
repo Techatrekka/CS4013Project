@@ -63,4 +63,23 @@ public class L4 {
             e.printStackTrace();
         }
     }
+    public static void writeHotelDetailsToCSV(String filename, ArrayList<Hotel> hotels) {
+        try {
+            File file = new File(filename);
+            StringBuffer data = new StringBuffer("");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            PrintWriter printWriter = new PrintWriter(file);
+            data.append("Hotel Name, Hotel type, Room type, Number of Rooms, Occupancy-min, Occupancy-max, Rates\n");
+            data.append(",,,,,,,,,Occupancy-Min,Occupancy-Max,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday\n");
+            for (int i = 0; i < hotels.size(); i++) {
+                
+            }
+            printWriter.write(data.toString());
+            printWriter.close();
+        }catch (IOException e) {
+            System.out.println("It broke");
+        }
+    }
 }
