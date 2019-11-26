@@ -82,7 +82,7 @@ public class ReservationSystem
 				String[] temporary = new String[roomDetails.length - 1];
 				for (int i = 0; i < roomDetails.length - 1; i++) {
 				    temporary[i] = roomDetails[i];
-                }
+                		}
 				roomDetails = temporary;
 				for (String room : roomDetails)
 				{
