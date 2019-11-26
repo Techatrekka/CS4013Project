@@ -130,4 +130,41 @@ public class ReservationSystem
 		list.remove(reservations);
 		writeToCSV("Reservations.csv",list,true);
 	}
+	
+	public static void sortReservations(LocalDate today, ArrayList<Hotel> hotels)
+	{
+		for (Hotel hotel : hotels)
+		{
+			// Get our data
+			ArrayList<Reservations> reservations = readFromCSV(hotel.getName() + "Reservations.csv");
+			ArrayList<Reservations> stays = readFromCSV(hotel.getName() + "Stays.csv");
+
+			// Delete Old Stays
+			for (int i = 0; i < stays.size(); i++)
+			{
+				Reservation stay = stays.get(i);
+				if (stay.getCheckOutDate().compareTo(today) < 0)
+				{
+					stays.remove(stay);
+					i--;
+				}
+			}
+						
+			// Add new Stays
+			for (int i = 0; i < reservations.size(); i++)
+			{
+				Reservation reservation = reservations.get(i);
+				if (reservation.getCheckInDate().compareTo(today) < 0)
+				{
+					reservations.remove(reservation);
+					stays.add(reservation);
+					i--;
+				}
+			}
+			
+			// Save our data into CSV
+			writeToCSV(hotel.getName() + "Reservations.csv", reservations, true);
+			writeToCSV(hotel.getName() + "Stays.csv", stays, true);
+		}
+	}
 }
