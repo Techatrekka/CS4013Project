@@ -1,6 +1,5 @@
 package Reservation;
 
-import L4.Hotel;
 import L4.Room;
 
 import java.time.LocalDate;
@@ -14,7 +13,6 @@ import java.io.FileOutputStream;
 
 public class ReservationSystem
 {
-
 	public static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite)
 	{
 		try
@@ -87,12 +85,7 @@ public class ReservationSystem
 				roomDetails = temporary;
 				for (String room : roomDetails)
 				{
-					System.out.println(room);
 					String[] data = room.split("_", 3);
-					for (String dats : data)
-					{
-						System.out.println(dats);
-					}
 					rooms.add(new Room(data[0], Integer.parseInt(data[1]), Boolean.getBoolean(data[2])));
 				}
 				Reservations reservations = new Reservations(fields[0], fields[1],
@@ -126,12 +119,12 @@ public class ReservationSystem
 		return new Reservations();
 	}
 
-	public void deleteReservations(Reservations reservations) {
-		ArrayList<Reservations> list = readFromCSV("Reservations.csv");
+	public static void deleteReservations(Reservations reservations, String hotelName) {
+		ArrayList<Reservations> list = readFromCSV(hotelName + "Reservations.csv");
 		list.remove(reservations);
-		writeToCSV("Reservations.csv",list,true);
+		writeToCSV(hotelName + "Reservations.csv",list,true);
 	}
-	
+
 	public static void sortReservations(LocalDate today, ArrayList<Hotel> hotels)
 	{
 		for (Hotel hotel : hotels)
@@ -143,8 +136,8 @@ public class ReservationSystem
 			// Delete Old Stays
 			for (int i = 0; i < stays.size(); i++)
 			{
-				Reservations stay = stays.get(i);
-				if (stay.getCheckOutDate().compareTo(today) < 0)
+				Reservation stay = stays.get(i);
+				if (stay.getCheckOutDate().compareTo(today) <= 0)
 				{
 					stays.remove(stay);
 					i--;
@@ -154,15 +147,15 @@ public class ReservationSystem
 			// Add new Stays
 			for (int i = 0; i < reservations.size(); i++)
 			{
-				Reservations reservation = reservations.get(i);
-				if (reservation.getCheckInDate().compareTo(today) < 0)
+				Reservation reservation = reservations.get(i);
+				if (reservation.getCheckInDate().compareTo(today) <= 0)
 				{
 					reservations.remove(reservation);
 					stays.add(reservation);
 					i--;
 				}
 			}
-
+			
 			// Save our data into CSV
 			writeToCSV(hotel.getName() + "Reservations.csv", reservations, true);
 			writeToCSV(hotel.getName() + "Stays.csv", stays, true);
