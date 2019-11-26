@@ -86,7 +86,6 @@ public class Menu {
                                 Customer customer = new Customer(info[0], info[1], info[2], info[3]);
                                 makeReservation(customer);
                                 System.out.println("Would you like to make another reservation or cancellation? Yes/No");
-                                option = null;
                                 option = getOptions(nickyboo);
                                 if (option.equals("No")) {
                                     run = false;
