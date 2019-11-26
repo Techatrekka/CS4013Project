@@ -7,10 +7,9 @@ public class L4 {
     ArrayList<Hotel> L4 = new ArrayList<>();
     File L4Chain = new File("L4.csv");
 
-    public boolean addHotel(String name, String location, int rating, String[] roomDetails, int[] numOfRooms) {
+    public void addHotel(String name, String location, String rating, String[] roomDetails, int[] numOfRooms) {
         Hotel h = new Hotel(name, location, rating, roomDetails, numOfRooms);
         L4.add(h);
-        return true;
     }
 
     public boolean removeHotel(int index) {
@@ -75,20 +74,15 @@ public class L4 {
             data.append(",,,,Adult-Child,Adult-Child,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday\n");
             for (int i = 0; i < hotels.size(); i++) {
                 Hotel hotel = hotels.get(i);
-                data.append(hotels.get(i).getName()).append(",").append(hotels.get(i).getRating()).append(",")
-                        .append(hotel.getRoomTypes().get(0)).append(",").append(hotel.noOfRooms[0])
-                        .append(",1-0,").append(hotel.getRoomTypes().get(0).occupancy).append(",")
-                        .append(hotel.prices[i][0]).append(",").append(hotel.prices[i][1]).append(",")
-                        .append(hotel.prices[i][2]).append(",").append(hotel.prices[i][3]).append(",")
-                        .append(hotel.prices[i][4]).append(",").append(hotel.prices[i][5]).append(",")
-                        .append(hotel.prices[i][6]);
-                for (int j = 1; j < hotel.prices.length; j++) {
-                    data.append(",,").append(hotel.getRoomTypes().get(j)).append(",")
-                            .append(hotel.noOfRooms[j]).append(",1-0,").append(hotel.getRoomTypes()
-                            .get(j).occupancy).append(",").append(hotel.prices[i][0]).append(",")
-                            .append(hotel.prices[i][1]).append(",").append(hotel.prices[i][2])
-                            .append(",").append(hotel.prices[i][3]).append(",").append(hotel.prices[i][4])
-                            .append(",").append(hotel.prices[i][5]).append(",").append(hotel.prices[i][6]);
+                data.append(hotels.get(i).getName()).append(",").append(hotels.get(i).getRating()).append(",");
+                for (int j = 0; j < hotel.prices.length; j++) {
+                   if (j!=0) data.append(",,");
+                    data.append(hotel.getRoomTypes().get(j)).append(",").append(hotel.noOfRooms[j])
+                            .append(",1-0,").append(hotel.getRoomTypes().get(j).occupancy).append(",")
+                            .append(hotel.prices[j][0]).append(",").append(hotel.prices[j][1]).append(",")
+                            .append(hotel.prices[j][2]).append(",").append(hotel.prices[j][3]).append(",")
+                            .append(hotel.prices[j][4]).append(",").append(hotel.prices[j][5]).append(",")
+                            .append(hotel.prices[j][6]).append("\n");
                 }
             }
             printWriter.write(data.toString());

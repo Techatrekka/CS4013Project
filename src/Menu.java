@@ -27,12 +27,12 @@ public class Menu {
     int numOfNights;
     L4 chain = new L4();
     public void initialise() {
-        chain.addHotel("MiggysParadise", "Mamma Mia Land", 5,
+        chain.addHotel("MiggysParadise", "Mamma Mia Land", "5",
                 new String[]{"Bachelor suite,1,true", "Two to tango,2,true",
                         "bring the family suite,5,true"},new int[]{2, 3, 3});
-        chain.addHotel("SeanVille", "HoesAin'tLoyalCentral", 4,
+        chain.addHotel("SeanVille", "HoesAin'tLoyalCentral", "4",
                 new String[]{"I went to the gym once Suite,1,true"}, new int[]{300});
-        chain.addHotel("WickyNicky'sEmporium", "LoserVille", -1,
+        chain.addHotel("WickyNicky'sEmporium", "LoserVille", "-1",
                 new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1});
         hotels = chain.hotelList();
         sortReservations(dateToday,chain.getL4());
@@ -149,6 +149,7 @@ public class Menu {
                 System.out.println("Choice not recognised, choose again!");
             }
         }
+        L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
     }
 
     private Object getOptions(Object options[]) {

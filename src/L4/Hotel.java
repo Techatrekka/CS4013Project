@@ -4,18 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Hotel extends L4 {
 
     private String name, location;
-    double rating;
+    String rating;
     int[] noOfRooms;
     ArrayList<Room> RoomTypes = new ArrayList<Room>();
     double[][] prices;
 
     public Hotel(){}
 
-    Hotel(String name, String location, int rating, String[] RoomDetails, int[] noOfRooms){
+    Hotel(String name, String location, String rating, String[] RoomDetails, int[] noOfRooms){
         this.name = name;
         this.location = location;
         this.rating = rating;
@@ -23,6 +24,7 @@ public class Hotel extends L4 {
         createRooms(RoomDetails,noOfRooms);
         createFiles();
         prices = new double[noOfRooms.length][7];
+        getPriceFromCSV();
     }
 
     private void createFiles() {
@@ -38,7 +40,48 @@ public class Hotel extends L4 {
         }
     }
 
-    double getRating() {
+    public void getPriceFromCSV() {
+        try {
+            double[][] prices = this.prices;
+            String temp = "";
+            File file = new File("L4.csv");
+            Scanner scanner = new Scanner(file);
+            int commaCounter = 0;
+            while (scanner.hasNext()) {
+                temp = scanner.nextLine();
+                if (temp.contains(name)) {
+                    for (int i = 1; i < getRoomTypes().size(); i++) {
+                        temp += scanner.nextLine();
+                    }
+                    String[] info = temp.split(",");
+                    int x = 0;
+                    String[] price = new String[7*getRoomTypes().size()];
+                    for (int i = 0; i < info.length; i++) {
+                        if (info[i].contains(".")) {
+                            price[x] = info[i];
+                            x++;
+                        }
+                    }
+                    int counter = 0;
+                    for (int i = 0; i < price.length; i++) {
+                        counter++;
+                        System.out.println(price[i] + " " + counter);
+                    }
+                    counter = 0;
+                    for (int i = 0; i < price.length/7; i++) {
+                        for (int j = 0; j < 7; j++) {
+                            prices[i][j] = Double.parseDouble(price[counter]);
+                            counter++;
+                        }
+                    }
+                }
+            }
+        }catch (IOException e) {
+            System.out.println("get price from csv");
+        }
+    }
+
+    String getRating() {
         return this.rating;
     }
 
