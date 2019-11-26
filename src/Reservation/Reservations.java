@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class Reservations extends ReservationSystem {
 
-    private String reservationName, number, email, reservationId;
-    private int duration;
-    private LocalDate checkIn, checkOut;
-    private Double totalCost, deposit;
-    private boolean advancedPurchase;
-    private ArrayList<Room> rooms = new ArrayList<>();
+    protected String reservationName, number, email, reservationId;
+    protected int duration;
+    protected LocalDate checkIn, checkOut;
+    protected Double totalCost, deposit;
+    protected boolean advancedPurchase;
+    protected ArrayList<Room> rooms = new ArrayList<>();
 
     public Reservations() {}
 
@@ -66,40 +66,53 @@ public class Reservations extends ReservationSystem {
 
     public ArrayList<Room> getRooms() { return rooms; }
 
-    String getRoomsAsString() {
-        String temp = "";
-        for (Room room : rooms) {
-            temp += room.getType() + "_" + room.getOccupancy() + "_" + room.isBreakfastIncluded() + "/";
-        }
-        return temp;
-    }
-
     boolean  getAdvancedPurchase(){
         return this.advancedPurchase;
     }
 
-    void setAdvancedPurchase(boolean set){
+    void setAdvancedPurchase(boolean set)
+    {
         this.advancedPurchase = set;
     }
 
-    public LocalDate getCheckInDate() {
+    public LocalDate getCheckInDate()
+    {
         return checkIn;
     }
 
-    LocalDate getCheckOutDate() {
-        return checkIn.plusDays(Long.parseLong(String.valueOf(duration)));
+    LocalDate getCheckOutDate()
+    {
+        return checkIn.plusDays(duration);
     }
 
-    public double getTotalCost() {
+    public double getTotalCost()
+    {
         return totalCost;
     }
 
-    public void setTotalCost(double cost) {
+    public void setTotalCost(double cost)
+    {
         totalCost = cost;
     }
 
-    double getDeposit() {
+    double getDeposit()
+    {
         return deposit;
+    }
+
+    public String toCSV()
+    {
+        return reservationId + "," + reservationName + "," + number + "," + email + "," + checkIn + "," + duration + "," + rooms.size() + "," + getRoomsAsString() + "," + totalCost + "," + deposit + "," + advancedPurchase + "\n";
+    }
+
+    protected String getRoomsAsString()
+    {
+        String temp = "";
+        for (Room room : rooms)
+        {
+            temp += room.toCSV() + "/";
+        }
+        return temp;
     }
 
     @Override
