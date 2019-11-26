@@ -8,6 +8,7 @@ import L4.L4;
 import L4.Room;
 import People.Customer;
 import People.Supervisor;
+import Reservation.ReservationSystem;
 import Reservation.Reservations;
 
 import static Reservation.ReservationSystem.readReservation;
@@ -27,15 +28,14 @@ public class Menu {
     public void initialise() {
         chain.addHotel("MiggysParadise", "Mamma Mia Land", 5,
                 new String[]{"Bachelor suite,1,true", "Two to tango,2,true",
-                        "bring the family suite,5,true"},
-                new int[]{2, 3, 3},new int[]{90,90,90,90,100,120,120});
+                        "bring the family suite,5,true"},new int[]{2, 3, 3});
         chain.addHotel("SeanVille", "HoesAin'tLoyalCentral", 4,
-                new String[]{"I went to the gym once Suite,1,true"}, new int[]{300},new int[]{70,70,70,70,90,100,100});
+                new String[]{"I went to the gym once Suite,1,true"}, new int[]{300});
         chain.addHotel("WickyNicky'sEmporium", "LoserVille", -1,
-                new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1},
-                new int[]{50,50,50,50,70,90,90});
+                new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1});
         hotels = chain.hotelList();
         sortReservations(dateToday,chain.getL4());
+        L4.writeToCSV("L4.csv",chain.getL4(),false);
     }
 
     public void run() {
@@ -204,7 +204,7 @@ public class Menu {
         option = scanner.nextLine();
         if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
             Reservations re = readReservation(option.toString(), hotelChosen + "Reservations.csv");
-            reservations.deleteReservations(re);
+            ReservationSystem.deleteReservations(re,hotelChosen+"Reservations.csv");
             System.out.println("Reservation has been deleted.");
         }
     }

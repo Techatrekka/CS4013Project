@@ -2,7 +2,6 @@ package Reservation;
 
 import L4.Room;
 import L4.Hotel;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;

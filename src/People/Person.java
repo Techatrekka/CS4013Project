@@ -36,8 +36,8 @@ public class Person {
         writeToCSV(hotel+"Reservations.csv",reservations1,true);
     }
 
-    void makeCancellation(Reservations reservation) {
-        Cancellations cancel = new Cancellations(reservation.getCheckInDate(),reservation);
+    void makeCancellation(Reservations reservation, String hotel) {
+        Cancellations cancel = new Cancellations(reservation.getCheckInDate(),reservation, hotel);
     }
 
     public void setName(String name) {
