@@ -1,6 +1,7 @@
 package Reservation;
 
 import L4.Room;
+import L4.Hotel;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -136,7 +137,7 @@ public class ReservationSystem
 			// Delete Old Stays
 			for (int i = 0; i < stays.size(); i++)
 			{
-				Reservation stay = stays.get(i);
+				Reservations stay = stays.get(i);
 				if (stay.getCheckOutDate().compareTo(today) <= 0)
 				{
 					stays.remove(stay);
@@ -147,7 +148,7 @@ public class ReservationSystem
 			// Add new Stays
 			for (int i = 0; i < reservations.size(); i++)
 			{
-				Reservation reservation = reservations.get(i);
+				Reservations reservation = reservations.get(i);
 				if (reservation.getCheckInDate().compareTo(today) <= 0)
 				{
 					reservations.remove(reservation);
