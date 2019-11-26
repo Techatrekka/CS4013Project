@@ -46,8 +46,19 @@ public class Room extends Hotel {
         return occupancy;
     }
 
+    public String toCSV()
+    {
+        return getType() + "_" + getOccupancy() + "_" + isBreakfastIncluded();
+    }
+
     @Override
-    public String toString(){
-        return getType() + " " + getOccupancy() + " " + isBreakfastIncluded();
+    public String toString()
+    {
+        String breakfast = "Breakfast not included";
+        if (isBreakfastIncluded())
+        {
+            breakfast = "Breakfast included";
+        }
+        return getType() + " " + breakfast;
     }
 }
