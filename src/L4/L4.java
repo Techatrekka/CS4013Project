@@ -51,9 +51,9 @@ public class L4 {
             {
                 String name = hotel.getName();
                 String location = hotel.getLocation();
-                String numRooms = String.valueOf(hotel.getNoOfRooms());
+               // String numRooms = String.valueOf(hotel.getNoOfRooms());
                 String rating = String.valueOf(hotel.getRating());
-                data.append(name + "," + location + "," + numRooms + "," + rating + "," + hotel.getRoomTypes());
+               // data.append(name + "," + location + "," + numRooms + "," + rating + "," + hotel.getRoomTypes());
             }
             printWriter.write(data.toString());
             printWriter.close();
@@ -72,9 +72,22 @@ public class L4 {
             }
             PrintWriter printWriter = new PrintWriter(file);
             data.append("Hotel Name, Hotel type, Room type, Number of Rooms, Occupancy-min, Occupancy-max, Rates\n");
-            data.append(",,,,,,,,,Occupancy-Min,Occupancy-Max,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday\n");
+            data.append(",,,,Adult-Child,Adult-Child,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday\n");
             for (int i = 0; i < hotels.size(); i++) {
-                
+                Hotel hotel = hotels.get(i);
+                data.append(hotels.get(i).getName()).append(",").append(hotels.get(i).getRating()).append(",")
+                        .append(hotel.getRoomTypes().get(0)).append(",").append(hotel.noOfRooms[0])
+                        .append(",1-0,").append(hotel.getRoomTypes().get(0).occupancy).append(",")
+                        .append(hotel.prices[i][0]).append(",").append(hotel.prices[i][1]).append(",")
+                        .append(hotel.prices[i][2]).append(",").append(hotel.prices[i][3]).append(",")
+                        .append(hotel.prices[i][4]).append(",").append(hotel.prices[i][5]).append(",")
+                        .append(hotel.prices[i][6]);
+                for (int j = 1; j < hotel.RoomTypes.size(); j++) {
+                    data.append(",," + hotel.getRoomTypes().get(j)+ "," + hotel.noOfRooms[j]+",1-0,"+
+                            hotel.getRoomTypes().get(j).occupancy +"," +hotel.prices[i][0] + "," +hotel.prices[i][1]+ "," +
+                            hotel.prices[i][2] +"," + hotel.prices[i][3] + "," +hotel.prices[i][4] + "," +
+                            hotel.prices[i][5] + "," + hotel.prices[i][6]);
+                }
             }
             printWriter.write(data.toString());
             printWriter.close();

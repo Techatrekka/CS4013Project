@@ -1,20 +1,17 @@
 package L4;
 
-import Sales.Price;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 public class Hotel extends L4 {
 
     private String name, location;
     double rating;
-    int noOfRooms;
+    int[] noOfRooms;
     ArrayList<Room> RoomTypes = new ArrayList<Room>();
-    int[] prices = new int[7];
+    double[][] prices = new double[RoomTypes.size()][7];
 
     public Hotel(){}
 
@@ -22,11 +19,7 @@ public class Hotel extends L4 {
         this.name = name;
         this.location = location;
         this.rating = rating;
-        this.prices = prices;
-        for (int i = 0; i < noOfRooms.length; i++) {
-            StringTokenizer st = new StringTokenizer(RoomDetails[i], ",");
-            createRooms(st.nextToken(), noOfRooms[i] ,Integer.parseInt(st.nextToken()),Boolean.parseBoolean(st.nextToken()));
-        }
+        this.noOfRooms = noOfRooms;
         createFiles();
     }
 
@@ -47,14 +40,6 @@ public class Hotel extends L4 {
         return this.rating;
     }
 
-    int[] getPrices() {
-        return prices;
-    }
-
-    void setPrices() {
-        Price price = new Price();
-    }
-
     public String getName(){
         return this.name;
     }
@@ -62,8 +47,6 @@ public class Hotel extends L4 {
     String getLocation(){
         return this.location;
     }
-
-    int getNoOfRooms() {return noOfRooms;}
 
     void createRooms(String type, int numOfRooms,
                      int occupancy,boolean BF)  {
@@ -89,6 +72,6 @@ public class Hotel extends L4 {
     public String toString(){
         return "Name: " + getName() + "Location: " +
                 getLocation() +"Rating: " + getRating() +
-                "Number of Rooms: " + getNoOfRooms();
+                "Number of Rooms: ";
     }
 }
