@@ -84,7 +84,7 @@ public class ReservationSystem
 				
 				if (filename.contains("Cancellation"))
 				{
-					Cancellations cancellation = new Cancellation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.parse(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					Cancellations cancellation = new Cancellations(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.parse(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
 					details.add((Reservations) cancellation);
 				}
 				else
@@ -118,7 +118,7 @@ public class ReservationSystem
 			while(input.hasNextLine())
 			{
 				String line = input.nextLine();
-				String fields[] = temp.split(",", 11);
+				String fields[] = line.split(",", 11);
 				if (fields[0].equals(reservationNum))
 				{
 					String roomDetails[] = fields[7].split("/", 100);
@@ -157,7 +157,7 @@ public class ReservationSystem
 			// Get our data
 			ArrayList<Reservations> reservations = readFromCSV(hotel.getName() + "Reservations.csv");
 			ArrayList<Reservations> stays = readFromCSV(hotel.getName() + "Stays.csv");
-			ArrayList<Reservations> cancellations = readFromCSV(hote.getName() + "Cancellations.csv");
+			ArrayList<Reservations> cancellations = readFromCSV(hotel.getName() + "Cancellations.csv");
 
 			// Delete stays from 7+ years ago
 			for (int i = 0; i < stays.size(); i++)
@@ -173,7 +173,7 @@ public class ReservationSystem
 			// Delete Cancellations that happen 30+ days ago
 			for (int i = 0; i < cancellations.size(); i++)
 			{
-				Reservation cancellation = cancellations.get(i);
+				Cancellations cancellation = (Cancellations) cancellations.get(i);
 				if (cancellation.getCancellationDate().plusDays(30).compareTo(today) <= 0)
 				{
 					cancellations.remove(cancellation);

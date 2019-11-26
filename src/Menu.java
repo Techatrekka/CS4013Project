@@ -13,7 +13,7 @@ import Reservation.ReservationSystem;
 import Reservation.Reservations;
 
 import static Reservation.ReservationSystem.readReservation;
-import static Reservation.ReservationSystem.sortReservations;
+import static Reservation.ReservationSystem.checkCSV;
 
 public class Menu {
 
@@ -35,7 +35,7 @@ public class Menu {
         chain.addHotel("WickyNicky'sEmporium", "LoserVille", "-1",
                 new String[]{"Slow Head Turn Deluxe,1,false"}, new int[]{1});
         hotels = chain.hotelList();
-        sortReservations(dateToday,chain.getL4());
+        checkCSV(dateToday,chain.getL4());
         L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
     }
 
