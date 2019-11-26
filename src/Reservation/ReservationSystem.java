@@ -101,10 +101,11 @@ public class ReservationSystem
 	public static Reservations readReservation(String reservationNum, String File) {
 		ArrayList<Reservations> temp = readFromCSV(File);
 		String[] res = new String[9];
-		Reservations reservation = new Reservations();
+		Reservations reservation = null;
 		for (int i = 0; i < temp.size(); i++) {
 			if(reservation.getReservationId().equals(reservationNum)) {
 				reservation = temp.get(i);
+				break;
 			}
 		}
 		if (reservation.equals(null)) {
@@ -112,7 +113,7 @@ public class ReservationSystem
 			System.out.println("this bitch empty yeet");
 			return null;
 		}
-		return new Reservations();
+		return reservation;
 	}
 
 	public static void deleteReservations(Reservations reservations, String hotelName) {

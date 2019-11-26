@@ -7,7 +7,7 @@ public class L4 {
     ArrayList<Hotel> L4 = new ArrayList<>();
     File L4Chain = new File("L4.csv");
 
-    public void addHotel(String name, String location, int rating, String[] roomDetails, int[] numOfRooms) {
+    public void addHotel(String name, String location, String rating, String[] roomDetails, int[] numOfRooms) {
         Hotel h = new Hotel(name, location, rating, roomDetails, numOfRooms);
         L4.add(h);
     }
