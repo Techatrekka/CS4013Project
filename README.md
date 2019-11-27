@@ -5,6 +5,8 @@ Address variable review,
 Place checks in the code to see if the rooms are being overbooked
 Complete Data Analytics class
 
+Cancelations don't work
+giveDiscount write to CSV
 
 
 Final task is to check command line arguments and streamline menu class and code
