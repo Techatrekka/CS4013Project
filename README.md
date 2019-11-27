@@ -5,8 +5,9 @@ Address variable review,
 Place checks in the code to see if the rooms are being overbooked
 Complete Data Analytics class
 
-Cancelations don't work, 
-giveDiscount write to CSV
+Calcenations are added to the cancelations.csv but not removed from reservations.csv, 
+Prices need to be implamented, 
+Data analysis needs to be implamented
 
 
 Final task is to check command line arguments and streamline menu class and code
