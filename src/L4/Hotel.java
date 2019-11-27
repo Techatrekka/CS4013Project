@@ -36,7 +36,7 @@ public class Hotel extends L4 {
             File stays = new File(name + "Stays.csv");
             stays.createNewFile();
         }catch (IOException e) {
-            System.out.println("It done broke");
+            System.out.println("File creation error");
         }
     }
 
@@ -72,7 +72,7 @@ public class Hotel extends L4 {
                 }
             }
         }catch (IOException e) {
-            System.out.println("get price from csv");
+            System.out.println("Error in getting prices");
         }
     }
 
