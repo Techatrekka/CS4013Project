@@ -155,9 +155,11 @@ public class ReservationSystem
 	 */
 	public static void deleteReservation(Reservation reservation, String hotelName)
 	{
+		Cancellation cancel = new Cancellation(reservation,hotelName);
 		ArrayList<Reservation> list = readFromCSV(hotelName + "Reservations.csv");
 		list.remove(reservation);
 		writeToCSV(hotelName + "Reservations.csv", list, true);
+
 	}
 
 	/**
