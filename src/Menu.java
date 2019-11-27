@@ -197,7 +197,7 @@ public class Menu {
 		option = scanner.nextLine();
 		if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
 			Reservation re = readReservation(option.toString(), hotelChosen + "Reservations.csv");
-			ReservationSystem.deleteReservations(re,hotelChosen+"Reservations.csv");
+			ReservationSystem.deleteReservation(re,hotelChosen+"Reservations.csv");
 			System.out.println("Reservation has been deleted.");
 		}
 	}

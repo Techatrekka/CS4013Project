@@ -2,7 +2,7 @@ package Analytics;
 
 import L4.Hotel;
 import L4.Room;
-import Reservation.Reservations;
+import Reservation.Reservation;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class DataAnalysis {
 
     public static double monthlyRevenue(LocalDate date, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
-        ArrayList<Reservations> reservations = readFromCSV(name);
+        ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i = 0; i < reservations.size(); i++) {
             if (!reservations.get(i).getCheckInDate().getMonth().equals(date.getMonth())) {
                 reservations.remove(i);
@@ -29,7 +29,7 @@ public class DataAnalysis {
 
     public static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
-        ArrayList<Reservations> reservations = readFromCSV(name);
+        ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTO) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
@@ -46,7 +46,7 @@ public class DataAnalysis {
     //needs to be reviewed, it doesn't answer the question
     public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
         String name = hotel.getName() + "reservations.csv";
-        ArrayList<Reservations> reservations = readFromCSV(name);
+        ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
@@ -65,7 +65,7 @@ public class DataAnalysis {
 
     public static Room mostCommonRoomType(LocalDate dateFrom, LocalDate dateTo, ArrayList<Room> RoomTypes, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
-        ArrayList<Reservations> reservations = readFromCSV(name);
+        ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
