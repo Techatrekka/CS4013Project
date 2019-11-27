@@ -25,7 +25,7 @@ public class Billing extends Price {
                     if (day > 6) {
                         day = 0;
                     }
-                    //price += prices[row][day];
+                    price += prices[row][day];
                     day++;
                 }
             }
