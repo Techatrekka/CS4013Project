@@ -48,105 +48,128 @@ public class Menu {
 			System.out.println("Welcome to the L4 Hotel System!");
 			System.out.println("Please choose the hotel you would like to access: ");
 			hotelChosen = getOptions(hotels).toString();
+			System.out.println("Please choose a user: ");
 			System.out.println("A) Customer B) Staff C) Quit");
 			String choice = scanner.nextLine();
 			choice = choice.toUpperCase();
-			if (choice.equals("A")) {
-				System.out.println("Please input: Name, Email, Phone, Address");
-				String info = scanner.nextLine();
-				String[] split = info.split(",");
-				Customer customer = new Customer(split[0], split[1], split[2], split[3]);
-				System.out.println("Would you like to make a Reservation or a Cancellation?");
-				Object[] options = new Object[]{"Reservation", "Cancellation"};
-				Object option = getOptions(options);
-				assert option != null;
-				if (option.equals("Reservation")) {
-					makeReservation(customer);
-					System.out.println("Would you like to make another reservation or cancellation? ");
-					option = null;
-					option = getOptions(YesNo);
-					if (option.equals("No")) {
-						run = false;
+			switch (choice) {
+				case "A": {
+					System.out.println("Please input: Name, Email, Phone, Address");
+					String info = scanner.nextLine();
+					String[] split = info.split(",");
+					Customer customer = new Customer(split[0], split[1], split[2], split[3]);
+					System.out.println("Would you like to make a Reservation or a Cancellation?");
+					Object[] options = new Object[]{"Reservation", "Cancellation"};
+					Object option = getOptions(options);
+					assert option != null;
+					if (option.equals("Reservation")) {
+						makeReservation(customer);
+						System.out.println("Would you like to use the system again?");
+						option = null;
+						option = getOptions(YesNo);
+						if (option.equals("No")) {
+							run = false;
+						}
+					} else {
+						makeCancellation();
 					}
-				} else {
-					makeCancellation();
+					break;
 				}
-			} else if (choice.equals("B")) {
-				Object[] options = {"Supervisor", "Administrator"};
-				Object option = getOptions(options);
-				switch (option.toString()) {
-					case "Supervisor":
-						options = new Object[]{"Make a reservation", "Make a cancellation", "Give a discount", "Request a data analysis"};
-						option = getOptions(options);
-						switch (option.toString()) {
-							case "Make a reservation":
-								System.out.println("Please input customer's details as follows: Name, Email, Phone, Address");
-								String info = scanner.nextLine();
-								String[] split = info.split(",");
-								Customer customer = new Customer(split[0], split[1], split[2], split[3]);
-								makeReservation(customer);
-								System.out.println("Would you like to make another reservation or cancellation?");
-								option = getOptions(YesNo);
-								if (option.equals("No")) {
-									run = false;
-								}
-								break;
-							case "Make a cancellation":
-								makeCancellation();
-								System.out.println("Would you like to make another reservation or cancellation?");
-								option = null;
-								option = getOptions(YesNo);
-								if (option.equals("No")) {
-									run = false;
-								}
-								break;
-							case "Give a discount":
-								Supervisor supervisor = new Supervisor();
-								System.out.println("Enter reservation number: ");
-								choice = scanner.nextLine();
-								System.out.println("Enter discount amount: ");
-								double discount = Double.parseDouble(scanner.nextLine());
-								supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), discount);
-								System.out.printf("A %%%4.2f discount has been applied to reservation number %s\n\n", discount, choice);
-								break;
-							case "Request a data analysis":
-								Supervisor supervisor1 = new Supervisor();
-								break;
-						}
-						break;
-					case "Administrator":
-						options = new Object[]{"Make a reservation", "Make a cancellation"};
-						option = getOptions(options);
-						switch (option.toString()) {
-							case "Make a reservation":
-								System.out.println("Please input customer's details as follows: Name, Email, Phone, Address");
-								String info = scanner.nextLine();
-								String[] split = info.split(",");
-								Customer customer = new Customer(split[0], split[1], split[2], split[3]);
-								makeReservation(customer);
-								System.out.println("Would you like to make another reservation or cancellation? Yes/No");
-								option = null;
-								option = getOptions(YesNo);
-								if (option.equals("No")) {
-									run = false;
-								}
-								break;
-							case "Make a cancellation":
-								makeCancellation();
-								System.out.println("Would you like to make another reservation or cancellation?");
-								option = null;
-								option = getOptions(YesNo);
-								if (option.equals("No")) {
-									run = false;
-								}
-								break;
-						}
-						break;
+				case "B": {
+					System.out.println("Please choose a staff member: ");
+					Object[] options = {"Supervisor", "Administrator"};
+					Object option = getOptions(options);
+					switch (option.toString()) {
+						case "Supervisor":
+							System.out.println("What would you like to do?");
+							options = new Object[]{"Make a reservation", "Make a cancellation", "Give a discount", "Request a data analysis"};
+							option = getOptions(options);
+							switch (option.toString()) {
+								case "Make a reservation":
+									System.out.println("Please input customer's details as follows: Name, Email, Phone, Address");
+									String info = scanner.nextLine();
+									String[] split = info.split(",");
+									Customer customer = new Customer(split[0], split[1], split[2], split[3]);
+									makeReservation(customer);
+									System.out.println("Would you like to use the system again?");
+									option = getOptions(YesNo);
+									if (option.equals("No")) {
+										run = false;
+									}
+									break;
+								case "Make a cancellation":
+									makeCancellation();
+									System.out.println("Would you like to use the system again?");
+									option = null;
+									option = getOptions(YesNo);
+									if (option.equals("No")) {
+										run = false;
+									}
+									break;
+								case "Give a discount":
+									Supervisor supervisor = new Supervisor();
+									System.out.println("Enter reservation number: ");
+									choice = scanner.nextLine();
+									System.out.println("Enter discount amount: ");
+									double discount = Double.parseDouble(scanner.nextLine());
+									supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), discount);
+									System.out.printf("A %%%4.2f discount has been applied to reservation number %s\n\n", discount, choice);
+									System.out.println("Would you like to use the system again?");
+									option = null;
+									option = getOptions(YesNo);
+									if (option.equals("No")) {
+										run = false;
+									}
+									break;
+								case "Request a data analysis":
+									Supervisor supervisor1 = new Supervisor();
+									System.out.println("Would you like to use the system again?");
+									option = null;
+									option = getOptions(YesNo);
+									if (option.equals("No")) {
+										run = false;
+									}
+									break;
+							}
+							break;
+						case "Administrator":
+							System.out.println("Would you like to make a Reservation or a Cancellation?");
+							options = new Object[]{"Make a reservation", "Make a cancellation"};
+							option = getOptions(options);
+							switch (option.toString()) {
+								case "Make a reservation":
+									System.out.println("Please input customer's details as follows: Name, Email, Phone, Address");
+									String info = scanner.nextLine();
+									String[] split = info.split(",");
+									Customer customer = new Customer(split[0], split[1], split[2], split[3]);
+									makeReservation(customer);
+									System.out.println("Would you like to use the system again?");
+									option = null;
+									option = getOptions(YesNo);
+									if (option.equals("No")) {
+										run = false;
+									}
+									break;
+								case "Make a cancellation":
+									makeCancellation();
+									System.out.println("Would you like to use the system again?");
+									option = null;
+									option = getOptions(YesNo);
+									if (option.equals("No")) {
+										run = false;
+									}
+									break;
+							}
+							break;
+					}
+					break;
 				}
-			} else if (choice.equals("C")) {
-				run = false;
-			} else {
-				System.out.println("Choice not recognised, choose again!");
+				case "C":
+					run = false;
+					break;
+				default:
+					System.out.println("Choice not recognised, choose again!");
+					break;
 			}
 		}
 		L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
@@ -192,7 +215,7 @@ public class Menu {
 				done = true;
 			}
 		}
-		System.out.println("When would you check in?(dd-mm-yyyy)");
+		System.out.println("When would you like to check in?(dd-mm-yyyy)");
 		String dateFormat   = "dd-MM-yyyy";
 		LocalDate checkIn = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
 		System.out.println("How many nights are you staying?");
@@ -206,7 +229,7 @@ public class Menu {
 		option = scanner.nextLine();
 		if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
 			Reservation re = readReservation(option.toString(), hotelChosen + "Reservations.csv");
-			ReservationSystem.deleteReservation(re,hotelChosen+"Reservations.csv");
+			ReservationSystem.deleteReservation(re,hotelChosen);
 			System.out.println("Reservation has been deleted.");
 		}
 	}
