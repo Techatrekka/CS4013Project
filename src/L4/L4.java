@@ -66,8 +66,12 @@ public class L4 {
         try {
             File file = new File(filename);
             StringBuffer data = new StringBuffer("");
-            if (!file.exists()) {
-                file.createNewFile();
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+            }catch (IOException e) {
+                System.out.println("File creation error");
             }
             PrintWriter printWriter = new PrintWriter(file);
             data.append("Hotel Name, Hotel type, Room type, Number of Rooms, Occupancy-min, Occupancy-max, Rates\n");

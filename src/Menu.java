@@ -26,7 +26,9 @@ public class Menu {
 	ArrayList<Room> rooms = new ArrayList<>();
 	int numOfNights;
 	L4 chain = new L4();
-	public void initialise() {
+    String[] YesNo = new String[]{"Yes", "No"};
+
+    public void initialise() {
 		chain.addHotel("MiggysParadise", "Mamma Mia Land", "5",
 				new String[]{"Bachelor suite,1,true", "Two to tango,2,true",
 						"bring the family suite,5,true"},new int[]{2, 3, 3});
@@ -43,7 +45,6 @@ public class Menu {
 		initialise();
 		boolean run = true;
 		while (run) {
-			String[] nickyboo = new String[]{"Yes", "No"};
 			hotelChosen = getOptions(hotels).toString();
 			System.out.println("A) Customer B) Staff C) Quit");
 			String choice = scanner.nextLine();
@@ -59,9 +60,9 @@ public class Menu {
 				assert option != null;
 				if (option.equals("Reservation")) {
 					makeReservation(customer);
-					System.out.println("Would you like to make another reservation or cancellation? Yes/No");
+					System.out.println("Would you like to make another reservation or cancellation? ");
 					option = null;
-					option = getOptions(nickyboo);
+					option = getOptions(YesNo);
 					if (option.equals("No")) {
 						run = false;
 					}
@@ -82,7 +83,7 @@ public class Menu {
 								Customer customer = new Customer(split[0], split[1], split[2], split[3]);
 								makeReservation(customer);
 								System.out.println("Would you like to make another reservation or cancellation? Yes/No");
-								option = getOptions(nickyboo);
+								option = getOptions(YesNo);
 								if (option.equals("No")) {
 									run = false;
 								}
@@ -91,7 +92,7 @@ public class Menu {
 								makeCancellation();
 								System.out.println("Would you like to make another reservation or cancellation? Yes/No");
 								option = null;
-								option = getOptions(nickyboo);
+								option = getOptions(YesNo);
 								if (option.equals("No")) {
 									run = false;
 								}
@@ -118,7 +119,7 @@ public class Menu {
 								makeReservation(customer);
 								System.out.println("Would you like to make another reservation or cancellation? Yes/No");
 								option = null;
-								option = getOptions(nickyboo);
+								option = getOptions(YesNo);
 								if (option.equals("No")) {
 									run = false;
 								}
@@ -127,7 +128,7 @@ public class Menu {
 								makeCancellation();
 								System.out.println("Would you like to make another reservation or cancellation? Yes/No");
 								option = null;
-								option = getOptions(nickyboo);
+								option = getOptions(YesNo);
 								if (option.equals("No")) {
 									run = false;
 								}
@@ -153,7 +154,8 @@ public class Menu {
 			System.out.println(c + ") " + options[i]);
 			c++;
 		}
-		char x = scanner.nextLine().toUpperCase().charAt(0);
+		String p = scanner.nextLine();
+		char x = p.toUpperCase().charAt(0);
 		int h = x - 65;
 		return options[h];
 	}
@@ -177,8 +179,8 @@ public class Menu {
 					rooms.add(chain.getL4().get(hotelInArray).getRoomTypes().get(i));
 				}
 			}
-			System.out.println("Would you like to add another room? Yes/No");
-			choice = scanner.nextLine().toUpperCase();
+			System.out.println("Would you like to add another room?");
+			option = getOptions(YesNo);
 			if (!choice.equals("Yes")) {
 				done = true;
 			}
@@ -187,7 +189,7 @@ public class Menu {
 		String dateFormat   = "dd-MM-yyyy";
 		LocalDate checkIn = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
 		System.out.println("How many nights are you staying?");
-		numOfNights = scanner.nextInt();
+		numOfNights = Integer.parseInt(scanner.nextLine());
 		customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotelChosen);
 	}
 

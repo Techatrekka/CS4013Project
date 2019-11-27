@@ -63,11 +63,6 @@ public class Hotel extends L4 {
                         }
                     }
                     int counter = 0;
-                    for (int i = 0; i < price.length; i++) {
-                        counter++;
-                        System.out.println(price[i] + " " + counter);
-                    }
-                    counter = 0;
                     for (int i = 0; i < price.length/7; i++) {
                         for (int j = 0; j < 7; j++) {
                             prices[i][j] = Double.parseDouble(price[counter]);
