@@ -1,7 +1,11 @@
-Hotel Name, Hotel type, Room type, Number of Rooms, Occupancy-min, Occupancy-max, Rates
-,,,,Adult-Child,Adult-Child,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
-MiggysParadise,5,Bachelor suite Breakfast included,2,1-0,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-,,Two to tango Breakfast included,3,1-0,2,90.0,90.0,90.0,95.0,90.0,90.0,90.0
-,,bring the family suite Breakfast included,3,1-0,5,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-SeanVille,4,I went to the gym once Suite Breakfast included,300,1-0,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
-WickyNicky'sEmporium,-1,Slow Head Turn Deluxe Breakfast not included,1,1-0,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+Hotel Name	 Hotel type	 Room type	 Number of Rooms	 Occupancy-min	 Occupancy-max	 Rates						
+				Adult-Child	Adult-Child	Monday	Tuesday	Wednesday	Thursday	Friday	Saturday	Sunday
+Mighele's Paradise	5	Bachelor Suite / Breakfast included	20	1-0	1	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+		Two to Tango Suite / Breakfast included	30	1-0	2	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+		Bring the Family Suite / Breakfast included	30	1-0	5	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+SeanVille Suites	4	Single Room / Breakfast included	30	1-0	1	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+		Double Room / Breakfast not included	40	1-0	2	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+		Family Room / Breakfast included	30	1-0	5	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+Marcin's Motel	3	Deluxe Room / Breakfast included	5	1-0	3	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+		Single Room / Breakfast not included	10	1-0	1	90.9	90.9	90.9	90.9	90.9	90.9	90.9
+		Double Room / Breakfast not included	8	1-0	2	90.9	90.9	90.9	90.9	90.9	90.9	90.9
