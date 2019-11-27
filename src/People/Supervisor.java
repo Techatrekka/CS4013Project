@@ -1,6 +1,9 @@
 package People;
 
+import L4.Hotel;
 import Reservation.*;
+
+import java.util.ArrayList;
 
 public class Supervisor extends Staff {
 
@@ -23,10 +26,12 @@ public class Supervisor extends Staff {
         return this.wages;
     }
 
-    public void giveDiscount(Reservation reservation, double discount) {
+    public void giveDiscount(Reservation reservation, double discount,String hotel) {
         double cost = reservation.getTotalCost();
         double newPrice = cost - (cost * discount);
+        ArrayList<Reservation> r1 = ReservationSystem.readFromCSV(hotel+"Reservations.csv");
         reservation.setTotalCost(newPrice);
+        Reservation.writeToCSV("Reservations.csv",r1,true);
     }
 
     void requestDataAnalysis() {
