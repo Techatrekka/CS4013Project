@@ -92,7 +92,7 @@ public class L4 {
             printWriter.write(data.toString());
             printWriter.close();
         }catch (IOException e) {
-            System.out.println("It broke");
+            System.out.println("Error in writing to csv");
         }
     }
 }
