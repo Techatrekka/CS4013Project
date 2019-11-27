@@ -99,7 +99,7 @@ public class ReservationSystem
 		}
 		catch (IOException error)
 		{
-			System.out.println("IO Exception");
+			System.out.println("Error in reading from csv");
 		}
 		return details;
 	}
