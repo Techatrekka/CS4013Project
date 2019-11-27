@@ -54,10 +54,10 @@ public class Room extends Hotel {
 	@Override
 	public String toString()
 	{
-		String breakfast = ", Breakfast not included";
+		String breakfast = "/ Breakfast not included";
 		if (isBreakfastIncluded())
 		{
-			breakfast = ", Breakfast included";
+			breakfast = "/ Breakfast included";
 		}
 		return getType() + " " + breakfast;
 	}
