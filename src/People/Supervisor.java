@@ -23,7 +23,7 @@ public class Supervisor extends Staff {
         return this.wages;
     }
 
-    public void giveDiscount(Reservations reservation, double discount) {
+    public void giveDiscount(Reservation reservation, double discount) {
         double cost = reservation.getTotalCost();
         double newPrice = cost - (cost * discount);
         reservation.setTotalCost(newPrice);

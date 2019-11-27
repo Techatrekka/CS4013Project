@@ -5,21 +5,21 @@ import L4.Room;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Cancellations extends Reservations
+public class Cancellation extends Reservation
 {
     private LocalDate cancellationDate;
 
-    public Cancellations(String reservationId, String reservationName, String number, String email, LocalDate checkIn, LocalDate cancellationDate, ArrayList<Room> rooms, double totalCost, boolean advancedPurchase)
+    public Cancellation(String reservationId, String reservationName, String number, String email, LocalDate checkIn, LocalDate cancellationDate, ArrayList<Room> rooms, double totalCost, boolean advancedPurchase)
     {
         super(reservationId, reservationName, number, email, checkIn, 0, rooms, totalCost, advancedPurchase);
         this.cancellationDate = cancellationDate;
     }
 
-    public Cancellations(LocalDate cancellationDate, Reservations reservations,String hotelChosen)
+    public Cancellation(LocalDate cancellationDate, Reservation reservations,String hotelChosen)
     {
         this.cancellationDate = cancellationDate;
         deleteReservations(reservations,hotelChosen+"Cancellations.csv");
-        ArrayList<Reservations> cancels = readFromCSV("Cancellations.csv");
+        ArrayList<Reservation> cancels = readFromCSV("Cancellations.csv");
         cancels.add(reservations);
         writeToCSV("Cancellations.csv",cancels,true);
     }

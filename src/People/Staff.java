@@ -1,6 +1,6 @@
 package People;
 
-import Reservation.Reservations;
+import Reservation.Reservation;
 
 import java.time.LocalDate;
 
@@ -8,11 +8,11 @@ public class Staff extends Person {
 
     protected double wages;
 
-    void checkIn(Reservations reservation, LocalDate date) {
+    void checkIn(Reservation reservation, LocalDate date) {
         reservation.setCheckIn(date);
     }
 
-    void checkOut(Reservations reservation, LocalDate date) {
+    void checkOut(Reservation reservation, LocalDate date) {
         reservation.setCheckOut(date);
     }
 

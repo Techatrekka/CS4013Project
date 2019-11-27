@@ -6,15 +6,21 @@ import L4.Hotel;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class ReservationSystem
 {
-	public static void writeToCSV(String fileName, ArrayList<Reservations> reservations, boolean overwrite)
+	/**
+	 * Writes data into CSV files
+	 * @param fileName the name of the file being written into
+	 * @param reservations list of reservations that will be saved into the file
+	 * @param overwrite option to overwrite the file instead of appending to it
+	 */
+	public static void writeToCSV(String fileName, ArrayList<Reservation> reservations, boolean overwrite)
 	{
 		try
 		{
@@ -27,7 +33,7 @@ public class ReservationSystem
 			}
 			else
 			{
-				// create file and add header if doesn't exist
+				// create file and add header if doesn't exist or is being overwritten
 				printWriter = new PrintWriter(file);
 				if(fileName.contains("Cancellations"))
 				{
@@ -39,8 +45,8 @@ public class ReservationSystem
 				}
 			}
 
-			// write data (, == new column && \n == new row)
-			for (Reservations reservation : reservations)
+			// write data
+			for (Reservation reservation : reservations)
 			{
 				data.append(reservation.toCSV());
 			}
@@ -53,12 +59,14 @@ public class ReservationSystem
 		}
 	}
 
-	/**readFromCSV() reads through a csv file and returns an arrayList of Reservations
-	 * Parameters: String Filename
+	/**
+	 * Reads data from CSV file
+	 * @param filename name of the file being read
+	 * @return list of reservations read from the file
 	 */
-	public static ArrayList<Reservations> readFromCSV(String filename)
+	public static ArrayList<Reservation> readFromCSV(String filename)
 	{
-		ArrayList<Reservations> details = new ArrayList<>();
+		ArrayList<Reservation> details = new ArrayList<>();
 		ArrayList<Room> rooms = new ArrayList<>();
 		try
 		{
@@ -66,30 +74,24 @@ public class ReservationSystem
 			Scanner input = new Scanner(File);
 			if (input.hasNextLine())
 			input.nextLine();
-			while (input.hasNext()) {
-				String temp = input.nextLine();
-				//number of data fields in a reservation
-				String[] fields = temp.split(",", 9000);
-				String[] roomDetails = fields[7].split("/", 89);
-				String[] temporary = new String[roomDetails.length - 1];
-				for (int i = 0; i < roomDetails.length - 1; i++) {
-				    temporary[i] = roomDetails[i];
-                }
-				roomDetails = temporary;
-				for (String room : roomDetails)
+			while (input.hasNext())
+			{
+				String[] fields = input.nextLine().split(",", 11);
+				String[] roomDetails = fields[7].split("/", 100);
+				for (int i = 0; i < roomDetails.length - 1; i++) // -1 as split stores an empty string at the end of the array
 				{
-					String[] data = room.split("_", 3);
+					String[] data = roomDetails[i].split("_", 3);
 					rooms.add(new Room(data[0], data[1], Boolean.getBoolean(data[2])));
 				}
-				
+
 				if (filename.contains("Cancellation"))
 				{
-					Cancellations cancellation = new Cancellations(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.parse(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
-					details.add((Reservations) cancellation);
+					Cancellation cancellation = new Cancellation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.parse(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					details.add((Reservation) cancellation);
 				}
 				else
 				{
-					Reservations reservations = new Reservations(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					Reservation reservations = new Reservation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
 					details.add(reservations);
 				}
 			}
@@ -102,9 +104,15 @@ public class ReservationSystem
 		return details;
 	}
 
-	public static Reservations readReservation(String reservationNum, String filename)
+	/**
+	 * Reads data from CSV in search for a specific reservation
+	 * @param reservationNum the reservation number by which the correct reservation is identified
+	 * @param filename the name of the file being read by the method
+	 * @return Reservation with the appropriate reservation number
+	 */
+	public static Reservation readReservation(String reservationNum, String filename)
 	{
-		Reservations reservation = null;
+		Reservation reservation = null;
 		try
 		{
 			ArrayList<Room> rooms = new ArrayList<>();
@@ -127,7 +135,7 @@ public class ReservationSystem
 						String data[] = roomDetails[i].split("_", 3);
 						rooms.add(new Room(data[0], data[1], Boolean.getBoolean(data[2])));
 					}
-					reservation = new Reservations(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					reservation = new Reservation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
 					break;
 				}
 			}
@@ -135,15 +143,21 @@ public class ReservationSystem
 		}
 		catch(IOException error)
 		{
-			System.out.println(error);
+			System.out.println(error.toString());
 		}
 		return reservation;
 	}
 
-	public static void deleteReservations(Reservations reservations, String hotelName) {
-		ArrayList<Reservations> list = readFromCSV(hotelName + "Reservations.csv");
-		list.remove(reservations);
-		writeToCSV(hotelName + "Reservations.csv",list,true);
+	/**
+	 * deletes a single reservation from CSV
+	 * @param reservation the reservation being deleted
+	 * @param hotelName name of the hotel in which the reservation was made
+	 */
+	public static void deleteReservation(Reservation reservation, String hotelName)
+	{
+		ArrayList<Reservation> list = readFromCSV(hotelName + "Reservations.csv");
+		list.remove(reservation);
+		writeToCSV(hotelName + "Reservations.csv", list, true);
 	}
 
 	/**
@@ -155,15 +169,15 @@ public class ReservationSystem
 	{
 		for (Hotel hotel : hotels)
 		{
-			// Get our data
-			ArrayList<Reservations> reservations = readFromCSV(hotel.getName() + "Reservations.csv");
-			ArrayList<Reservations> stays = readFromCSV(hotel.getName() + "Stays.csv");
-			ArrayList<Reservations> cancellations = readFromCSV(hotel.getName() + "Cancellations.csv");
+			// Get data from CSVs
+			ArrayList<Reservation> reservations = readFromCSV(hotel.getName() + "Reservations.csv");
+			ArrayList<Reservation> stays = readFromCSV(hotel.getName() + "Stays.csv");
+			ArrayList<Reservation> cancellations = readFromCSV(hotel.getName() + "Cancellations.csv");
 
 			// Delete stays from 7+ years ago
 			for (int i = 0; i < stays.size(); i++)
 			{
-				Reservations stay = stays.get(i);
+				Reservation stay = stays.get(i);
 				if (stay.getCheckOutDate().plusYears(7).compareTo(today) <= 0)
 				{
 					stays.remove(i);
@@ -174,7 +188,7 @@ public class ReservationSystem
 			// Delete Cancellations that happen 30+ days ago
 			for (int i = 0; i < cancellations.size(); i++)
 			{
-				Cancellations cancellation = (Cancellations) cancellations.get(i);
+				Cancellation cancellation = (Cancellation) cancellations.get(i);
 				if (cancellation.getCancellationDate().plusDays(30).compareTo(today) <= 0)
 				{
 					cancellations.remove(i);
@@ -185,7 +199,7 @@ public class ReservationSystem
 			// Add new Stays
 			for (int i = 0; i < reservations.size(); i++)
 			{
-				Reservations reservation = reservations.get(i);
+				Reservation reservation = reservations.get(i);
 				if (reservation.getCheckInDate().compareTo(today) <= 0)
 				{
 					reservations.remove(i);
@@ -194,9 +208,10 @@ public class ReservationSystem
 				}
 			}
 
-			// Save our data into CSV
+			// Save data to CSVs
 			writeToCSV(hotel.getName() + "Reservations.csv", reservations, true);
 			writeToCSV(hotel.getName() + "Stays.csv", stays, true);
+			writeToCSV(hotel.getName() + "Cancellations.csv", cancellations, true);
 		}
 	}
 }
