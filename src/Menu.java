@@ -26,9 +26,9 @@ public class Menu {
 	ArrayList<Room> rooms = new ArrayList<>();
 	int numOfNights;
 	L4 chain = new L4();
-    String[] YesNo = new String[]{"Yes", "No"};
+	String[] YesNo = new String[]{"Yes", "No"};
 
-    public void initialise() {
+	public void initialise() {
 		chain.addHotel("Mighele's Paradise", "Tipperary", "5",
 				new String[]{"Bachelor Suite,1,true", "Two to Tango Suite,2,true",
 						"Bring the Family Suite,5,true"},new int[]{20, 30, 30});
@@ -112,7 +112,7 @@ public class Menu {
 									choice = scanner.nextLine();
 									System.out.println("Enter discount amount: ");
 									double discount = Double.parseDouble(scanner.nextLine());
-									supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), discount);
+									supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), discount,hotelChosen);
 									System.out.printf("A %%%4.2f discount has been applied to reservation number %s\n\n", discount, choice);
 									System.out.println("Would you like to use the system again?");
 									option = null;
@@ -199,7 +199,7 @@ public class Menu {
 			int hotelInArray = 0;
 			for (int i = 0; i < chain.getL4().size(); i++) {
 				if (chain.getL4().get(i).getName().equals(hotelChosen)) {
-					 option = getOptions(chain.getL4().get(i).getRoomTypes().toArray());
+					option = getOptions(chain.getL4().get(i).getRoomTypes().toArray());
 					hotelInArray = i;
 				}
 			}
