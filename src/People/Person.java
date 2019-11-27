@@ -37,7 +37,7 @@ public class Person {
 	}
 
 	void makeCancellation(Reservation reservation, String hotel) {
-		Cancellation cancel = new Cancellation(reservation.getCheckInDate(),reservation, hotel);
+		Cancellation cancel = new Cancellation(reservation, hotel);
 	}
 
 	public void setName(String name) {
