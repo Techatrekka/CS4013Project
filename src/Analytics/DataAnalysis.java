@@ -111,7 +111,7 @@ public class DataAnalysis {
         return null;
     }
 
-    public void writeDataAnalyticsToCSV(LocalDate from, LocalDate to, Hotel hotel) {
+    public static void writeDataAnalyticsToCSV(LocalDate from, LocalDate to, Hotel hotel) {
         try {
             File file = new File("DataAnalytics");
             if (!file.exists()) file.createNewFile();

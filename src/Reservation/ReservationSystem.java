@@ -129,7 +129,7 @@ public class ReservationSystem
 				String fields[] = line.split(",", 11);
 				if (fields[0].equals(reservationNum))
 				{
-					String roomDetails[] = fields[7].split("/", 100);
+					String[] roomDetails = fields[7].split("/", 100);
 					for (int i = 0; i < roomDetails.length - 1; i++)
 					{
 						String data[] = roomDetails[i].split("_", 3);
@@ -139,6 +139,7 @@ public class ReservationSystem
 					break;
 				}
 			}
+			rooms.removeAll(rooms);
 			input.close();
 		}
 		catch(IOException error)

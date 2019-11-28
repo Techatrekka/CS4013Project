@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Analytics.DataAnalysis;
 import L4.Hotel;
 import L4.L4;
 import L4.Room;
@@ -116,8 +117,10 @@ public class Menu {
 									choice = scanner.nextLine();
 									System.out.println("Enter discount amount: ");
 									double discount = Double.parseDouble(scanner.nextLine());
-									supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), discount,hotelChosen);
-									System.out.printf("A %%%4.2f discount has been applied to reservation number %s\n\n", discount, choice);
+									supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"),
+											discount,hotelChosen);
+									System.out.printf("A %%%4.2f discount has been applied to reservation number %s\n\n",
+											discount, choice);
 									System.out.println("Would you like to use the system again?");
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
@@ -125,7 +128,13 @@ public class Menu {
 									}
 									break;
 								case "Request a data analysis":
-									Supervisor supervisor1 = new Supervisor();
+									System.out.println("Enter dates for analytics ");
+									String dateFormat   = "dd-MM-yyyy";
+									System.out.println("from(dd-mm-yyyy)");
+									LocalDate from = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
+									System.out.println("to (dd-mm-yyyy)");
+									LocalDate to = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
+									DataAnalysis.writeDataAnalyticsToCSV(from,to,hotel);
 									System.out.println("Would you like to use the system again?");
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
