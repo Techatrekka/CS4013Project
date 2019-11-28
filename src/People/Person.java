@@ -1,5 +1,6 @@
 package People;
 
+import L4.Hotel;
 import L4.Room;
 import Reservation.Cancellation;
 import Reservation.ReservationSystem;
@@ -23,9 +24,9 @@ public class Person {
 	}
 
 	public void makeReservation(LocalDate checkIn, int numOfNights, ArrayList<Room>
-								rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, String hotel) {
+								rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, Hotel Hotel, String hotel) {
 		Billing bill = new Billing();
-		double total = bill.calculatePrice(advancedPurchase, rooms,
+		double total = bill.calculatePrice(Hotel, rooms,
 				numOfNights, checkIn, RoomTypes);
 		Reservation re = new Reservation();
 		String reservationID = re.getNextReservationId();

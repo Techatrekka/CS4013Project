@@ -47,6 +47,11 @@ public class Menu {
 			System.out.println("Welcome to the L4 Hotel System!");
 			System.out.println("Please choose the hotel you would like to access: ");
 			hotelChosen = getOptions(hotels).toString();
+			for (int i = 0; i < chain.getL4().size(); i++) {
+				if (hotelChosen.equals(chain.getL4().get(i).getName())) {
+					hotel = chain.getL4().get(i);
+				}
+			}
 			System.out.println("Please choose a user: ");
 			System.out.println("A) Customer B) Staff C) Quit");
 			String choice = scanner.nextLine();
@@ -114,7 +119,6 @@ public class Menu {
 									supervisor.giveDiscount(readReservation(choice, hotelChosen + "Reservations.csv"), discount,hotelChosen);
 									System.out.printf("A %%%4.2f discount has been applied to reservation number %s\n\n", discount, choice);
 									System.out.println("Would you like to use the system again?");
-									option = null;
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
 										run = false;
@@ -123,7 +127,6 @@ public class Menu {
 								case "Request a data analysis":
 									Supervisor supervisor1 = new Supervisor();
 									System.out.println("Would you like to use the system again?");
-									option = null;
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
 										run = false;
@@ -152,7 +155,6 @@ public class Menu {
 								case "Make a cancellation":
 									makeCancellation();
 									System.out.println("Would you like to use the system again?");
-									option = null;
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
 										run = false;
@@ -219,7 +221,7 @@ public class Menu {
 		LocalDate checkIn = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
 		System.out.println("How many nights are you staying?");
 		numOfNights = Integer.parseInt(scanner.nextLine());
-		customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotelChosen);
+		customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotel, hotelChosen);
 	}
 
 	private void makeCancellation() {

@@ -40,6 +40,10 @@ public class Hotel extends L4 {
         }
     }
 
+    public double[][] getPrices() {
+        return prices;
+    }
+
     public void getPriceFromCSV() {
         try {
             double[][] prices = this.prices;
