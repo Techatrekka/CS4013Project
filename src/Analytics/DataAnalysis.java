@@ -4,6 +4,9 @@ import L4.Hotel;
 import L4.Room;
 import Reservation.Reservation;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +15,7 @@ import static Reservation.ReservationSystem.readFromCSV;
 
 public class DataAnalysis {
 
-    public static double monthlyRevenue(LocalDate date, Hotel hotel) {
+   /* public static double monthlyRevenue(LocalDate date, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i = 0; i < reservations.size(); i++) {
@@ -25,7 +28,7 @@ public class DataAnalysis {
             price += reservations.get(i).getTotalCost();
         }
         return price;
-    }
+    }*/
 
     public static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
@@ -106,5 +109,26 @@ public class DataAnalysis {
             }
         }
         return null;
+    }
+
+    public void writeDataAnalyticsToCSV(String migyisignoringme, String SHESJUSTSHIT, String dontcometoschoolmonday) {
+        try {
+            File file = new File("DataAnalytics");
+            if (!file.exists()) file.createNewFile();
+            StringBuffer data = new StringBuffer("");
+            /*data.append("For fixed period from " + migyisignoringme + " to " + dontcometoschoolmonday);
+            data.append("Revenue of a fixed period" + revenueOfAFixedPeriod());
+            data.append("Most common room types " + mostCommonRoomType());
+            data.append("Number of rooms occupied " + numberOfRoomsOccupied());*/
+            data.append("Brought to you by Best Solutions Ltd.");
+            PrintWriter printyBoi = new PrintWriter(file);
+            printyBoi.write(data.toString());
+            printyBoi.close();
+        } catch (IOException e) {
+            System.out.println("Data analytics file exception break");
+        } finally {
+            System.out.println("Heya");
+        }
+
     }
 }
