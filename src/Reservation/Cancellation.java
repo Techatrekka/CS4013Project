@@ -16,11 +16,14 @@ public class Cancellation extends Reservation
         this.cancellationDate = cancellationDate;
     }
 
-    public Cancellation(Reservation reservations,String hotelChosen)
+    public Cancellation(Reservation reservation,String hotelChosen)
     {
-        ArrayList<Reservation> cancels = readFromCSV(hotelChosen+"Cancellations.csv");
-        cancels.add(reservations);
-        writeToCSV(hotelChosen+"Cancellations.csv",cancels,true);
+		ArrayList<Reservation> cancels = readFromCSV(hotelChosen+"Cancellations.csv");
+		ArrayList<Reservation> reservations = readFromCSV(hotelChosen+"Reservations.csv");
+		reservations.remove(reservation); // idk if this will work we might need a .equals method in the reservations class as remove goes by == i believe
+        cancels.add(reservation);
+		writeToCSV(hotelChosen+"Cancellations.csv",cancels,true);
+		writeToCSV(hotelChosen+"Reservation.csv", reservations, true);
     }
 
     public LocalDate getCancellationDate()
