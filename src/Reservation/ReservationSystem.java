@@ -157,7 +157,11 @@ public class ReservationSystem
 	{
 		Cancellation cancel = new Cancellation(reservation,hotelName);
 		ArrayList<Reservation> list = readFromCSV(hotelName + "Reservations.csv");
-		list.remove(reservation);
+		for (int i = 0; i < list.size(); i++) {
+			if (reservation.getReservationId().equals(list.get(i).reservationId)) {
+				list.remove(i);
+			}
+		}
 		writeToCSV(hotelName + "Reservations.csv", list, true);
 
 	}
