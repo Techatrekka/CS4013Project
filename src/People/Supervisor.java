@@ -28,10 +28,14 @@ public class Supervisor extends Staff {
 
     public void giveDiscount(Reservation reservation, double discount,String hotel) {
         double cost = reservation.getTotalCost();
-        double newPrice = cost - (cost * discount);
+        double newPrice = cost * (1 - (discount/ 100));
         ArrayList<Reservation> r1 = ReservationSystem.readFromCSV(hotel+"Reservations.csv");
-        reservation.setTotalCost(newPrice);
-        Reservation.writeToCSV("Reservations.csv",r1,true);
+        for (int i = 0; i < r1.size(); i ++) {
+            if (reservation.getReservationId().equals(r1.get(i).getReservationId())) {
+                r1.get(i).setTotalCost(newPrice);
+            }
+        }
+        Reservation.writeToCSV(hotel + "Reservations.csv",r1,true);
     }
 
     void requestDataAnalysis() {

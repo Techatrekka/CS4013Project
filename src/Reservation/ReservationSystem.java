@@ -169,7 +169,7 @@ public class ReservationSystem
 	 * @param hotels list of hotels the check is happening for
 	 */
 	public static void checkCSV(LocalDate today, ArrayList<Hotel> hotels) {
-		// should i also make it double check if theres any cheeky cancellation in reservations or stays ?
+		// should i also make it double check if there's any cheeky cancellation in reservations or stays ?
 		for (Hotel hotel : hotels)
 		{
 			// Get data from CSVs
