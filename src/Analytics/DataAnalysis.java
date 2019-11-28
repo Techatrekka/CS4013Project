@@ -111,15 +111,15 @@ public class DataAnalysis {
         return null;
     }
 
-    public void writeDataAnalyticsToCSV(String migyisignoringme, String SHESJUSTSHIT, String dontcometoschoolmonday) {
+    public void writeDataAnalyticsToCSV(LocalDate from, LocalDate to, Hotel hotel) {
         try {
             File file = new File("DataAnalytics");
             if (!file.exists()) file.createNewFile();
             StringBuffer data = new StringBuffer("");
-            /*data.append("For fixed period from " + migyisignoringme + " to " + dontcometoschoolmonday);
-            data.append("Revenue of a fixed period" + revenueOfAFixedPeriod());
-            data.append("Most common room types " + mostCommonRoomType());
-            data.append("Number of rooms occupied " + numberOfRoomsOccupied());*/
+            data.append("For fixed period from " + from + " to " + to);
+            data.append("Revenue of a fixed period" + revenueOfAFixedPeriod(from, to, hotel));
+            data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel));
+            data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel));
             data.append("Brought to you by Best Solutions Ltd.");
             PrintWriter printyBoi = new PrintWriter(file);
             printyBoi.write(data.toString());
