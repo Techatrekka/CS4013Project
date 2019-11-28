@@ -153,8 +153,7 @@ public class ReservationSystem
 	 * @param reservation the reservation being deleted
 	 * @param hotelName name of the hotel in which the reservation was made
 	 */
-	public static void deleteReservation(Reservation reservation, String hotelName)
-	{
+	public static void deleteReservation(Reservation reservation, String hotelName) {
 		Cancellation cancel = new Cancellation(reservation,hotelName);
 		ArrayList<Reservation> list = readFromCSV(hotelName + "Reservations.csv");
 		for (int i = 0; i < list.size(); i++) {
@@ -163,16 +162,13 @@ public class ReservationSystem
 			}
 		}
 		writeToCSV(hotelName + "Reservations.csv", list, true);
-
 	}
-
 	/**
 	 * Makes sure that all CSV files are up to date
 	 * @param today today's date used to compare check in, out and cancellation dates
 	 * @param hotels list of hotels the check is happening for
 	 */
-	public static void checkCSV(LocalDate today, ArrayList<Hotel> hotels)
-	{
+	public static void checkCSV(LocalDate today, ArrayList<Hotel> hotels) {
 		// should i also make it double check if theres any cheeky cancellation in reservations or stays ?
 		for (Hotel hotel : hotels)
 		{
