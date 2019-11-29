@@ -48,7 +48,7 @@ public class DataAnalysis {
 
     //needs to be reviewed, it doesn't answer the question
     public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
-        String name = hotel.getName() + "reservations.csv";
+        String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
@@ -76,7 +76,10 @@ public class DataAnalysis {
             }
         }
         HashMap<String, Integer> rooms = new HashMap<>();
-        String[] types = new String[0];
+        String[] types = new String[RoomTypes.size()];
+        for (int i = 0; i < RoomTypes.size(); i++) {
+            types[i] = RoomTypes.get(i).getName();
+        }
         for (int i = 0; i < reservations.size(); i++) {
             ArrayList<Room> Room = reservations.get(i).getRooms();
             for (int j = 0; j < Room.size(); j++) {
@@ -116,10 +119,10 @@ public class DataAnalysis {
             File file = new File("DataAnalytics.csv");
             if (!file.exists()) file.createNewFile();
             StringBuffer data = new StringBuffer("");
-            data.append("For fixed period from " + from + " to " + to);
-            data.append("Revenue of a fixed period" + revenueOfAFixedPeriod(from, to, hotel));
-            data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel));
-            data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel));
+            data.append("For fixed period from " + from + " to " + to + "\n");
+            data.append("Revenue of a fixed period " + revenueOfAFixedPeriod(from, to, hotel) + "\n");
+            //data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel) + "\n");
+            data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel) + "\n");
             data.append("Brought to you by Best Solutions Ltd.");
             PrintWriter printyBoi = new PrintWriter(file);
             printyBoi.write(data.toString());
