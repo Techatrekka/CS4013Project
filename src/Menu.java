@@ -204,6 +204,7 @@ public class Menu {
 		boolean done = false;
 		String choice = "";
 		Object option = null;
+		rooms.removeAll(rooms);
 		while (!done) {
 			System.out.println("What type of room would you like?");
 			int hotelInArray = 0;

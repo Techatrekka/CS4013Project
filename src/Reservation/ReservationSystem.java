@@ -95,6 +95,7 @@ public class ReservationSystem
 					details.add(reservations);
 				}
 			}
+			rooms.removeAll(rooms);
 			input.close();
 		}
 		catch (IOException error)
@@ -135,11 +136,12 @@ public class ReservationSystem
 						String data[] = roomDetails[i].split("_", 3);
 						rooms.add(new Room(data[0], data[1], Boolean.getBoolean(data[2])));
 					}
-					reservation = new Reservation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					reservation = new Reservation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]),
+							Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
+					rooms.removeAll(rooms);
 					break;
 				}
 			}
-			rooms.removeAll(rooms);
 			input.close();
 		}
 		catch(IOException error)
