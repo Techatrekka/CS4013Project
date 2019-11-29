@@ -1,6 +1,5 @@
 package People;
 
-import L4.Hotel;
 import Reservation.*;
 
 import java.util.ArrayList;
