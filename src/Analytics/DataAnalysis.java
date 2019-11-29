@@ -113,7 +113,7 @@ public class DataAnalysis {
 
     public static void writeDataAnalyticsToCSV(LocalDate from, LocalDate to, Hotel hotel) {
         try {
-            File file = new File("DataAnalytics");
+            File file = new File("DataAnalytics.csv");
             if (!file.exists()) file.createNewFile();
             StringBuffer data = new StringBuffer("");
             data.append("For fixed period from " + from + " to " + to);
