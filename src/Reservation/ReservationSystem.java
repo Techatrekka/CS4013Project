@@ -67,7 +67,6 @@ public class ReservationSystem
 	public static ArrayList<Reservation> readFromCSV(String filename)
 	{
 		ArrayList<Reservation> details = new ArrayList<>();
-		ArrayList<Room> rooms = new ArrayList<>();
 		try
 		{
 			File File = new File(filename);
@@ -78,6 +77,7 @@ public class ReservationSystem
 			{
 				String[] fields = input.nextLine().split(",", 11);
 				String[] roomDetails = fields[7].split("/", 100);
+				ArrayList<Room> rooms = new ArrayList<>();
 				for (int i = 0; i < roomDetails.length - 1; i++) // -1 as split stores an empty string at the end of the array
 				{
 					String[] data = roomDetails[i].split("_", 3);
@@ -95,7 +95,6 @@ public class ReservationSystem
 					details.add(reservations);
 				}
 			}
-			rooms.removeAll(rooms);
 			input.close();
 		}
 		catch (IOException error)

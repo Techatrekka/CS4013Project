@@ -15,7 +15,6 @@ import static Reservation.ReservationSystem.writeToCSV;
 public class Person {
 
 	protected String name;
-	protected String address;
 	protected String phone;
 	protected String email;
 
@@ -50,10 +49,6 @@ public class Person {
 		this.phone = phone;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -70,14 +65,8 @@ public class Person {
 		return email;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
 	@Override
 	public String toString(){
-		return "Name: " + getName() + "Address: " + getAddress() + "Phone: " + getPhone() + "Email: " + getEmail();
+		return "Name: " + getName() + "Phone: " + getPhone() + "Email: " + getEmail();
 	}
-
 }
-

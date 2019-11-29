@@ -59,10 +59,10 @@ public class Menu {
 			choice = choice.toUpperCase();
 			switch (choice) {
 				case "A": {
-					System.out.println("Please input: Name, Email, Phone, Address");
+					System.out.println("Please input: Name, Email, Phone");
 					String info = scanner.nextLine();
 					String[] split = info.split(",");
-					Customer customer = new Customer(split[0], split[1], split[2], split[3]);
+					Customer customer = new Customer(split[0], split[1], split[2]);
 					System.out.println("Would you like to make a Reservation or a Cancellation?");
 					Object[] options = new Object[]{"Reservation", "Cancellation"};
 					Object option = getOptions(options);
@@ -91,10 +91,10 @@ public class Menu {
 							option = getOptions(options);
 							switch (option.toString()) {
 								case "Make a reservation":
-									System.out.println("Please input customer's details as follows: Name, Email, Phone, Address");
+									System.out.println("Please input customer's details as follows: Name, Email, Phone");
 									String info = scanner.nextLine();
 									String[] split = info.split(",");
-									Customer customer = new Customer(split[0], split[1], split[2], split[3]);
+									Customer customer = new Customer(split[0], split[1], split[2]);
 									makeReservation(customer);
 									System.out.println("Would you like to use the system again?");
 									option = getOptions(YesNo);
@@ -149,10 +149,10 @@ public class Menu {
 							option = getOptions(options);
 							switch (option.toString()) {
 								case "Make a reservation":
-									System.out.println("Please input customer's details as follows: Name, Email, Phone, Address");
+									System.out.println("Please input customer's details as follows: Name, Email, Phone");
 									String info = scanner.nextLine();
 									String[] split = info.split(",");
-									Customer customer = new Customer(split[0], split[1], split[2], split[3]);
+									Customer customer = new Customer(split[0], split[1], split[2]);
 									makeReservation(customer);
 									System.out.println("Would you like to use the system again?");
 									option = null;

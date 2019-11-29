@@ -6,8 +6,7 @@ public class Customer extends Person {
 
     public Customer() {}
 
-    public Customer(String name, String email, String phone, String address) {
-        super.address = address;
+    public Customer(String name, String email, String phone) {
         super.name = name;
         super.email = email;
         super.phone = phone;
@@ -15,6 +14,6 @@ public class Customer extends Person {
 
     @Override
     public String toString(){
-        return "Name: " + getName() + "Address: " + getAddress() + "Email: " + getEmail() + "Phone: " + getPhone();
+        return "Name: " + getName() + "Email: " + getEmail() + "Phone: " + getPhone();
     }
 }

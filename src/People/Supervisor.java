@@ -10,9 +10,8 @@ public class Supervisor extends Staff {
     public Supervisor(){}
 
 
-    Supervisor(String name, String email, String phone, double wages, String address) {
+    Supervisor(String name, String email, String phone, double wages) {
         super.name = name;
-        super.address = address;
         super.email = email;
         super.phone = phone;
         super.wages = wages;
@@ -43,6 +42,6 @@ public class Supervisor extends Staff {
 
     @Override
     public String toString(){
-        return "Name: " + getName() + "Address: " + getAddress() + "Phone: " + getPhone() + "Email: " + getEmail() + "Wage: " + this.wages;
+        return "Name: " + getName() + "Phone: " + getPhone() + "Email: " + getEmail() + "Wage: " + this.wages;
     }
 }

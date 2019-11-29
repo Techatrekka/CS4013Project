@@ -1,3 +1,7 @@
 ID,Name,Number,Email,Check in Date,Stay Duration,No. of Rooms, Room Types,Total Cost,Deposit,Advanced
-1575021314,s,s,s,2020-02-12,2,0,,100.0,15.0,true
-1575021433,s,s,s,2020-11-12,2,1,Two to Tango Suite_2_true/,100.0,15.0,true
+1575029612,s,s,s,2020-12-12,2,1,Bachelor Suite_1_false/,100.0,15.0,true
+1575029633,s,s,s,2021-12-12,4,1,Bring the Family Suite_5_false/,200.0,30.0,true
+1575029679,a,a,a,2020-04-23,5,1,Bachelor Suite_1_false/,250.0,37.5,true
+1575029697,b,b,b,2020-05-24,5,2,Bring the Family Suite_5_false/Two to Tango Suite_2_false/,500.0,75.0,true
+1575029714,d,d,d,2020-04-23,2,1,Bachelor Suite_1_false/,100.0,15.0,true
+1575029731,w,w,w,2020-10-05,5,1,Bachelor Suite_1_false/,250.0,37.5,true
