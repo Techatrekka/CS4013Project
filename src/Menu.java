@@ -43,6 +43,7 @@ public class Menu {
 
 	public void run() {
 		initialise();
+		boolean AP = true;
 		boolean run = true;
 		while (run) {
 			System.out.println("Welcome to the L4 Hotel System!");
@@ -68,9 +69,8 @@ public class Menu {
 					Object option = getOptions(options);
 					assert option != null;
 					if (option.equals("Reservation")) {
-						makeReservation(customer);
+						makeReservation(customer, AP);
 						System.out.println("Would you like to use the system again?");
-						option = null;
 						option = getOptions(YesNo);
 						if (option.equals("No")) {
 							run = false;
@@ -95,7 +95,10 @@ public class Menu {
 									String info = scanner.nextLine();
 									String[] split = info.split(",");
 									Customer customer = new Customer(split[0], split[1], split[2]);
-									makeReservation(customer);
+									System.out.println("Advanced Purchase?");
+									option = getOptions(YesNo);
+									if (option.toString().equals("Yes")) AP = true;
+									makeReservation(customer, AP);
 									System.out.println("Would you like to use the system again?");
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
@@ -153,7 +156,10 @@ public class Menu {
 									String info = scanner.nextLine();
 									String[] split = info.split(",");
 									Customer customer = new Customer(split[0], split[1], split[2]);
-									makeReservation(customer);
+									System.out.println("Advanced Purchase?");
+									option = getOptions(YesNo);
+									if (option.toString().equals("Yes")) AP = true;
+									makeReservation(customer, AP);
 									System.out.println("Would you like to use the system again?");
 									option = null;
 									option = getOptions(YesNo);
@@ -200,9 +206,8 @@ public class Menu {
 		return options[h];
 	}
 
-	private void makeReservation(Customer customer) {
+	private void makeReservation(Customer customer, Boolean AP) {
 		boolean done = false;
-		String choice = "";
 		Object option = null;
 		rooms.removeAll(rooms);
 		while (!done) {
@@ -231,7 +236,7 @@ public class Menu {
 		LocalDate checkIn = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
 		System.out.println("How many nights are you staying?");
 		numOfNights = Integer.parseInt(scanner.nextLine());
-		customer.makeReservation(checkIn, numOfNights, rooms, true, hotel.getRoomTypes(), hotel, hotelChosen);
+		customer.makeReservation(checkIn, numOfNights, rooms, AP, hotel.getRoomTypes(), hotel, hotelChosen);
 	}
 
 	private void makeCancellation() {

@@ -26,7 +26,7 @@ public class Person {
 								rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, Hotel Hotel, String hotel) {
 		Billing bill = new Billing();
 		double total = bill.calculatePrice(Hotel, rooms,
-				numOfNights, checkIn, RoomTypes);
+				numOfNights, checkIn, RoomTypes, advancedPurchase);
 		Reservation re = new Reservation();
 		String reservationID = re.getNextReservationId();
 		System.out.println(reservationID);

@@ -10,7 +10,7 @@ public class Billing extends Price {
     public double calculatePrice(Hotel hotel,
                                  ArrayList<Room> rooms,
                                  int stayDuration,
-                                 LocalDate checkIn, ArrayList<Room> roomTypes) {
+                                 LocalDate checkIn, ArrayList<Room> roomTypes, boolean AP) {
         double price = 0;
         int day = checkIn.getDayOfWeek().getValue() - 1;
         double[][] prices = hotel.getPrices();
@@ -28,6 +28,9 @@ public class Billing extends Price {
                 price += prices[row][day];
                 day++;
             }
+        }
+        if (AP == true) {
+            price *= .95;
         }
         return price;
     }
