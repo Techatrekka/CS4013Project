@@ -75,43 +75,33 @@ public class DataAnalysis {
                 reservations.remove(i);
             }
         }
-        HashMap<String, Integer> rooms = new HashMap<>();
+        HashMap<Room, Integer> rooms = new HashMap<>();
         String[] types = new String[RoomTypes.size()];
         for (int i = 0; i < RoomTypes.size(); i++) {
             types[i] = RoomTypes.get(i).getName();
         }
         for (int i = 0; i < reservations.size(); i++) {
-            ArrayList<Room> Room = reservations.get(i).getRooms();
-            for (int j = 0; j < Room.size(); j++) {
-                if (rooms.get(Room.get(j).type) != null) {
-                    int num = rooms.get(Room.get(j).type);
-                    num ++;
-                    rooms.put(Room.get(j).type, num);
-                }
-                else {
-                    rooms.put(Room.get(j).type, 0);
-                    String[] temp = new String[types.length+1];
-                    if (types.length == 0) {
-                        for (int x = 0; x < types.length; x++) {
-                            types[x] = temp[x];
+            for (int j = 0; j < reservations.get(i).getRooms().size(); i++) {
+                for (int x = 0; x < RoomTypes.size(); x++) {
+                    if (reservations.get(i).getRooms().get(j).type.equals(RoomTypes.get(x).type)) {
+                        if (rooms.containsKey(RoomTypes.get(x))) {
+                            int num = rooms.get(RoomTypes.get(x));
+                            num++;
+                            rooms.put(RoomTypes.get(x), num);
+                        } else {
+                            rooms.put(RoomTypes.get(x), 1);
                         }
                     }
-                    temp[types.length] = Room.get(j).type;
                 }
             }
         }
-        String highest = types[0];
-        for (String room: types) {
-            if (rooms.get(highest) < rooms.get(room)) {
-                highest = room;
+        Room largestRoom = RoomTypes.get(0);
+        for (Room room: RoomTypes) {
+            if (rooms.get(room) > rooms.get(largestRoom)){
+                largestRoom = room;
             }
         }
-        for (int i = 0; i < RoomTypes.size(); i++) {
-            if (RoomTypes.get(i).type.equals(highest)) {
-                return RoomTypes.get(i);
-            }
-        }
-        return null;
+        return largestRoom;
     }
 
     public static void writeDataAnalyticsToCSV(LocalDate from, LocalDate to, Hotel hotel) {
@@ -121,7 +111,7 @@ public class DataAnalysis {
             StringBuffer data = new StringBuffer("");
             data.append("For fixed period from " + from + " to " + to + "\n");
             data.append("Revenue of a fixed period " + revenueOfAFixedPeriod(from, to, hotel) + "\n");
-            //data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel) + "\n");
+            data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type + "\n");
             data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel) + "\n");
             data.append("Brought to you by Best Solutions Ltd.");
             PrintWriter printyBoi = new PrintWriter(file);
