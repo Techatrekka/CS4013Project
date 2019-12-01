@@ -15,7 +15,7 @@ import java.util.Collections;
 import static Reservation.ReservationSystem.readFromCSV;
 
 /**
- * @author:
+ * @author: Sean Lynch
  */
 
 public class DataAnalysis {
