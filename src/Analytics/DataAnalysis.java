@@ -13,6 +13,10 @@ import java.util.HashMap;
 
 import static Reservation.ReservationSystem.readFromCSV;
 
+/**
+ * @author:
+ */
+
 public class DataAnalysis {
 
    /* public static double monthlyRevenue(LocalDate date, Hotel hotel) {
@@ -30,6 +34,15 @@ public class DataAnalysis {
         return price;
     }*/
 
+    /**
+     * Returns the revenue of the specified hotel for a specified, fixed period of time.
+     * The revenue is calculated by getting the total cost of each stay in the hotel and adding them together.
+     * @param dateFrom
+     * @param dateTO
+     * @param hotel
+     * @return revenue
+     */
+
     public static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
@@ -46,7 +59,13 @@ public class DataAnalysis {
         return price;
     }
 
-    //needs to be reviewed, it doesn't answer the question
+    /**
+     * Returns the number of rooms occupied in the specified hotel over the specified period of time.
+     * @param dateFrom
+     * @param dateTo
+     * @param hotel
+     * @return number of rooms occupied
+     */
     public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
@@ -66,6 +85,14 @@ public class DataAnalysis {
         return number;
     }
 
+    /**
+     * Returns the most commonly booked romm in the specified hotel over the specified period of time.
+     * @param dateFrom
+     * @param dateTo
+     * @param RoomTypes
+     * @param hotel
+     * @return most common type of room
+     */
     public static Room mostCommonRoomType(LocalDate dateFrom, LocalDate dateTo, ArrayList<Room> RoomTypes, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
@@ -104,6 +131,13 @@ public class DataAnalysis {
         return largestRoom;
     }
 
+    /**
+     * Writes the data analysis to a CSV file, which includes revenue over a fixed period, the most common room type
+     * and the number of rooms occupied.
+     * @param from
+     * @param to
+     * @param hotel
+     */
     public static void writeDataAnalyticsToCSV(LocalDate from, LocalDate to, Hotel hotel) {
         try {
             File file = new File("DataAnalytics.csv");
