@@ -45,11 +45,11 @@ public class Hotel extends L4 {
     private void createFiles() {
         try {
             File reservations = new File(name + "Reservations.csv");
-            reservations.createNewFile();
+            if (!reservations.exists())reservations.createNewFile();
             File cancellations = new File(name + "Cancellations.csv");
-            cancellations.createNewFile();
+            if (!cancellations.exists())cancellations.createNewFile();
             File stays = new File(name + "Stays.csv");
-            stays.createNewFile();
+            if (!stays.exists())stays.createNewFile();
         }catch (IOException e) {
             System.out.println("File creation error");
         }
