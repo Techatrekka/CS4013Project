@@ -6,8 +6,6 @@ package People;
 
 public class Customer extends Person {
 
-    protected String reservationID;
-
     public Customer() {}
 
     /**
