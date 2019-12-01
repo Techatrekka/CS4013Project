@@ -4,6 +4,11 @@ import L4.Room;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * @author:
+ */
+
+
 public class Reservation extends ReservationSystem {
 
 	protected String reservationName, number, email, reservationId;
@@ -15,6 +20,18 @@ public class Reservation extends ReservationSystem {
 
 	public Reservation() {}
 
+	/**
+	 * Create a reservation object
+	 * @param reservationId
+	 * @param reservationName
+	 * @param number
+	 * @param email
+	 * @param checkIn
+	 * @param duration
+	 * @param rooms
+	 * @param totalCost
+	 * @param advancedPurchase
+	 */
 	public Reservation(String reservationId, String reservationName, String number, String email,
 						LocalDate checkIn, int duration, ArrayList<Room> rooms,
 						double totalCost, boolean advancedPurchase) {
@@ -30,40 +47,76 @@ public class Reservation extends ReservationSystem {
 		this.deposit = totalCost * .15;
 	}
 
+	/**
+	 * Get the reservation id
+	 * @return reservation id
+	 */
 	public String getReservationId() {
 		return reservationId;
 	}
 
+	/**
+	 * Get reservation name
+	 * @return reservation name
+	 */
 	String getReservationName() {
 		return reservationName;
 	}
 
+	/**
+	 * Get phone number
+	 * @return phone number
+	 */
 	String getPhoneNumber()
 	{
 		return number;
 	}
 
+	/**
+	 * Calculate reservation ID by dividing the current time in milliseconds by 1000
+	 * @return reservation id
+	 */
 	public String getNextReservationId() {
 		return "" + System.currentTimeMillis() / 1000;
 	}
 
+	/**
+	 * Set check in date
+	 * @param checkIn
+	 */
 	public void setCheckIn(LocalDate checkIn){
 		this.checkIn = checkIn;
 	}
 
+	/**
+	 * Get the duration
+	 * @return duration
+	 */
 	public int getDuration() {
 		return duration;
 	}
 
+	/**
+	 * Set the check out date
+	 * @param checkOut
+	 */
 	public void setCheckOut(LocalDate checkOut){
 		this.checkOut = checkOut;
 	}
 
+	/**
+	 * Get the reservation email
+	 * @return email
+	 */
 	String getReservationEmail()
 	{
 		return this.email;
 	}
 
+	/**
+	 * Get the rooms
+	 * @return rooms
+	 */
 	public ArrayList<Room> getRooms() { return rooms; }
 
 	boolean  getAdvancedPurchase(){
