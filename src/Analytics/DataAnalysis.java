@@ -9,8 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.Collections;
 
 import static Reservation.ReservationSystem.readFromCSV;
 
@@ -19,21 +19,6 @@ import static Reservation.ReservationSystem.readFromCSV;
  */
 
 public class DataAnalysis {
-
-   /* public static double monthlyRevenue(LocalDate date, Hotel hotel) {
-        String name = hotel.getName() + "Stays.csv";
-        ArrayList<Reservation> reservations = readFromCSV(name);
-        for (int i = 0; i < reservations.size(); i++) {
-            if (!reservations.get(i).getCheckInDate().getMonth().equals(date.getMonth())) {
-                reservations.remove(i);
-            }
-        }
-        double price = 0;
-        for (int i = 0; i < reservations.size(); i++) {
-            price += reservations.get(i).getTotalCost();
-        }
-        return price;
-    }*/
 
     /**
      * Returns the revenue of the specified hotel for a specified, fixed period of time.
@@ -51,6 +36,7 @@ public class DataAnalysis {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTO) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
                 reservations.remove(i);
+                i--;
             }
         }
         double price = 0;
@@ -78,8 +64,8 @@ public class DataAnalysis {
             }
         }
         int number = 0;
-        for (int i = 0; i < reservations.size(); i++) {
-            ArrayList<Room> rooms = reservations.get(i).getRooms();
+        for (Reservation reservation : reservations) {
+            ArrayList<Room> rooms = reservation.getRooms();
             number += rooms.size();
         }
         return number;
@@ -145,14 +131,12 @@ public class DataAnalysis {
             data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type + "\n");
             data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel) + "\n");
             data.append("Brought to you by Best Solutions Ltd.");
-            PrintWriter printyBoi = new PrintWriter(file);
-            printyBoi.write(data.toString());
-            printyBoi.close();
+            PrintWriter printWriter = new PrintWriter(file);
+            printWriter.write(data.toString());
+            printWriter.close();
         } catch (IOException e) {
-            System.out.println("Data analytics file exception break");
-        } finally {
-            System.out.println("Heya");
+            System.out.println("Data analytics file exception.");
         }
-
+        System.out.println("Data Analysis complete.");
     }
 }
