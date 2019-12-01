@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecce76f0-f5bb-4ee2-be62-a47c6bf32b50" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Marcin's MotelCancellations.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Marcin's MotelReservations.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Marcin's MotelStays.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mighele's ParadiseCancellations.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mighele's ParadiseReservations.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mighele's ParadiseStays.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SeanVille SuitesCancellations.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SeanVille SuitesReservations.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SeanVille SuitesStays.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/Analytics/DataAnalysis.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/Analytics/DataAnalysis.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/L4/Hotel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/L4/Hotel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/L4/L4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/L4/L4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/People/HotelDeskAdmin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/People/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/People/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/People/Staff.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/People/Supervisor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/People/Supervisor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/Reservation/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/Reservation/Reservation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/Reservation/ReservationSystem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/Reservation/ReservationSystem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CS4013Project/Sales/Billing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CS4013Project/Sales/Billing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/People/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
