@@ -118,7 +118,7 @@ public class Hotel extends L4 {
     /**
      * @return hotel location
      */
-    private String getLocation(){
+    String getLocation(){
         return this.location;
     }
 
