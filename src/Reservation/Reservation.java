@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 public class Reservation extends ReservationSystem {
 
-	protected String reservationName, number, email, reservationId;
-	protected int duration;
-	protected LocalDate checkIn, checkOut;
-	protected Double totalCost, deposit;
-	protected boolean advancedPurchase;
-	protected ArrayList<Room> rooms = new ArrayList<>();
+	String reservationName, number, email, reservationId;
+	private int duration;
+	LocalDate checkIn, checkOut;
+	Double totalCost, deposit;
+	boolean advancedPurchase;
+	ArrayList<Room> rooms = new ArrayList<>();
 
 	public Reservation() {}
 
