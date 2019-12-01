@@ -37,7 +37,7 @@ public class Person {
 	 * @param hotel
 	 */
 	public void makeReservation(LocalDate checkIn, int numOfNights, ArrayList<Room>
-								rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, Hotel Hotel, String hotel) {
+			rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, Hotel Hotel, String hotel) {
 		Scanner scanner = new Scanner(System.in);
 		Billing bill = new Billing();
 		double total = bill.calculatePrice(Hotel, rooms,
@@ -52,7 +52,7 @@ public class Person {
 		String reservationID = re.getNextReservationId();
 		System.out.println("Your reservation number is: " + reservationID + "\n");
 		Reservation reservations = new Reservation(reservationID, name, phone, email,
-		checkIn,numOfNights,rooms,total,advancedPurchase);
+				checkIn,numOfNights,rooms,total,advancedPurchase);
 		ArrayList<Reservation> reservations1 = ReservationSystem.readFromCSV(hotel+"Reservations.csv");
 		reservations1.add(reservations);
 		writeToCSV(hotel+"Reservations.csv",reservations1,true);

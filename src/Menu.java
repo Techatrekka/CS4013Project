@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import Analytics.DataAnalysis;
 import L4.Hotel;
-import L4.L4;
+import L4.*;
 import L4.Room;
 import People.Customer;
 import People.Supervisor;
@@ -100,7 +100,8 @@ class Menu {
 					switch (option.toString()) {
 						case "Supervisor":
 							System.out.println("What would you like to do?");
-							options = new Object[]{"Make a reservation", "Make a cancellation", "Give a discount", "Request a data analysis"};
+							options = new Object[]{"Make a reservation", "Make a cancellation", "Give a discount",
+									"Request data analysis", "Set weekly prices for room"};
 							option = getOptions(options);
 							switch (option.toString()) {
 								case "Make a reservation":
@@ -145,9 +146,9 @@ class Menu {
 								case "Request a data analysis":
 									System.out.println("Enter dates for analytics ");
 									String dateFormat   = "dd-MM-yyyy";
-									System.out.println("from(dd-mm-yyyy)");
+									System.out.println("from dd-mm-yyyy");
 									LocalDate from = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
-									System.out.println("to (dd-mm-yyyy)");
+									System.out.println("to dd-mm-yyyy");
 									LocalDate to = LocalDate.parse(scanner.nextLine(),DateTimeFormatter.ofPattern(dateFormat));
 									DataAnalysis.writeDataAnalyticsToCSV(from,to,hotel);
 									System.out.println("Would you like to use the system again?");
@@ -155,6 +156,19 @@ class Menu {
 									if (option.equals("No")) {
 										run = false;
 									}
+									break;
+								case "Set weekly prices for room":
+									System.out.println("Choose a room to alter the price:");
+									Room room = (Room) getOptions(hotel.getRoomTypes().toArray());
+									System.out.println("Input prices from Monday to Sunday in the form: 43,234,234,243,243,324,54");
+									String[] pricesString = scanner.nextLine().replaceAll(" ", "").split(",");
+									double[] prices = new double[7];
+									for(int i = 0; i < 7; i++) {
+										prices[i] = Double.parseDouble(pricesString[i]);
+									}
+									Price p = new Price();
+									hotel.setPrices(p.setWeeklyPricesForRoom(room, prices, hotel.getPrices(), hotel.getRoomTypes()));
+									System.out.println("New prices have been set.\n");
 									break;
 							}
 							break;
@@ -271,7 +285,7 @@ class Menu {
 			Reservation re = readReservation(option.toString(), hotelChosen + "Reservations.csv");
 			Cancellation cancellation = new Cancellation(re, hotelChosen);
 			ReservationSystem.deleteReservation(re,hotelChosen);
-			System.out.println("Reservation has been deleted.");
+			System.out.println("Reservation has been cancelled.\n");
 		}
 	}
 }
