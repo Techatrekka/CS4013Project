@@ -12,6 +12,10 @@ import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * @author: Marcin Sek
+ */
+
 public class ReservationSystem
 {
 	/**
