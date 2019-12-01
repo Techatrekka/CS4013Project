@@ -153,11 +153,6 @@ public class Reservation extends ReservationSystem {
 		return deposit;
 	}
 
-	public String toCSV()
-	{
-		return reservationId + "," + reservationName + "," + number + "," + email + "," + checkIn + "," + duration + "," + rooms.size() + "," + getRoomsAsString() + "," + totalCost + "," + deposit + "," + advancedPurchase + "\n";
-	}
-
 	String getRoomsAsString()
 	{
 		String temp = "";
@@ -170,8 +165,6 @@ public class Reservation extends ReservationSystem {
 
 	@Override
 	public String toString() {
-		return reservationId + " " + reservationName + " " +
-				checkIn + " " + checkOut + " " +
-				rooms.size() + " " + totalCost;
+		return reservationId + "," + reservationName + "," + number + "," + email + "," + checkIn + "," + duration + "," + rooms.size() + "," + getRoomsAsString() + "," + totalCost + "," + deposit + "," + advancedPurchase + "\n";
 	}
 }

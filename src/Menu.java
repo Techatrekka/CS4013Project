@@ -283,7 +283,6 @@ class Menu {
 		option = scanner.nextLine();
 		if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
 			Reservation re = readReservation(option.toString(), hotelChosen + "Reservations.csv");
-			Cancellation cancellation = new Cancellation(re, hotelChosen);
 			ReservationSystem.deleteReservation(re,hotelChosen);
 			System.out.println("Reservation has been cancelled.\n");
 		}

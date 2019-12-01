@@ -58,7 +58,6 @@ public class Cancellation extends Reservation
         return cancellationDate;
     }
 
-    @Override
     public String toCSV()
     {
         return reservationId + "," + reservationName + "," + number + "," + email + "," + checkIn + "," + cancellationDate + "," + rooms.size() + "," + getRoomsAsString() + "," + totalCost + "," + deposit + "," + advancedPurchase + "\n";

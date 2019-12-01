@@ -49,7 +49,7 @@ public class ReservationSystem
 			}
 			for (Reservation reservation : reservations)
 			{
-				data.append(reservation.toCSV());
+				data.append(reservation);
 			}
 			printWriter.write(data.toString());
 			printWriter.close();
@@ -116,7 +116,6 @@ public class ReservationSystem
 		Reservation reservation = null;
 		try
 		{
-			ArrayList<Room> rooms = new ArrayList<>();
 			File file = new File(filename);
 			Scanner input = new Scanner(file);
 			if (input.hasNextLine())
@@ -131,6 +130,7 @@ public class ReservationSystem
 				if (fields[0].equals(reservationNum))
 				{
 					String[] roomDetails = fields[7].split("/", 100);
+					ArrayList<Room> rooms = new ArrayList<>();
 					for (int i = 0; i < roomDetails.length - 1; i++)
 					{
 						String[] data = roomDetails[i].split("_", 3);
@@ -138,7 +138,6 @@ public class ReservationSystem
 					}
 					reservation = new Reservation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]),
 							Integer.parseInt(fields[5]), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
-					rooms.removeAll(rooms);
 					break;
 				}
 			}
@@ -157,6 +156,7 @@ public class ReservationSystem
 	 * @param hotelName name of the hotel in which the reservation was made
 	 */
 	public static void deleteReservation(Reservation reservation, String hotelName) {
+		Cancellation cancellation = new Cancellation(reservation,hotelName);
 		ArrayList<Reservation> list = readFromCSV(hotelName + "Reservations.csv");
 		for (int i = 0; i < list.size(); i++) {
 			if (reservation.getReservationId().equals(list.get(i).reservationId)) {
