@@ -1,11 +1,21 @@
 package People;
 
+/**
+ * @author:
+ */
+
 public class Customer extends Person {
 
     protected String reservationID;
 
     public Customer() {}
 
+    /**
+     * Create a customer object
+     * @param name
+     * @param email
+     * @param phone
+     */
     public Customer(String name, String email, String phone) {
         super.name = name;
         super.email = email;
