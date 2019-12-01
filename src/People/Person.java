@@ -40,6 +40,7 @@ public class Person {
 		Billing bill = new Billing();
 		double total = bill.calculatePrice(Hotel, rooms,
 				numOfNights, checkIn, RoomTypes, advancedPurchase);
+		System.out.println("Reservation Price: " + total);
 		Reservation re = new Reservation();
 		String reservationID = re.getNextReservationId();
 		System.out.println("Your reservation number is: " + reservationID + "\n");
