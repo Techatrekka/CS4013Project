@@ -29,7 +29,7 @@ public class DataAnalysis {
      * @return revenue
      */
 
-    public static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO, Hotel hotel) {
+    private static double revenueOfAFixedPeriod(LocalDate dateFrom, LocalDate dateTO, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i = 0; i < reservations.size(); i++) {
@@ -40,8 +40,8 @@ public class DataAnalysis {
             }
         }
         double price = 0;
-        for (int i = 0; i < reservations.size(); i++) {
-            price += reservations.get(i).getTotalCost();
+        for (Reservation reservation : reservations) {
+            price += reservation.getTotalCost();
         }
         return price;
     }
@@ -53,7 +53,7 @@ public class DataAnalysis {
      * @param hotel
      * @return number of rooms occupied
      */
-    public static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
+    private static int numberOfRoomsOccupied(LocalDate dateFrom, LocalDate dateTo, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
@@ -72,14 +72,14 @@ public class DataAnalysis {
     }
 
     /**
-     * Returns the most commonly booked romm in the specified hotel over the specified period of time.
+     * Returns the most commonly booked room in the specified hotel over the specified period of time.
      * @param dateFrom
      * @param dateTo
      * @param RoomTypes
      * @param hotel
      * @return most common type of room
      */
-    public static Room mostCommonRoomType(LocalDate dateFrom, LocalDate dateTo, ArrayList<Room> RoomTypes, Hotel hotel) {
+    private static Room mostCommonRoomType(LocalDate dateFrom, LocalDate dateTo, ArrayList<Room> RoomTypes, Hotel hotel) {
         String name = hotel.getName() + "Stays.csv";
         ArrayList<Reservation> reservations = readFromCSV(name);
         for (int i  = 0; i < reservations.size(); i++) {
@@ -90,10 +90,6 @@ public class DataAnalysis {
             }
         }
         HashMap<Room, Integer> rooms = new HashMap<>();
-        String[] types = new String[RoomTypes.size()];
-        for (int i = 0; i < RoomTypes.size(); i++) {
-            types[i] = RoomTypes.get(i).getName();
-        }
         for (int i = 0; i < reservations.size(); i++) {
             for (int j = 0; j < reservations.get(i).getRooms().size(); j++) {
                 for (int x = 0; x < RoomTypes.size(); x++) {
@@ -125,10 +121,10 @@ public class DataAnalysis {
             File file = new File("DataAnalytics.csv");
             if (!file.exists()) file.createNewFile();
             StringBuffer data = new StringBuffer();
-            data.append("For fixed period from ").append(from).append(" to ").append(to).append("\n");
-            data.append("Revenue of a fixed period ").append(revenueOfAFixedPeriod(from, to, hotel)).append("\n");
-            data.append("Most common room types ").append(mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type).append("\n");
-            data.append("Number of rooms occupied ").append(numberOfRoomsOccupied(from, to, hotel)).append("\n");
+            data.append("For fixed period from " + from + " to " + to + "\n");
+            data.append("Revenue of a fixed period " + revenueOfAFixedPeriod(from, to, hotel) + "\n");
+            data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type + "\n");
+            data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel) + "\n");
             data.append("Brought to you by Best Solutions Ltd.");
             PrintWriter printWriter = new PrintWriter(file);
             printWriter.write(data.toString());

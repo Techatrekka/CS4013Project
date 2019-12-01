@@ -45,12 +45,12 @@ public class Hotel extends L4 {
     private void createFiles() {
         try {
             File reservations = new File(name + "Reservations.csv");
-            if (!reservations.exists())reservations.createNewFile();
+            reservations.createNewFile();
             File cancellations = new File(name + "Cancellations.csv");
-            if (!cancellations.exists())cancellations.createNewFile();
+            cancellations.createNewFile();
             File stays = new File(name + "Stays.csv");
-            if (!stays.exists())stays.createNewFile();
-        } catch (IOException e) {
+            stays.createNewFile();
+        }catch (IOException e) {
             System.out.println("File creation error");
         }
     }
@@ -66,7 +66,7 @@ public class Hotel extends L4 {
     /**
      * Reads the prices from the CSV file.
      */
-    public void getPriceFromCSV() {
+    private void getPriceFromCSV() {
         try {
             double[][] prices = this.prices;
             String temp;
@@ -118,7 +118,7 @@ public class Hotel extends L4 {
     /**
      * @return hotel location
      */
-    String getLocation(){
+    private String getLocation(){
         return this.location;
     }
 
@@ -127,7 +127,7 @@ public class Hotel extends L4 {
      * @param RoomDetails
      * @param numOfRooms
      */
-    void createRooms(String[] RoomDetails, int[] numOfRooms) {
+    private void createRooms(String[] RoomDetails, int[] numOfRooms) {
         for (int i = 0; i < numOfRooms.length; i++) {
             for (int j = 0; j < numOfRooms[i]; j++) {
                 String[] dataFields = RoomDetails[i].split(",");
@@ -144,13 +144,6 @@ public class Hotel extends L4 {
      */
     public ArrayList<Room> getRoomTypes() {
         return RoomTypes;
-    }
-
-    /*assume all rooms are empty*/
-
-    String checkAvailability(LocalDate checkIn,
-                             LocalDate checkOut) {
-       return null;
     }
 
     @Override

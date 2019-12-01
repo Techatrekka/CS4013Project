@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 
 public class L4 {
-    ArrayList<Hotel> L4 = new ArrayList<>();
+    private ArrayList<Hotel> L4 = new ArrayList<>();
 
     /**
-     * Add a hotel to the arraylist L4.
+     * Add a hotel to the array list L4.
      * @param name
      * @param location
      * @param rating
@@ -24,7 +24,7 @@ public class L4 {
     }
 
     /**
-     * Removes a hotel from the arraylist L4.
+     * Removes a hotel from the array list L4.
      * @param index
      */
     public void removeHotel(int index) {
@@ -44,7 +44,7 @@ public class L4 {
     }
 
     /**
-     * @return arraylist
+     * @return array list
      */
     public ArrayList<Hotel> getL4() {
         return L4;

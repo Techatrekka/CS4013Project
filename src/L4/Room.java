@@ -7,8 +7,8 @@ package L4;
 public class Room extends Hotel {
 
 	public String type;
-	public String occupancy;
-	public boolean breakfastIncluded;
+	String occupancy;
+	private boolean breakfastIncluded;
 
 	Room(){}
 
@@ -35,7 +35,7 @@ public class Room extends Hotel {
 	/**
 	 * @return the room type
 	 */
-	public String getType() {
+	private String getType() {
 		return type;
 	}
 
@@ -51,7 +51,7 @@ public class Room extends Hotel {
 	 * Gets the occupancy of a room
 	 * @return
 	 */
-	public String getOccupancy() {
+	private String getOccupancy() {
 		return occupancy;
 	}
 
@@ -66,16 +66,8 @@ public class Room extends Hotel {
 	/**
 	 * @return true or false based on whether breakfast is included with a room
 	 */
-	public boolean isBreakfastIncluded() {
+	private boolean isBreakfastIncluded() {
 		return breakfastIncluded;
-	}
-
-	String occupancyMin() {
-		return "1-0";
-	}
-
-	String occupancyMax() {
-		return occupancy;
 	}
 
 	/**

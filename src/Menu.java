@@ -19,24 +19,23 @@ import static Reservation.ReservationSystem.checkCSV;
  * @author:
  */
 
-public class Menu {
+class Menu {
 
-	Scanner scanner = new Scanner(System.in);
-	String[] hotels;
-	String hotelChosen;
-	LocalDate dateToday = LocalDate.now();
-	Reservation reservations = new Reservation();
-	Hotel hotel = new Hotel();
-	ArrayList<Room> rooms = new ArrayList<>();
-	int numOfNights;
-	L4 chain = new L4();
-	String[] YesNo = new String[]{"Yes", "No"};
+	private Scanner scanner = new Scanner(System.in);
+	private String[] hotels;
+	private String hotelChosen;
+	private LocalDate dateToday = LocalDate.now();
+	private Hotel hotel = new Hotel();
+	private ArrayList<Room> rooms = new ArrayList<>();
+	private int numOfNights;
+	private L4 chain = new L4();
+	private String[] YesNo = new String[]{"Yes", "No"};
 
 	/**
 	 * Initialise the program by creating the 3 hotels in the L4 chain -  a 3, 4, and 5 star hotel.
 	 * Write the details of these hotels to the L4 CSV file
 	 */
-	public void initialise() {
+	private void initialise() {
 		chain.addHotel("Mighele's Paradise", "Tipperary", "5",
 				new String[]{"Bachelor Suite,1,true", "Two to Tango Suite,2,true",
 						"Bring the Family Suite,5,true"},new int[]{20, 30, 30});
@@ -52,7 +51,7 @@ public class Menu {
 	/**
 	 * Run the program
 	 */
-	public void run() {
+	void run() {
 		initialise();
 		boolean AP = false;
 		boolean run = true;
@@ -80,7 +79,7 @@ public class Menu {
 					Object option = getOptions(options);
 					assert option != null;
 					if (option.equals("Reservation")) {
-						makeReservation(customer, AP);
+						makeReservation(customer, true);
 						System.out.println("Would you like to use the system again?");
 						option = getOptions(YesNo);
 						if (option.equals("No")) {
@@ -119,7 +118,6 @@ public class Menu {
 								case "Make a cancellation":
 									makeCancellation();
 									System.out.println("Would you like to use the system again?");
-									option = null;
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
 										run = false;
@@ -172,7 +170,6 @@ public class Menu {
 									if (option.toString().equals("Yes")) AP = true;
 									makeReservation(customer, AP);
 									System.out.println("Would you like to use the system again?");
-									option = null;
 									option = getOptions(YesNo);
 									if (option.equals("No")) {
 										run = false;
@@ -212,8 +209,8 @@ public class Menu {
 			return null;
 		}
 		char c = 'A';
-		for (int i = 0; i < options.length; i++) {
-			System.out.println(c + ") " + options[i]);
+		for (Object option : options) {
+			System.out.println(c + ") " + option);
 			c++;
 		}
 		String p = scanner.nextLine();

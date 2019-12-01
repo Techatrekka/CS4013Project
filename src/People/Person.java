@@ -18,7 +18,7 @@ import static Reservation.ReservationSystem.writeToCSV;
 public class Person {
 
 	protected String name;
-	protected String phone;
+	String phone;
 	protected String email;
 
 	Person() {
@@ -79,7 +79,7 @@ public class Person {
 	 * Get the phone number of the person
 	 * @return person's phone number
 	 */
-	public String getPhone() {
+	String getPhone() {
 		return phone;
 	}
 
