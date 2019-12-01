@@ -2,7 +2,6 @@ package People;
 
 import L4.Hotel;
 import L4.Room;
-import Reservation.Cancellation;
 import Reservation.ReservationSystem;
 import Reservation.Reservation;
 import Sales.Billing;

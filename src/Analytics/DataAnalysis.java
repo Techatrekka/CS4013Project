@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import static Reservation.ReservationSystem.readFromCSV;
@@ -78,9 +79,7 @@ public class DataAnalysis {
         int number = 0;
         for (int i = 0; i < reservations.size(); i++) {
             ArrayList<Room> rooms = reservations.get(i).getRooms();
-            for (int j = 0; j < rooms.size(); j++) {
-                number += Integer.parseInt(rooms.get(j).occupancy);
-            }
+            number += rooms.size();
         }
         return number;
     }
@@ -108,7 +107,7 @@ public class DataAnalysis {
             types[i] = RoomTypes.get(i).getName();
         }
         for (int i = 0; i < reservations.size(); i++) {
-            for (int j = 0; j < reservations.get(i).getRooms().size(); i++) {
+            for (int j = 0; j < reservations.get(i).getRooms().size(); j++) {
                 for (int x = 0; x < RoomTypes.size(); x++) {
                     if (reservations.get(i).getRooms().get(j).type.equals(RoomTypes.get(x).type)) {
                         if (rooms.containsKey(RoomTypes.get(x))) {
@@ -122,12 +121,8 @@ public class DataAnalysis {
                 }
             }
         }
-        Room largestRoom = RoomTypes.get(0);
-        for (Room room: RoomTypes) {
-            if (rooms.get(room) > rooms.get(largestRoom)){
-                largestRoom = room;
-            }
-        }
+        Room largestRoom = Collections.max(rooms.entrySet(),
+                HashMap.Entry.comparingByValue()).getKey();
         return largestRoom;
     }
 
