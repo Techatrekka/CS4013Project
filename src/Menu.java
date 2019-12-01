@@ -15,6 +15,10 @@ import Reservation.Reservation;
 import static Reservation.ReservationSystem.readReservation;
 import static Reservation.ReservationSystem.checkCSV;
 
+/**
+ * @author:
+ */
+
 public class Menu {
 
 	Scanner scanner = new Scanner(System.in);
@@ -28,6 +32,10 @@ public class Menu {
 	L4 chain = new L4();
 	String[] YesNo = new String[]{"Yes", "No"};
 
+	/**
+	 * Initialise the program by creating the 3 hotels in the L4 chain -  a 3, 4, and 5 star hotel.
+	 * Write the details of these hotels to the L4 CSV file
+	 */
 	public void initialise() {
 		chain.addHotel("Mighele's Paradise", "Tipperary", "5",
 				new String[]{"Bachelor Suite,1,true", "Two to Tango Suite,2,true",
@@ -41,6 +49,9 @@ public class Menu {
 		L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
 	}
 
+	/**
+	 * Run the program
+	 */
 	public void run() {
 		initialise();
 		boolean AP = true;
@@ -191,6 +202,11 @@ public class Menu {
 		L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
 	}
 
+	/**
+	 *
+	 * @param options
+	 * @return
+	 */
 	private Object getOptions(Object options[]) {
 		if (options.length == 0) {
 			return null;
@@ -206,6 +222,11 @@ public class Menu {
 		return options[h];
 	}
 
+	/**
+	 * Make a reservation
+	 * @param customer
+	 * @param AP
+	 */
 	private void makeReservation(Customer customer, Boolean AP) {
 		boolean done = false;
 		Object option = null;
@@ -239,6 +260,9 @@ public class Menu {
 		customer.makeReservation(checkIn, numOfNights, rooms, AP, hotel.getRoomTypes(), hotel, hotelChosen);
 	}
 
+	/**
+	 * Make a cancellation
+	 */
 	private void makeCancellation() {
 		Object option;
 		System.out.println("Enter Reservation Number: ");
