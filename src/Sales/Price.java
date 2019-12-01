@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Price extends Hotel {
 
     private double[][] Prices;
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     /**
      * Set the prices for the rooms
