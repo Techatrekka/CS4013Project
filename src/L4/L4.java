@@ -4,11 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * @author: Marcin Sek and Sean Lynch
+ * @author:
  */
 
 public class L4 {
     private ArrayList<Hotel> L4 = new ArrayList<>();
+    File L4Chain = new File("L4.csv");
 
     /**
      * Add a hotel to the array list L4.
@@ -85,6 +86,40 @@ public class L4 {
             printWriter.close();
         }catch (IOException e) {
             System.out.println("Error in writing to csv");
+        }
+    }
+    
+    public static void writeToCSV(String fileName, ArrayList<Hotel> hotels, boolean overwrite) {
+        try {
+            File file = new File(fileName);
+            StringBuffer data = new StringBuffer("");
+            PrintWriter printWriter = null;
+            try {
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+            }catch (IOException e) {
+                System.out.println("File creation error");
+            }
+            if (file.exists() && !overwrite) {
+                printWriter = new PrintWriter(new FileOutputStream(file, true));
+            }
+            data.append("Hotel Name, Location, No. of Rooms, Rating\n");
+            // write data (, == new column && \n == new row)
+            for (Hotel hotel: hotels)
+            {
+                String name = hotel.getName();
+                String location = hotel.getLocation();
+                // String numRooms = String.valueOf(hotel.getNoOfRooms());
+                String rating = String.valueOf(hotel.getRating());
+                // data.append(name + "," + location + "," + numRooms + "," + rating + "," + hotel.getRoomTypes());
+            }
+            printWriter.write(data.toString());
+            printWriter.close();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
         }
     }
 }
