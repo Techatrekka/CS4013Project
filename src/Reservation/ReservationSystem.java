@@ -25,7 +25,7 @@ public class ReservationSystem
 		try
 		{
 			File file = new File(fileName);
-			StringBuffer data = new StringBuffer("");
+			StringBuffer data = new StringBuffer();
 			PrintWriter printWriter;
 			if (file.exists() && !overwrite)
 			{
@@ -123,13 +123,13 @@ public class ReservationSystem
 			while(input.hasNextLine())
 			{
 				String line = input.nextLine();
-				String fields[] = line.split(",", 11);
+				String[] fields = line.split(",", 11);
 				if (fields[0].equals(reservationNum))
 				{
 					String[] roomDetails = fields[7].split("/", 100);
 					for (int i = 0; i < roomDetails.length - 1; i++)
 					{
-						String data[] = roomDetails[i].split("_", 3);
+						String[] data = roomDetails[i].split("_", 3);
 						rooms.add(new Room(data[0], data[1], Boolean.getBoolean(data[2])));
 					}
 					reservation = new Reservation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]),

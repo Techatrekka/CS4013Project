@@ -50,7 +50,7 @@ public class Hotel extends L4 {
             if (!cancellations.exists())cancellations.createNewFile();
             File stays = new File(name + "Stays.csv");
             if (!stays.exists())stays.createNewFile();
-        }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("File creation error");
         }
     }

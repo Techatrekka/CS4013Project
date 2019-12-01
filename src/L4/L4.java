@@ -58,7 +58,7 @@ public class L4 {
     public static void writeHotelDetailsToCSV(String filename, ArrayList<Hotel> hotels) {
         try {
             File file = new File(filename);
-            StringBuffer data = new StringBuffer("");
+            StringBuffer data = new StringBuffer();
             try {
                 if (!file.exists()) {
                     file.createNewFile();

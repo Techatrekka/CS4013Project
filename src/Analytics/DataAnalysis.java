@@ -125,7 +125,7 @@ public class DataAnalysis {
         try {
             File file = new File("DataAnalytics.csv");
             if (!file.exists()) file.createNewFile();
-            StringBuffer data = new StringBuffer("");
+            StringBuffer data = new StringBuffer();
             data.append("For fixed period from " + from + " to " + to + "\n");
             data.append("Revenue of a fixed period " + revenueOfAFixedPeriod(from, to, hotel) + "\n");
             data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type + "\n");

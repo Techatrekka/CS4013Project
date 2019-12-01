@@ -207,7 +207,7 @@ public class Menu {
 	 * @param options
 	 * @return
 	 */
-	private Object getOptions(Object options[]) {
+	private Object getOptions(Object[] options) {
 		if (options.length == 0) {
 			return null;
 		}
