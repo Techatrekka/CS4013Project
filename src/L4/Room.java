@@ -1,7 +1,7 @@
 package L4;
 
 /**
- * @author:
+ * @author: Nicole Berty
  */
 
 public class Room extends Hotel {

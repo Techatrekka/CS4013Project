@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * @author:
+ * @author: Nicole Berty
  */
 
 public class Cancellation extends Reservation

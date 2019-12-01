@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * @author:
+ * @author: Marcin Sek and Sean Lynch
  */
 
 public class L4 {

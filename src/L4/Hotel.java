@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author:
+ * @author: Michele Cavaliere and Nicole Berty
  */
 
 public class Hotel extends L4 {

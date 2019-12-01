@@ -16,7 +16,7 @@ import static Reservation.ReservationSystem.readReservation;
 import static Reservation.ReservationSystem.checkCSV;
 
 /**
- * @author:
+ * @author: Sean Lynch, Michele Cavaliere, Marcin Sek, Nicole Berty
  */
 
 class Menu {

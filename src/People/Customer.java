@@ -1,7 +1,7 @@
 package People;
 
 /**
- * @author:
+ * @author: Michele Cavaliere
  */
 
 public class Customer extends Person {

@@ -13,7 +13,7 @@ import java.util.Scanner;
 import static Reservation.ReservationSystem.writeToCSV;
 
 /**
- * @author:
+ * @author: Nicole Berty
  */
 
 public class Person {
