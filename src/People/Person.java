@@ -8,6 +8,7 @@ import L4.Billing;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static Reservation.ReservationSystem.writeToCSV;
 
@@ -37,10 +38,16 @@ public class Person {
 	 */
 	public void makeReservation(LocalDate checkIn, int numOfNights, ArrayList<Room>
 								rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, Hotel Hotel, String hotel) {
+		Scanner scanner = new Scanner(System.in);
 		Billing bill = new Billing();
 		double total = bill.calculatePrice(Hotel, rooms,
 				numOfNights, checkIn, RoomTypes, advancedPurchase);
 		System.out.println("Reservation Price: " + total);
+		System.out.print("Continue with the Reservation?\nA) Yes\nB) No\n");
+		String choice = scanner.nextLine().toUpperCase();
+		if (choice.equals("B")) {
+			return;
+		}
 		Reservation re = new Reservation();
 		String reservationID = re.getNextReservationId();
 		System.out.println("Your reservation number is: " + reservationID + "\n");

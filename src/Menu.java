@@ -80,6 +80,7 @@ class Menu {
 					assert option != null;
 					if (option.equals("Reservation")) {
 						System.out.println("Advanced Purchase?");
+						option = getOptions(YesNo);
 						if (option.toString().equals("Yes")) AP = true;
 						makeReservation(customer, AP);
 						System.out.println("Would you like to use the system again?");
