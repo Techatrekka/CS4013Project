@@ -12,6 +12,10 @@ import java.util.ArrayList;
 
 import static Reservation.ReservationSystem.writeToCSV;
 
+/**
+ * @author:
+ */
+
 public class Person {
 
 	protected String name;
@@ -22,6 +26,16 @@ public class Person {
 
 	}
 
+	/**
+	 * Make a reservation using the following parameters. Add the reservation to the reservations CSV file using the writeToCSV method
+	 * @param checkIn
+	 * @param numOfNights
+	 * @param rooms
+	 * @param advancedPurchase
+	 * @param RoomTypes
+	 * @param Hotel
+	 * @param hotel
+	 */
 	public void makeReservation(LocalDate checkIn, int numOfNights, ArrayList<Room>
 								rooms, boolean advancedPurchase, ArrayList<Room> RoomTypes, Hotel Hotel, String hotel) {
 		Billing bill = new Billing();
@@ -37,30 +51,50 @@ public class Person {
 		writeToCSV(hotel+"Reservations.csv",reservations1,true);
 	}
 
-	void makeCancellation(Reservation reservation, String hotel) {
-		Cancellation cancel = new Cancellation(reservation, hotel);
-	}
-
+	/**
+	 * Set the name of the person
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Set the phone number of the person
+	 * @param phone
+	 */
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
+	/**
+	 * Set the email of the person
+	 * @param email
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	/**
+	 * Get the phone number of the person
+	 * @return person's phone number
+	 */
 	public String getPhone() {
 		return phone;
 	}
 
+	/**
+	 * Get the name of the person
+	 * @return person's name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Get the email of the person
+	 * @return person's email
+	 */
 	public String getEmail() {
 		return email;
 	}
