@@ -79,7 +79,7 @@ class Menu {
 					Object option = getOptions(options);
 					assert option != null;
 					if (option.equals("Reservation")) {
-						System.out.println("Advanced Purchase?");
+						System.out.println("Would you like to make an advanced purchase booking for 5% off?");
 						option = getOptions(YesNo);
 						if (option.toString().equals("Yes")) AP = true;
 						makeReservation(customer, AP);
@@ -109,7 +109,7 @@ class Menu {
 									String info = scanner.nextLine();
 									String[] split = info.split(",");
 									Customer customer = new Customer(split[0], split[1], split[2]);
-									System.out.println("Advanced Purchase?");
+									System.out.println("Would you like to make an advanced purchase booking for 5% off?");
 									option = getOptions(YesNo);
 									if (option.toString().equals("Yes")) AP = true;
 									makeReservation(customer, AP);
@@ -182,7 +182,7 @@ class Menu {
 									String info = scanner.nextLine();
 									String[] split = info.split(",");
 									Customer customer = new Customer(split[0], split[1], split[2]);
-									System.out.println("Advanced Purchase?");
+									System.out.println("Would you like to make an advanced purchase booking for 5% off?");
 									option = getOptions(YesNo);
 									if (option.toString().equals("Yes")) AP = true;
 									makeReservation(customer, AP);
