@@ -1,13 +1,11 @@
 package L4;
 
-import L4.*;
-
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author: Sean Lynch
+ * @author:
  */
 
 public class Price extends Hotel {
@@ -34,23 +32,6 @@ public class Price extends Hotel {
         System.arraycopy(NewPrices, 0, OldPrices[row], 0, NewPrices.length);
         this.Prices = OldPrices;
         return OldPrices;
-    }
-
-    /**
-     * Set the prices for the rooms
-     * @param RoomTypes
-     * @return prices for all rooms
-     */
-    public double[][] setPricesForAllRooms(ArrayList<Room> RoomTypes) {
-        double[][] tempPrices = new double[7][RoomTypes.size()];
-        for (int i = 0; i < RoomTypes.size();) {
-            System.out.println("Input prices for the week for " + RoomTypes.get(i));
-            for (int j = 0; j < 7; j++) {
-                System.out.print(DayOfWeek.of(j));
-                tempPrices[i][j] = Double.parseDouble(scanner.nextLine());
-            }
-        }
-        return tempPrices;
     }
 
     /**
