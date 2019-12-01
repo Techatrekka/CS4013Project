@@ -15,7 +15,7 @@ import java.io.IOException;
 public class ReservationSystem
 {
 	/**
-	 * Writes data into CSV files
+	 * Writes data into CSV files. This will create the file and add a header if it doesn't exist or if it is being overritten.
 	 * @param fileName the name of the file being written into
 	 * @param reservations list of reservations that will be saved into the file
 	 * @param overwrite option to overwrite the file instead of appending to it
@@ -33,7 +33,6 @@ public class ReservationSystem
 			}
 			else
 			{
-				// create file and add header if doesn't exist or is being overwritten
 				printWriter = new PrintWriter(file);
 				if(fileName.contains("Cancellations"))
 				{
@@ -44,8 +43,6 @@ public class ReservationSystem
 					data.append("ID,Name,Number,Email,Check in Date,Stay Duration,No. of Rooms, Room Types,Total Cost,Deposit,Advanced\n");
 				}
 			}
-
-			// write data
 			for (Reservation reservation : reservations)
 			{
 				data.append(reservation.toCSV());
@@ -78,7 +75,7 @@ public class ReservationSystem
 				String[] fields = input.nextLine().split(",", 11);
 				String[] roomDetails = fields[7].split("/", 100);
 				ArrayList<Room> rooms = new ArrayList<>();
-				for (int i = 0; i < roomDetails.length - 1; i++) // -1 as split stores an empty string at the end of the array
+				for (int i = 0; i < roomDetails.length - 1; i++)
 				{
 					String[] data = roomDetails[i].split("_", 3);
 					rooms.add(new Room(data[0], data[1], Boolean.getBoolean(data[2])));
@@ -87,7 +84,7 @@ public class ReservationSystem
 				if (filename.contains("Cancellation"))
 				{
 					Cancellation cancellation = new Cancellation(fields[0], fields[1], fields[2], fields[3], LocalDate.parse(fields[4]), LocalDate.now(), rooms, Double.parseDouble(fields[8]), Boolean.parseBoolean(fields[10]));
-					details.add((Reservation) cancellation);
+					details.add(cancellation);
 				}
 				else
 				{
@@ -156,30 +153,28 @@ public class ReservationSystem
 	 * @param hotelName name of the hotel in which the reservation was made
 	 */
 	public static void deleteReservation(Reservation reservation, String hotelName) {
-		Cancellation cancel = new Cancellation(reservation,hotelName);
 		ArrayList<Reservation> list = readFromCSV(hotelName + "Reservations.csv");
 		for (int i = 0; i < list.size(); i++) {
 			if (reservation.getReservationId().equals(list.get(i).reservationId)) {
 				list.remove(i);
+				i--;
 			}
 		}
 		writeToCSV(hotelName + "Reservations.csv", list, true);
 	}
 	/**
-	 * Makes sure that all CSV files are up to date
+	 * Makes sure that all CSV files are up to date. Deletes stays from 7+ years ago.
+	 * Deletes cancellations from 30+ days ago. Moves reservations to stays after 30 days.
 	 * @param today today's date used to compare check in, out and cancellation dates
 	 * @param hotels list of hotels the check is happening for
 	 */
 	public static void checkCSV(LocalDate today, ArrayList<Hotel> hotels) {
-		// should i also make it double check if there's any cheeky cancellation in reservations or stays ?
 		for (Hotel hotel : hotels)
 		{
-			// Get data from CSVs
 			ArrayList<Reservation> reservations = readFromCSV(hotel.getName() + "Reservations.csv");
 			ArrayList<Reservation> stays = readFromCSV(hotel.getName() + "Stays.csv");
 			ArrayList<Reservation> cancellations = readFromCSV(hotel.getName() + "Cancellations.csv");
 
-			// Delete stays from 7+ years ago
 			for (int i = 0; i < stays.size(); i++)
 			{
 				Reservation stay = stays.get(i);
@@ -190,7 +185,6 @@ public class ReservationSystem
 				}
 			}
 
-			// Delete Cancellations that happen 30+ days ago
 			for (int i = 0; i < cancellations.size(); i++)
 			{
 				Cancellation cancellation = (Cancellation) cancellations.get(i);
@@ -201,7 +195,6 @@ public class ReservationSystem
 				}
 			}
 
-			// Add new Stays
 			for (int i = 0; i < reservations.size(); i++)
 			{
 				Reservation reservation = reservations.get(i);
@@ -213,7 +206,6 @@ public class ReservationSystem
 				}
 			}
 
-			// Save data to CSVs
 			writeToCSV(hotel.getName() + "Reservations.csv", reservations, true);
 			writeToCSV(hotel.getName() + "Stays.csv", stays, true);
 			writeToCSV(hotel.getName() + "Cancellations.csv", cancellations, true);

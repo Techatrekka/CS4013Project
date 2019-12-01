@@ -8,7 +8,8 @@ import java.util.ArrayList;
  * @author:
  */
 
-public class Supervisor extends Staff {
+public class Supervisor extends Person {
+    private double wages;
 
     public Supervisor(){}
 
@@ -23,7 +24,7 @@ public class Supervisor extends Staff {
         super.name = name;
         super.email = email;
         super.phone = phone;
-        super.wages = wages;
+        this.wages = wages;
     }
 
     /**
@@ -52,9 +53,9 @@ public class Supervisor extends Staff {
         double cost = reservation.getTotalCost();
         double newPrice = cost * (1 - (discount/ 100));
         ArrayList<Reservation> r1 = ReservationSystem.readFromCSV(hotel+"Reservations.csv");
-        for (int i = 0; i < r1.size(); i ++) {
-            if (reservation.getReservationId().equals(r1.get(i).getReservationId())) {
-                r1.get(i).setTotalCost(newPrice);
+        for (Reservation value : r1) {
+            if (reservation.getReservationId().equals(value.getReservationId())) {
+                value.setTotalCost(newPrice);
             }
         }
         Reservation.writeToCSV(hotel + "Reservations.csv",r1,true);

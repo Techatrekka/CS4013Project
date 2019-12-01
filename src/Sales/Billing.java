@@ -30,9 +30,9 @@ public class Billing extends Price {
         int day = checkIn.getDayOfWeek().getValue() - 1;
         double[][] prices = hotel.getPrices();
         int row = 0;
-        for (int numOfRooms = 0; numOfRooms < rooms.size(); numOfRooms++) {
+        for (Room room : rooms) {
             for (int i = 0; i < roomTypes.size(); i++) {
-                if (rooms.get(numOfRooms).equals(roomTypes.get(i))) {
+                if (room.equals(roomTypes.get(i))) {
                     row = i;
                 }
             }
@@ -44,7 +44,7 @@ public class Billing extends Price {
                 day++;
             }
         }
-        if (AP == true) {
+        if (AP) {
             price *= .95;
         }
         return price;
