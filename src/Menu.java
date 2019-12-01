@@ -10,7 +10,7 @@ import L4.Room;
 import People.Customer;
 import People.Supervisor;
 import Reservation.ReservationSystem;
-import Reservation.Reservation;
+import Reservation.*;
 
 import static Reservation.ReservationSystem.readReservation;
 import static Reservation.ReservationSystem.checkCSV;
@@ -269,6 +269,7 @@ class Menu {
 		option = scanner.nextLine();
 		if ((readReservation(option.toString(), hotelChosen + "Reservations.csv") != null)) {
 			Reservation re = readReservation(option.toString(), hotelChosen + "Reservations.csv");
+			Cancellation cancellation = new Cancellation(re, hotelChosen);
 			ReservationSystem.deleteReservation(re,hotelChosen);
 			System.out.println("Reservation has been deleted.");
 		}

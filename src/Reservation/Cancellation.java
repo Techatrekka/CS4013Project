@@ -39,6 +39,7 @@ public class Cancellation extends Reservation
      */
     public Cancellation(Reservation reservation,String hotelChosen)
     {
+        this.cancellationDate = LocalDate.now();
 		ArrayList<Reservation> cancels = readFromCSV(hotelChosen+"Cancellations.csv");
 		ArrayList<Reservation> reservations = readFromCSV(hotelChosen+"Reservations.csv");
 		reservations.remove(reservation);
