@@ -89,14 +89,6 @@ public class Reservation extends ReservationSystem {
 	}
 
 	/**
-	 * Get the duration
-	 * @return duration
-	 */
-	public int getDuration() {
-		return duration;
-	}
-
-	/**
 	 * Set the check out date
 	 * @param checkOut
 	 */
@@ -118,6 +110,14 @@ public class Reservation extends ReservationSystem {
 	 * @return rooms
 	 */
 	public ArrayList<Room> getRooms() { return rooms; }
+
+	/**
+	 * Get the duration
+	 * @return duration
+	 */
+	public int getDuration() {
+		return duration;
+	}
 
 	boolean  getAdvancedPurchase(){
 		return this.advancedPurchase;
@@ -158,7 +158,7 @@ public class Reservation extends ReservationSystem {
 		return reservationId + "," + reservationName + "," + number + "," + email + "," + checkIn + "," + duration + "," + rooms.size() + "," + getRoomsAsString() + "," + totalCost + "," + deposit + "," + advancedPurchase + "\n";
 	}
 
-	protected String getRoomsAsString()
+	String getRoomsAsString()
 	{
 		String temp = "";
 		for (Room room : rooms)
