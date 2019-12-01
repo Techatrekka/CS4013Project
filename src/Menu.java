@@ -44,7 +44,6 @@ class Menu {
 		chain.addHotel("Marcin's Motel", "Clare", "3",
 				new String[]{"Deluxe Room,3,true", "Single Room,1,false", "Double Room,2,false"}, new int[]{5, 10, 8});
 		hotels = chain.hotelList();
-		checkCSV(dateToday,chain.getL4());
 		L4.writeHotelDetailsToCSV("L4.csv",chain.getL4());
 	}
 
@@ -56,6 +55,7 @@ class Menu {
 		boolean AP = false;
 		boolean run = true;
 		while (run) {
+			checkCSV(dateToday,chain.getL4());
 			System.out.println("Welcome to the L4 Hotel System!");
 			System.out.println("Please choose the hotel you would like to access: ");
 			hotelChosen = getOptions(hotels).toString();
