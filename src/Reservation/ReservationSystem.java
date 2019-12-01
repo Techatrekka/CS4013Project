@@ -15,7 +15,7 @@ import java.io.IOException;
 public class ReservationSystem
 {
 	/**
-	 * Writes data into CSV files. This will create the file and add a header if it doesn't exist or if it is being overritten.
+	 * Writes data into CSV files. This will create the file and add a header if it doesn't exist or if it is being overwritten.
 	 * @param fileName the name of the file being written into
 	 * @param reservations list of reservations that will be saved into the file
 	 * @param overwrite option to overwrite the file instead of appending to it
