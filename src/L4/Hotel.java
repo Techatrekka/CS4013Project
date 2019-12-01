@@ -146,6 +146,10 @@ public class Hotel extends L4 {
         return RoomTypes;
     }
 
+    public void setPrices(double[][] prices) {
+        this.prices = prices;
+    }
+
     @Override
     public String toString(){
         return "Name: " + getName() + "Location: " +
