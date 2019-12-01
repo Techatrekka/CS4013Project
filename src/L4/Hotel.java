@@ -81,9 +81,9 @@ public class Hotel extends L4 {
                     String[] info = temp.split(",");
                     int x = 0;
                     String[] price = new String[7*getRoomTypes().size()];
-                    for (int i = 0; i < info.length; i++) {
-                        if (info[i].contains(".")) {
-                            price[x] = info[i];
+                    for (String s : info) {
+                        if (s.contains(".")) {
+                            price[x] = s;
                             x++;
                         }
                     }
