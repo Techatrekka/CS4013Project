@@ -41,10 +41,10 @@ public class Cancellation extends Reservation
     {
 		ArrayList<Reservation> cancels = readFromCSV(hotelChosen+"Cancellations.csv");
 		ArrayList<Reservation> reservations = readFromCSV(hotelChosen+"Reservations.csv");
-		reservations.remove(reservation); // idk if this will work we might need a .equals method in the reservations class as remove goes by == i believe
+		reservations.remove(reservation);
         cancels.add(reservation);
 		writeToCSV(hotelChosen+"Cancellations.csv",cancels,true);
-		writeToCSV(hotelChosen+"Reservations.csv", reservations, true); // needs to be left as "Reservations" so there is only one file for reservations for the hotel
+		writeToCSV(hotelChosen+"Reservations.csv", reservations, true);
 		
     }
 
