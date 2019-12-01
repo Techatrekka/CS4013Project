@@ -1,7 +1,5 @@
-package Sales;
+package L4;
 
-import L4.Hotel;
-import L4.Room;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

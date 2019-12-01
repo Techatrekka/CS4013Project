@@ -54,7 +54,7 @@ public class Menu {
 	 */
 	public void run() {
 		initialise();
-		boolean AP = true;
+		boolean AP = false;
 		boolean run = true;
 		while (run) {
 			System.out.println("Welcome to the L4 Hotel System!");

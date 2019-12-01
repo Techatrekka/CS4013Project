@@ -4,7 +4,7 @@ import L4.Hotel;
 import L4.Room;
 import Reservation.ReservationSystem;
 import Reservation.Reservation;
-import Sales.Billing;
+import L4.Billing;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
