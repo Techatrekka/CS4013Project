@@ -74,6 +74,7 @@ public class DataAnalysis {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
                 reservations.remove(i);
+                i--;
             }
         }
         int number = 0;
@@ -99,6 +100,7 @@ public class DataAnalysis {
             if (!(reservations.get(i).getCheckInDate().isBefore(dateTo) &&
                     reservations.get(i).getCheckInDate().isAfter(dateFrom))) {
                 reservations.remove(i);
+                i--;
             }
         }
         HashMap<Room, Integer> rooms = new HashMap<>();

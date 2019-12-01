@@ -13,9 +13,9 @@ import java.util.Scanner;
 public class Hotel extends L4 {
 
     private String name, location;
-    String rating;
+    private String rating;
     int[] noOfRooms;
-    ArrayList<Room> RoomTypes = new ArrayList<Room>();
+    private ArrayList<Room> RoomTypes = new ArrayList<Room>();
     double[][] prices;
 
     public Hotel(){}
