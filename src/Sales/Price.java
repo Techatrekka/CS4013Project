@@ -6,11 +6,23 @@ import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author:
+ */
+
 public class Price extends Hotel {
 
     private double[][] Prices;
     Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Set the prices for the rooms
+     * @param room
+     * @param NewPrices
+     * @param OldPrices
+     * @param RoomTypes
+     * @return room prices
+     */
     public double[][] setWeeklyPricesForRoom(Room room, double[] NewPrices,
                                       double[][] OldPrices, ArrayList<Room> RoomTypes) {
         int row = 0;
@@ -24,6 +36,11 @@ public class Price extends Hotel {
         return OldPrices;
     }
 
+    /**
+     * Set the prices for the rooms
+     * @param RoomTypes
+     * @return prices for all rooms
+     */
     public double[][] setPricesForAllRooms(ArrayList<Room> RoomTypes) {
         double[][] tempPrices = new double[7][RoomTypes.size()];
         for (int i = 0; i < RoomTypes.size();) {
@@ -36,6 +53,10 @@ public class Price extends Hotel {
         return tempPrices;
     }
 
+    /**
+     * Get hotel prices
+     * @return prices
+     */
     public double[][] getPrices() {
         return Prices;
     }
