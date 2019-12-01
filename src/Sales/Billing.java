@@ -5,8 +5,23 @@ import L4.Room;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * @author:
+ */
+
+
 public class Billing extends Price {
 
+    /**
+     * Calculate the price of the hotel stay
+     * @param hotel
+     * @param rooms
+     * @param stayDuration
+     * @param checkIn
+     * @param roomTypes
+     * @param AP
+     * @return price of the stay
+     */
     public double calculatePrice(Hotel hotel,
                                  ArrayList<Room> rooms,
                                  int stayDuration,
