@@ -5,7 +5,7 @@ import Reservation.*;
 import java.util.ArrayList;
 
 /**
- * @author:
+ * @author: Michele Cavaliere
  */
 
 public class Supervisor extends Person {
