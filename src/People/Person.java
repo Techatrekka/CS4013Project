@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import static Reservation.ReservationSystem.writeToCSV;
 
 /**
- * @author:
+ * @author: Nicole Berty
  */
 
 public class Person {
