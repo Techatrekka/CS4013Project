@@ -1,6 +1,5 @@
 package L4;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Scanner;
 
