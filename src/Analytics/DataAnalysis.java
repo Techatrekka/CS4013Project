@@ -109,9 +109,8 @@ public class DataAnalysis {
                 }
             }
         }
-        Room largestRoom = Collections.max(rooms.entrySet(),
+        return Collections.max(rooms.entrySet(),
                 HashMap.Entry.comparingByValue()).getKey();
-        return largestRoom;
     }
 
     /**
@@ -126,10 +125,10 @@ public class DataAnalysis {
             File file = new File("DataAnalytics.csv");
             if (!file.exists()) file.createNewFile();
             StringBuffer data = new StringBuffer();
-            data.append("For fixed period from " + from + " to " + to + "\n");
-            data.append("Revenue of a fixed period " + revenueOfAFixedPeriod(from, to, hotel) + "\n");
-            data.append("Most common room types " + mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type + "\n");
-            data.append("Number of rooms occupied " + numberOfRoomsOccupied(from, to, hotel) + "\n");
+            data.append("For fixed period from ").append(from).append(" to ").append(to).append("\n");
+            data.append("Revenue of a fixed period ").append(revenueOfAFixedPeriod(from, to, hotel)).append("\n");
+            data.append("Most common room types ").append(mostCommonRoomType(from, to, hotel.getRoomTypes(), hotel).type).append("\n");
+            data.append("Number of rooms occupied ").append(numberOfRoomsOccupied(from, to, hotel)).append("\n");
             data.append("Brought to you by Best Solutions Ltd.");
             PrintWriter printWriter = new PrintWriter(file);
             printWriter.write(data.toString());

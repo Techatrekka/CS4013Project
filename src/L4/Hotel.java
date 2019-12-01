@@ -69,7 +69,7 @@ public class Hotel extends L4 {
     public void getPriceFromCSV() {
         try {
             double[][] prices = this.prices;
-            String temp = "";
+            String temp;
             File file = new File("L4.csv");
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
