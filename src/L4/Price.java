@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author:
+ * @author: Sean Lynch
  */
 
 public class Price extends Hotel {
