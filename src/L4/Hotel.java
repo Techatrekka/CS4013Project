@@ -6,6 +6,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author:
+ */
+
 public class Hotel extends L4 {
 
     private String name, location;
@@ -16,6 +20,14 @@ public class Hotel extends L4 {
 
     public Hotel(){}
 
+    /**
+     * Creates a hotel object.
+     * @param name
+     * @param location
+     * @param rating
+     * @param RoomDetails
+     * @param noOfRooms
+     */
     Hotel(String name, String location, String rating, String[] RoomDetails, int[] noOfRooms){
         this.name = name;
         this.location = location;
@@ -27,6 +39,9 @@ public class Hotel extends L4 {
         getPriceFromCSV();
     }
 
+    /**
+     * Creates the reservations, cancellations and stays CSV files for the system.
+     */
     private void createFiles() {
         try {
             File reservations = new File(name + "Reservations.csv");
@@ -40,17 +55,23 @@ public class Hotel extends L4 {
         }
     }
 
+    /**
+     *
+     * @return an array of prices
+     */
     public double[][] getPrices() {
         return prices;
     }
 
+    /**
+     * Reads the prices from the CSV file.
+     */
     public void getPriceFromCSV() {
         try {
             double[][] prices = this.prices;
             String temp = "";
             File file = new File("L4.csv");
             Scanner scanner = new Scanner(file);
-            int commaCounter = 0;
             while (scanner.hasNext()) {
                 temp = scanner.nextLine();
                 if (temp.contains(name)) {
@@ -80,18 +101,32 @@ public class Hotel extends L4 {
         }
     }
 
+    /**
+     * @return hotel rating
+     */
     String getRating() {
         return this.rating;
     }
 
+    /**
+     * @return hotel name
+     */
     public String getName(){
         return this.name;
     }
 
+    /**
+     * @return hotel location
+     */
     String getLocation(){
         return this.location;
     }
 
+    /**
+     * Creates rooms in the hotel
+     * @param RoomDetails
+     * @param numOfRooms
+     */
     void createRooms(String[] RoomDetails, int[] numOfRooms) {
         for (int i = 0; i < numOfRooms.length; i++) {
             for (int j = 0; j < numOfRooms[i]; j++) {
@@ -104,6 +139,9 @@ public class Hotel extends L4 {
         }
     }
 
+    /**
+     * @return room types
+     */
     public ArrayList<Room> getRoomTypes() {
         return RoomTypes;
     }
