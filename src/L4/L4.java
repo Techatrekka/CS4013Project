@@ -3,20 +3,39 @@ package L4;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * @author:
+ */
+
 public class L4 {
     ArrayList<Hotel> L4 = new ArrayList<>();
     File L4Chain = new File("L4.csv");
 
+    /**
+     * Add a hotel to the arraylist L4.
+     * @param name
+     * @param location
+     * @param rating
+     * @param roomDetails
+     * @param numOfRooms
+     */
     public void addHotel(String name, String location, String rating, String[] roomDetails, int[] numOfRooms) {
         Hotel h = new Hotel(name, location, rating, roomDetails, numOfRooms);
         L4.add(h);
     }
 
-    public boolean removeHotel(int index) {
+    /**
+     * Removes a hotel from the arraylist L4.
+     * @param index
+     */
+    public void removeHotel(int index) {
         L4.remove(index);
-        return true;
     }
 
+    /**
+     * Returns a list of hotels in the l4 chain.
+     * @return array of hotels
+     */
     public String[] hotelList() {
         String[] temp = new String[L4.size()];
         for (int i = 0; i < temp.length; i++) {
@@ -25,9 +44,13 @@ public class L4 {
         return temp;
     }
 
+    /**
+     * @return arraylist
+     */
     public ArrayList<Hotel> getL4() {
         return L4;
     }
+
 
     public static void writeToCSV(String fileName, ArrayList<Hotel> hotels, boolean overwrite) {
         try {
@@ -62,6 +85,12 @@ public class L4 {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Writes the details of the specified hotel to a CSV file
+     * @param filename
+     * @param hotels
+     */
     public static void writeHotelDetailsToCSV(String filename, ArrayList<Hotel> hotels) {
         try {
             File file = new File(filename);
