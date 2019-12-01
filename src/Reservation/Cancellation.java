@@ -5,10 +5,26 @@ import L4.Room;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * @author:
+ */
+
 public class Cancellation extends Reservation
 {
     private LocalDate cancellationDate;
 
+    /**
+     * Create a cancellation object
+     * @param reservationId
+     * @param reservationName
+     * @param number
+     * @param email
+     * @param checkIn
+     * @param cancellationDate
+     * @param rooms
+     * @param totalCost
+     * @param advancedPurchase
+     */
     public Cancellation(String reservationId, String reservationName, String number, String email, LocalDate checkIn,
                         LocalDate cancellationDate, ArrayList<Room> rooms, double totalCost, boolean advancedPurchase)
     {
@@ -16,6 +32,11 @@ public class Cancellation extends Reservation
         this.cancellationDate = cancellationDate;
     }
 
+    /**
+     * Create a cancellation object
+     * @param reservation
+     * @param hotelChosen
+     */
     public Cancellation(Reservation reservation,String hotelChosen)
     {
 		ArrayList<Reservation> cancels = readFromCSV(hotelChosen+"Cancellations.csv");
@@ -27,6 +48,10 @@ public class Cancellation extends Reservation
 		
     }
 
+    /**
+     * Get the cancellation date
+     * @return the cancellation date
+     */
     public LocalDate getCancellationDate()
     {
         return cancellationDate;
