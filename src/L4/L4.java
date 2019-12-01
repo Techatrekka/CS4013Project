@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class L4 {
     ArrayList<Hotel> L4 = new ArrayList<>();
-    File L4Chain = new File("L4.csv");
 
     /**
      * Add a hotel to the arraylist L4.
@@ -51,41 +50,6 @@ public class L4 {
         return L4;
     }
 
-
-    public static void writeToCSV(String fileName, ArrayList<Hotel> hotels, boolean overwrite) {
-        try {
-            File file = new File(fileName);
-            StringBuffer data = new StringBuffer("");
-            PrintWriter printWriter = null;
-            try {
-                if (!file.exists()) {
-                    file.createNewFile();
-                }
-            }catch (IOException e) {
-                System.out.println("File creation error");
-            }
-            if (file.exists() && !overwrite) {
-                printWriter = new PrintWriter(new FileOutputStream(file, true));
-            }
-            data.append("Hotel Name, Location, No. of Rooms, Rating\n");
-            // write data (, == new column && \n == new row)
-            for (Hotel hotel: hotels)
-            {
-                String name = hotel.getName();
-                String location = hotel.getLocation();
-               // String numRooms = String.valueOf(hotel.getNoOfRooms());
-                String rating = String.valueOf(hotel.getRating());
-               // data.append(name + "," + location + "," + numRooms + "," + rating + "," + hotel.getRoomTypes());
-            }
-            printWriter.write(data.toString());
-            printWriter.close();
-        }
-        catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * Writes the details of the specified hotel to a CSV file
      * @param filename
@@ -105,11 +69,10 @@ public class L4 {
             PrintWriter printWriter = new PrintWriter(file);
             data.append("Hotel Name, Hotel type, Room type, Number of Rooms, Occupancy-min, Occupancy-max, Rates\n");
             data.append(",,,,Adult-Child,Adult-Child,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday\n");
-            for (int i = 0; i < hotels.size(); i++) {
-                Hotel hotel = hotels.get(i);
-                data.append(hotels.get(i).getName()).append(",").append(hotels.get(i).getRating()).append(",");
+            for (Hotel hotel : hotels) {
+                data.append(hotel.getName()).append(",").append(hotel.getRating()).append(",");
                 for (int j = 0; j < hotel.prices.length; j++) {
-                   if (j!=0) data.append(",,");
+                    if (j != 0) data.append(",,");
                     data.append(hotel.getRoomTypes().get(j)).append(",").append(hotel.noOfRooms[j])
                             .append(",1-0,").append(hotel.getRoomTypes().get(j).occupancy).append(",")
                             .append(hotel.prices[j][0]).append(",").append(hotel.prices[j][1]).append(",")
